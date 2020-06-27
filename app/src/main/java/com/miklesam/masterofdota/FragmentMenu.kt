@@ -17,7 +17,7 @@ class FragmentMenu :Fragment(R.layout.fragment_menu){
         super.onViewCreated(view, savedInstanceState)
         val menuListener = activity as MenuListener
         game_bttn.setOnClickListener { menuListener.gameClicked() }
-        number_progress_bar.progress=75
-        number_progress_bar.reachedBarColor=ContextCompat.getColor(requireContext(),R.color.colorPrimary)
+        //number_progress_bar.progress=75
+        //number_progress_bar.reachedBarColor=ContextCompat.getColor(requireContext(),R.color.colorPrimary)
     }
 }

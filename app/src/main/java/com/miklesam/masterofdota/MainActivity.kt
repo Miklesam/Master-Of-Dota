@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 
-class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener {
+class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
+    FragmentPickStage.nextFromPick {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,14 +54,18 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = FragmentPickStage()
         transaction.setCustomAnimations(
-            R.animator.card_flip_vertical_left_in,
-            R.animator.card_flip_vertical_right_out,
             R.animator.card_flip_vertical_right_in,
-            R.animator.card_flip_vertical_left_out
+            R.animator.card_flip_vertical_left_out,
+            R.animator.card_flip_vertical_left_in,
+            R.animator.card_flip_vertical_right_out
         )
         transaction.replace(R.id.fragment_holder, fragment)
             .addToBackStack(null)
         transaction.commit()
+    }
+
+    override fun pickEnded(radiant: ArrayList<Int>, direPicks: ArrayList<Int>) {
+        TODO("Not yet implemented")
     }
 
 }

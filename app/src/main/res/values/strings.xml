@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Master of Dota</string>
     <string name="game">Game</string>
+    <string name="banned">Banned</string>
+
+    <string name="finding">Finding game</string>
+    <string name="cancel">Cancel</string>
+
 </resources>
