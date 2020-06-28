@@ -11,13 +11,17 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_pick_stage.*
+import kotlinx.coroutines.*
 
 
-class FragmentPickStage :Fragment(R.layout.fragment_pick_stage){
+class FragmentPickStage : Fragment(R.layout.fragment_pick_stage) {
     var Heros_icon =
         arrayOfNulls<ImageView>(119)
     var Pick_stage =
-        arrayOfNulls<ImageView>(22)
+        arrayOfNulls<ImageView>(10)
+    val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    var Ban_stage =
+        arrayOfNulls<ImageView>(12)
     var arrayHero: MutableList<Heroes>? = null
     var block = false
     var pick_state = 0
@@ -28,6 +32,8 @@ class FragmentPickStage :Fragment(R.layout.fragment_pick_stage){
     var soundPull: SoundPool? = null
     var soundOne: Int = 0
     var soundTwo: Int = 0
+    var randomBansEnded = false
+    var yourBan = false
 
     interface nextFromPick {
         fun pickEnded(
@@ -48,6 +54,7 @@ class FragmentPickStage :Fragment(R.layout.fragment_pick_stage){
 
     override fun onPause() {
         Log.w("Pick", " Freagment Pick Pause")
+        scope.cancel()
         super.onPause()
         player?.pause()
     }
@@ -90,54 +97,46 @@ class FragmentPickStage :Fragment(R.layout.fragment_pick_stage){
         //player?.start()
 
         Plan_state.setOnClickListener { endedListener.pickEnded(radiantPicks, direPicks) }
-        timer = object : CountDownTimer(60000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                timeleft.text = ("" + millisUntilFinished / 1000)
-            }
 
-            override fun onFinish() {
-                if (pick_state != 22) {
-                    block = true
-                    randomPlayerPick()
-                }
-            }
-        }
-        timer?.start()
-
+        Help.text="Bans"
+        randomBan()
         for (i in 0 until 119) {
             Heros_icon[i]!!.setOnClickListener {
                 if (!block) {
                     block = true
-                    if (arrayHero!!.contains(Heroes.values().find { it.id == i })) {
-                        Heros_icon[i]!!.setImageResource(
-                            Heroes.values().find { it.id == i }!!.largeBan
-                        )
-                        val chooseHero = Heroes.values().find { it.id == i }
-                        if (pick_state == 8 || pick_state == 11 || pick_state == 15 || pick_state == 17 || pick_state == 20) {
-                            radiantPicks.add(chooseHero!!.id)
-                            Pick_stage[pick_state]?.setImageResource(chooseHero!!.image_pick)
-                        } else {
-                            Pick_stage[pick_state]?.setImageResource(chooseHero!!.minBan)
+                    if(!yourBan){
+                        if (arrayHero!!.contains(Heroes.values().find { it.id == i })) {
+                            Heros_icon[i]!!.setImageResource(
+                                Heroes.values().find { it.id == i }!!.largeBan
+                            )
+                            val chooseHero = Heroes.values().find { it.id == i }
+                            //radiantPicks.add(chooseHero!!.id)
+                            //Pick_stage[pick_state]?.setImageResource(chooseHero!!.image_pick)
+                            Ban_stage[11]?.setImageResource(chooseHero!!.minBan)
                             block = false
-                        }
-
-                        arrayHero!!.remove(chooseHero)
-                        pick_state++
-                        if (pick_state != 12 && pick_state != 20) {
-                            randomComputerPick()
-                        } else {
-                            if (pick_state == 0 || pick_state == 2 || pick_state == 4 || pick_state == 6 || pick_state == 12 || pick_state == 19) {
-                                soundPull?.play(soundTwo, 1F, 1F, 0, 0, 1F)
-                            } else if(pick_state<22) {
-                                soundPull?.play(soundOne, 1F, 1F, 0, 0, 1F)
+                            arrayHero!!.remove(chooseHero)
+                            yourBan = true
+                            if (randomBansEnded) {
+                                Help.text="Pick"
                             }
+                            //if (pick_state != 12 && pick_state != 20) {
+                            //   randomComputerPick()
+                            //} else {
+                            //    if (pick_state == 0 || pick_state == 2 || pick_state == 4 || pick_state == 6 || pick_state == 12 || pick_state == 19) {
+                            //        soundPull?.play(soundTwo, 1F, 1F, 0, 0, 1F)
+                            //    } else if (pick_state < 22) {
+                            //        soundPull?.play(soundOne, 1F, 1F, 0, 0, 1F)
+                            //    }
+                            //    block = false
+                            //}
+                            //timer?.cancel()
+                        }
+                        else {
+                            showCustomToast(getString(R.string.banned), Toast.LENGTH_SHORT)
                             block = false
                         }
-                        //timer?.cancel()
-                    } else {
-                        showCustomToast(getString(R.string.banned), Toast.LENGTH_SHORT)
-                        block = false
                     }
+
                 }
 
 
@@ -430,28 +429,32 @@ class FragmentPickStage :Fragment(R.layout.fragment_pick_stage){
         Heros_icon[117]!!.setImageResource(Heroes.SNAPFIRE.icon)
         Heros_icon[118]!!.setImageResource(Heroes.VOID_SPIRIT.icon)
 
-        Pick_stage[0] = ban1
-        Pick_stage[1] = ban2
-        Pick_stage[2] = ban3
-        Pick_stage[3] = ban4
-        Pick_stage[4] = ban5
-        Pick_stage[5] = ban6
-        Pick_stage[6] = ban7
-        Pick_stage[7] = ban8
-        Pick_stage[8] = pick1
-        Pick_stage[9] = pick2
-        Pick_stage[10] = pick3
-        Pick_stage[11] = pick4
-        Pick_stage[12] = ban9
-        Pick_stage[13] = ban10
-        Pick_stage[14] = pick5
-        Pick_stage[15] = pick6
-        Pick_stage[16] = pick7
-        Pick_stage[17] = pick8
-        Pick_stage[18] = ban12
-        Pick_stage[19] = ban11
-        Pick_stage[20] = pick9
-        Pick_stage[21] = pick10
+        Pick_stage[0] = pick1
+        Pick_stage[1] = pick2
+        Pick_stage[2] = pick3
+        Pick_stage[3] = pick4
+        Pick_stage[4] = pick5
+        Pick_stage[5] = pick6
+        Pick_stage[6] = pick7
+        Pick_stage[7] = pick8
+        Pick_stage[8] = pick9
+        Pick_stage[9] = pick10
+
+
+        Ban_stage[0] = ban1
+        Ban_stage[1] = ban2
+        Ban_stage[2] = ban3
+        Ban_stage[3] = ban4
+        Ban_stage[4] = ban5
+        Ban_stage[5] = ban6
+        Ban_stage[6] = ban7
+        Ban_stage[7] = ban8
+        Ban_stage[8] = ban9
+        Ban_stage[9] = ban10
+        Ban_stage[10] = ban12
+        Ban_stage[11] = ban11
+
+
     }
 
     private fun callYourPick() {
@@ -465,6 +468,28 @@ class FragmentPickStage :Fragment(R.layout.fragment_pick_stage){
             }
         }
         timer2.start()
+    }
+
+
+    private fun randomBan() {
+        scope.launch {
+            withContext(Dispatchers.Main) {
+                for (i in 0 until 11) {
+                    val rnds = (0 until arrayHero!!.size).random()
+                    val what = arrayHero!![rnds]
+                    Heros_icon[what.id]?.setImageResource(what!!.largeBan)
+                    Ban_stage[pick_state]?.setImageResource(what!!.minBan)
+                    arrayHero!!.remove(what)
+                    pick_state++
+                    delay(500)
+                }
+                if (yourBan) {
+                    Help.text="Pick"
+                } else {
+                    randomBansEnded = true
+                }
+            }
+        }
     }
 
     private fun randomComputerPick() {
@@ -484,13 +509,13 @@ class FragmentPickStage :Fragment(R.layout.fragment_pick_stage){
         }
         if (pick_state == 0 || pick_state == 2 || pick_state == 4 || pick_state == 6 || pick_state == 12 || pick_state == 19) {
             soundPull?.play(soundTwo, 1F, 1F, 0, 0, 1F)
-        } else if(pick_state<22) {
+        } else if (pick_state < 22) {
             soundPull?.play(soundOne, 1F, 1F, 0, 0, 1F)
         }
-        if(timer!=null){
+        if (timer != null) {
             timer!!.start()
-        }else{
-            timer=object : CountDownTimer(60000, 1000) {
+        } else {
+            timer = object : CountDownTimer(60000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     timeleft.text = ("" + millisUntilFinished / 1000)
                 }
