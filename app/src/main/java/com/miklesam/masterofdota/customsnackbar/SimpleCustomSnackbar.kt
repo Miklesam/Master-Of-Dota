@@ -9,11 +9,13 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.miklesam.masterofdota.R
+import kotlinx.android.synthetic.main.view_snackbar_simple.view.*
 
 class SimpleCustomSnackbar private constructor(
     parent: ViewGroup,
     content: SimpleCustomSnackbarView
 ) : BaseTransientBottomBar<SimpleCustomSnackbar>(parent, content, content) {
+
 
     init {
         getView().setBackgroundColor(
@@ -64,6 +66,7 @@ class SimpleCustomSnackbar private constructor(
             customView.icon.setImageResource(icon)
             customView.icon.setOnClickListener { onClick.invoke() }
             customView.rootLayout.setBackgroundColor(bgColor)
+
             return SimpleCustomSnackbar(
                 parent,
                 customView
