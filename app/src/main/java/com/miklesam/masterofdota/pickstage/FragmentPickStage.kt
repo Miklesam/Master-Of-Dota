@@ -1,4 +1,4 @@
-package com.miklesam.masterofdota
+package com.miklesam.masterofdota.pickstage
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
@@ -10,6 +10,11 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.miklesam.masterofdota.Heroes
+import com.miklesam.masterofdota.R
+import com.miklesam.masterofdota.showCustomToast
 import kotlinx.android.synthetic.main.fragment_pick_stage.*
 import kotlinx.coroutines.*
 
@@ -34,6 +39,8 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage) {
     var soundTwo: Int = 0
     var randomBansEnded = false
     var yourBan = false
+    private val pickViewModel by viewModels<PickStageViewModel>()
+
 
     interface nextFromPick {
         fun pickEnded(
@@ -98,13 +105,26 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage) {
 
         Plan_state.setOnClickListener { endedListener.pickEnded(radiantPicks, direPicks) }
 
-        Help.text="Bans"
-        randomBan()
+        Help.text = "Bans"
+        //randomBan()
+
+        pickViewModel.getBansArray().observe(viewLifecycleOwner, Observer {
+            if (it!=null && it.size > 0) {
+                for (i in 0 until  it.size){
+                    val what = it[i]
+                    Heros_icon[what.id]?.setImageResource(what!!.largeBan)
+                    Ban_stage[i]?.setImageResource(what!!.minBan)
+                }
+
+            }
+
+        })
+
         for (i in 0 until 119) {
             Heros_icon[i]!!.setOnClickListener {
                 if (!block) {
                     block = true
-                    if(!yourBan){
+                    if (!yourBan) {
                         if (arrayHero!!.contains(Heroes.values().find { it.id == i })) {
                             Heros_icon[i]!!.setImageResource(
                                 Heroes.values().find { it.id == i }!!.largeBan
@@ -117,7 +137,7 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage) {
                             arrayHero!!.remove(chooseHero)
                             yourBan = true
                             if (randomBansEnded) {
-                                Help.text="Pick"
+                                Help.text = "Pick"
                             }
                             //if (pick_state != 12 && pick_state != 20) {
                             //   randomComputerPick()
@@ -130,8 +150,7 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage) {
                             //    block = false
                             //}
                             //timer?.cancel()
-                        }
-                        else {
+                        } else {
                             showCustomToast(getString(R.string.banned), Toast.LENGTH_SHORT)
                             block = false
                         }
@@ -484,7 +503,7 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage) {
                     delay(500)
                 }
                 if (yourBan) {
-                    Help.text="Pick"
+                    Help.text = "Pick"
                 } else {
                     randomBansEnded = true
                 }

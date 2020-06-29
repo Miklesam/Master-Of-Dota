@@ -3,6 +3,7 @@ package com.miklesam.masterofdota
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import com.miklesam.masterofdota.pickstage.FragmentPickStage
 
 class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
     FragmentPickStage.nextFromPick {
