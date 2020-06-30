@@ -3,10 +3,11 @@ package com.miklesam.masterofdota
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import com.miklesam.masterofdota.game.FragmentGame
 import com.miklesam.masterofdota.pickstage.FragmentPickStage
 
 class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
-    FragmentPickStage.nextFromPick {
+    FragmentPickStage.nextFromPick, FragmentGame.backToLobby {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +66,19 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     }
 
     override fun pickEnded(radiant: ArrayList<Int>, direPicks: ArrayList<Int>) {
-        val rad = radiant
-        val dire = direPicks
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment = FragmentGame()
+        val bundle = Bundle()
+        bundle.putIntegerArrayList("radiant", radiant)
+        bundle.putIntegerArrayList("dire", direPicks)
+        fragment.arguments = bundle
+        transaction.replace(R.id.fragment_holder, fragment)
+            .addToBackStack(null)
+        transaction.commit()
+    }
+
+    override fun backToLobbyCLicked() {
+
     }
 
 }
