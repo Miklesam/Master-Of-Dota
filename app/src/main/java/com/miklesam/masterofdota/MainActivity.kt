@@ -16,19 +16,18 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-        if (savedInstanceState==null){
+        if (savedInstanceState == null) {
             showMenuFragment()
         }
 
     }
 
 
-
     override fun gameClicked() {
         showRoomFragment()
     }
 
-    private fun showRoomFragment(){
+    private fun showRoomFragment() {
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = FragmentRoom()
         transaction.setCustomAnimations(
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
 
     }
 
-    private fun showMenuFragment(){
+    private fun showMenuFragment() {
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = FragmentMenu()
         transaction.replace(R.id.fragment_holder, fragment)
@@ -66,7 +65,8 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     }
 
     override fun pickEnded(radiant: ArrayList<Int>, direPicks: ArrayList<Int>) {
-        TODO("Not yet implemented")
+        val rad = radiant
+        val dire = direPicks
     }
 
 }

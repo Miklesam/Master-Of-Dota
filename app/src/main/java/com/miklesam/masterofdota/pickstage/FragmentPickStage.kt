@@ -14,31 +14,27 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.miklesam.masterofdota.Heroes
 import com.miklesam.masterofdota.R
+import com.miklesam.masterofdota.Visible
 import com.miklesam.masterofdota.showCustomToast
 import kotlinx.android.synthetic.main.fragment_pick_stage.*
 import kotlinx.coroutines.*
 
 
-class FragmentPickStage : Fragment(R.layout.fragment_pick_stage),PickCallback {
+class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback {
     var Heros_icon =
         arrayOfNulls<ImageView>(119)
     var Pick_stage =
         arrayOfNulls<ImageView>(10)
-    val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     var Ban_stage =
         arrayOfNulls<ImageView>(12)
-    var arrayHero: MutableList<Heroes>? = null
     var block = false
-    var pick_state = 0
-    var timer: CountDownTimer? = null
-    val radiantPicks: ArrayList<Int> = ArrayList()
-    val direPicks: ArrayList<Int> = ArrayList()
+    var pick: ArrayList<Heroes> = ArrayList()
     var player: MediaPlayer? = null
     var soundPull: SoundPool? = null
     var soundOne: Int = 0
     var soundTwo: Int = 0
-    var randomBansEnded = false
     var yourBan = false
+    var playerPick = 0
     private val pickViewModel by viewModels<PickStageViewModel>()
 
 
@@ -51,8 +47,6 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage),PickCallback {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        arrayHero = null
-        timer = null
         player = null
         soundPull = null
         Heros_icon = emptyArray()
@@ -61,7 +55,6 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage),PickCallback {
 
     override fun onPause() {
         Log.w("Pick", " Freagment Pick Pause")
-        scope.cancel()
         super.onPause()
         player?.pause()
     }
@@ -72,8 +65,6 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage),PickCallback {
         player?.stop()
         player?.release()
         player = null
-        timer?.cancel()
-        timer = null
         soundPull?.stop(soundOne)
         soundPull?.stop(soundTwo)
         soundPull = null
@@ -97,78 +88,85 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage),PickCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val endedListener = activity as nextFromPick
-        arrayHero = Heroes.values().toMutableList()
         initViews()
         //player = MediaPlayer.create(context, R.raw.pick_music)
         player?.setOnCompletionListener { player?.start() }
         //player?.start()
 
-        Plan_state.setOnClickListener { endedListener.pickEnded(radiantPicks, direPicks) }
-
-        Help.text = "Bans"
-        //randomBan()
+        Plan_state.setOnClickListener {
+            val direPicks = arrayListOf(pick[0].id, pick[1].id, pick[3].id, pick[5].id, pick[8].id)
+            val radiantPicks =
+                arrayListOf(playerPick, pick[2].id, pick[4].id, pick[6].id, pick[7].id)
+            endedListener.pickEnded(
+                radiant = radiantPicks,
+                direPicks = direPicks
+            )
+        }
 
         pickViewModel.getBansArray().observe(viewLifecycleOwner, Observer {
-            if (it!=null && it.size > 0) {
-                for (i in 0 until  it.size){
+            if (it != null && it.size > 0) {
+                for (i in 0 until it.size) {
                     val what = it[i]
-                    Heros_icon[what.id]?.setImageResource(what!!.largeBan)
-                    Ban_stage[i]?.setImageResource(what!!.minBan)
+                    Heros_icon[what.id]?.setImageResource(what.largeBan)
+                    Ban_stage[i]?.setImageResource(what.minBan)
                 }
-
             }
-
         })
+
+        pickViewModel.getPlayerBan().observe(viewLifecycleOwner, Observer { myInt ->
+            Heros_icon[myInt]!!.setImageResource(
+                Heroes.values().find { it.id == myInt }!!.largeBan
+            )
+            val chooseHero = Heroes.values().find { it.id == myInt }
+            Ban_stage[11]?.setImageResource(chooseHero!!.minBan)
+        })
+
+        pickViewModel.getPickStage().observe(viewLifecycleOwner, Observer { pickStage ->
+            if (pickStage) {
+                Help.text = "Pick phase"
+            } else {
+                Help.text = "Ban phase"
+            }
+        })
+        pickViewModel.getPicksArray().observe(viewLifecycleOwner, Observer {
+            if (it != null && it.size > 0) {
+                for (i in 0 until it.size) {
+                    val what = it[i]
+                    Heros_icon[what.id]?.setImageResource(what.largeBan)
+                    Pick_stage[i + 1]?.setImageResource(what.image_pick)
+                }
+            }
+            pick = it
+        })
+
+        pickViewModel.getPlayerPick().observe(viewLifecycleOwner, Observer { myInt ->
+            Heros_icon[myInt]!!.setImageResource(
+                Heroes.values().find { it.id == myInt }!!.largeBan
+            )
+            val chooseHero = Heroes.values().find { it.id == myInt }
+            Pick_stage[0]?.setImageResource(chooseHero!!.image_pick)
+            playerPick = myInt
+        })
+
+        pickViewModel.getPickEnd().observe(viewLifecycleOwner, Observer {
+            if (it) {
+                Plan_state.Visible()
+                block = true
+            }
+        })
+
 
         for (i in 0 until 119) {
             Heros_icon[i]!!.setOnClickListener {
                 if (!block) {
                     block = true
                     if (!yourBan) {
-                        pickViewModel.myChoose(i,this)
+                        pickViewModel.myChoose(i, this)
                         block = false
-                        /*
-                        if (arrayHero!!.contains(Heroes.values().find { it.id == i })) {
-                            Heros_icon[i]!!.setImageResource(
-                                Heroes.values().find { it.id == i }!!.largeBan
-                            )
-                            val chooseHero = Heroes.values().find { it.id == i }
-                            //radiantPicks.add(chooseHero!!.id)
-                            //Pick_stage[pick_state]?.setImageResource(chooseHero!!.image_pick)
-                            Ban_stage[11]?.setImageResource(chooseHero!!.minBan)
-                            block = false
-                            arrayHero!!.remove(chooseHero)
-                            yourBan = true
-                            if (randomBansEnded) {
-                                Help.text = "Pick"
-                            }
-                            //if (pick_state != 12 && pick_state != 20) {
-                            //   randomComputerPick()
-                            //} else {
-                            //    if (pick_state == 0 || pick_state == 2 || pick_state == 4 || pick_state == 6 || pick_state == 12 || pick_state == 19) {
-                            //        soundPull?.play(soundTwo, 1F, 1F, 0, 0, 1F)
-                            //    } else if (pick_state < 22) {
-                            //        soundPull?.play(soundOne, 1F, 1F, 0, 0, 1F)
-                            //    }
-                            //    block = false
-                            //}
-                            //timer?.cancel()
-                        } else {
-                            showCustomToast(getString(R.string.banned), Toast.LENGTH_SHORT)
-                            block = false
-                        }
-
-                         */
                     }
-
                 }
-
-
             }
-
         }
-        //Help.text = getString(R.string.your_turn)
-        callYourPick()
     }
 
     private fun initViews() {
@@ -479,112 +477,6 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage),PickCallback {
         Ban_stage[11] = ban11
 
 
-    }
-
-    private fun callYourPick() {
-        val timer2 = object : CountDownTimer(500, 100) {
-            override fun onTick(millisUntilFinished: Long) {
-
-            }
-
-            override fun onFinish() {
-                soundPull?.play(soundTwo, 1F, 1F, 0, 0, 1F)
-            }
-        }
-        timer2.start()
-    }
-
-
-    private fun randomBan() {
-        scope.launch {
-            withContext(Dispatchers.Main) {
-                for (i in 0 until 11) {
-                    val rnds = (0 until arrayHero!!.size).random()
-                    val what = arrayHero!![rnds]
-                    Heros_icon[what.id]?.setImageResource(what!!.largeBan)
-                    Ban_stage[pick_state]?.setImageResource(what!!.minBan)
-                    arrayHero!!.remove(what)
-                    pick_state++
-                    delay(500)
-                }
-                if (yourBan) {
-                    Help.text = "Pick"
-                } else {
-                    randomBansEnded = true
-                }
-            }
-        }
-    }
-
-    private fun randomComputerPick() {
-        val rnds = (0 until arrayHero!!.size).random()
-        val what = arrayHero!![rnds]
-        Heros_icon[what.id]?.setImageResource(what!!.largeBan)
-        if (pick_state == 9 || pick_state == 10 || pick_state == 14 || pick_state == 16 || pick_state == 21) {
-            direPicks.add(what.id)
-            Pick_stage[pick_state]?.setImageResource(what!!.image_pick)
-        } else {
-            Pick_stage[pick_state]?.setImageResource(what!!.minBan)
-        }
-        arrayHero!!.remove(what)
-        pick_state++
-        if (pick_state == 10 || pick_state == 14) {
-            randomComputerPick()
-        }
-        if (pick_state == 0 || pick_state == 2 || pick_state == 4 || pick_state == 6 || pick_state == 12 || pick_state == 19) {
-            soundPull?.play(soundTwo, 1F, 1F, 0, 0, 1F)
-        } else if (pick_state < 22) {
-            soundPull?.play(soundOne, 1F, 1F, 0, 0, 1F)
-        }
-        if (timer != null) {
-            timer!!.start()
-        } else {
-            timer = object : CountDownTimer(60000, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    timeleft.text = ("" + millisUntilFinished / 1000)
-                }
-
-                override fun onFinish() {
-                    if (pick_state != 22) {
-                        block = true
-                        randomPlayerPick()
-                    }
-                }
-            }
-            timer?.start()
-
-        }
-
-        block = false
-        if (pick_state == 22) {
-            timer?.cancel()
-            Plan_state.visibility = View.VISIBLE
-            block = true
-        }
-    }
-
-    private fun randomPlayerPick() {
-        val rnds = (0 until arrayHero!!.size).random()
-        val what = arrayHero!![rnds]
-        Heros_icon[what.id]?.setImageResource(what!!.largeBan)
-        if (pick_state == 8 || pick_state == 11 || pick_state == 15 || pick_state == 17 || pick_state == 20) {
-            Pick_stage[pick_state]?.setImageResource(what!!.image_pick)
-            radiantPicks.add(what!!.id)
-        } else {
-            Pick_stage[pick_state]?.setImageResource(what!!.minBan)
-        }
-        pick_state++
-        arrayHero!!.remove(what)
-        block = false
-        if (pick_state != 12 && pick_state != 20) {
-            randomComputerPick()
-        } else {
-            timer?.start()
-        }
-    }
-
-    override fun onSuccess() {
-        TODO("Not yet implemented")
     }
 
     override fun onError() {
