@@ -37,4 +37,8 @@ class PickStageViewModel : ViewModel() {
         }
     }
 
+    fun myChoose(heroId: Int, callback: PickCallback) {
+        callback.onError()
+    }
+
 }

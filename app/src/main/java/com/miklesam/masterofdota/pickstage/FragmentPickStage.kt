@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_pick_stage.*
 import kotlinx.coroutines.*
 
 
-class FragmentPickStage : Fragment(R.layout.fragment_pick_stage) {
+class FragmentPickStage : Fragment(R.layout.fragment_pick_stage),PickCallback {
     var Heros_icon =
         arrayOfNulls<ImageView>(119)
     var Pick_stage =
@@ -125,6 +125,9 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage) {
                 if (!block) {
                     block = true
                     if (!yourBan) {
+                        pickViewModel.myChoose(i,this)
+                        block = false
+                        /*
                         if (arrayHero!!.contains(Heroes.values().find { it.id == i })) {
                             Heros_icon[i]!!.setImageResource(
                                 Heroes.values().find { it.id == i }!!.largeBan
@@ -154,6 +157,8 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage) {
                             showCustomToast(getString(R.string.banned), Toast.LENGTH_SHORT)
                             block = false
                         }
+
+                         */
                     }
 
                 }
@@ -576,6 +581,14 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage) {
         } else {
             timer?.start()
         }
+    }
+
+    override fun onSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onError() {
+        showCustomToast(getString(R.string.banned), Toast.LENGTH_SHORT)
     }
 
 }
