@@ -65,6 +65,21 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         transaction.commit()
     }
 
+    override fun heroesUpdateClicked() {
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment = FragmentHeroesUpdate()
+        transaction.setCustomAnimations(
+            R.animator.stack_left_in,
+            R.animator.stack_right_out,
+            R.animator.stack_left_in,
+            R.animator.stack_right_out
+
+        )
+        transaction.replace(R.id.fragment_holder, fragment)
+            .addToBackStack(null)
+        transaction.commit()
+    }
+
     override fun pickEnded(radiant: ArrayList<Int>, direPicks: ArrayList<Int>) {
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = FragmentGame()

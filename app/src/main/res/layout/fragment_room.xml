@@ -45,33 +45,99 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="35dp"
+            android:layout_marginBottom="2dp"
             android:gravity="center"
             android:text="Найти игру"
             android:textColor="#fff"
-            android:layout_marginBottom="2dp"
             android:textSize="12sp" />
 
     </FrameLayout>
 
 
     <ImageView
-        android:id="@+id/play"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/heroes_update"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
         android:src="@drawable/book_02d"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/player_update"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/character_edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/heroes_update" />
+
+
+    <ImageView
+        android:id="@+id/replay_watch"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/watch_replay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/player_update" />
+
     <TextView
+        android:id="@+id/mmrStats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/horizontal50"
         android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
         android:text="MMR : 5000"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal50" />
+
+    <TextView
+    android:id="@+id/fansStats"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="10dp"
+    android:text="Fans : 0"
+    android:textColor="@color/white"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="@+id/mmrStats"
+    app:layout_constraintTop_toBottomOf="@id/mmrStats" />
+
+    <TextView
+        android:id="@+id/energyStats"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Energy"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fansStats"
+        app:layout_constraintTop_toBottomOf="@id/fansStats" />
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/energyPB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/energyStats"
+        app:layout_constraintTop_toBottomOf="@id/energyStats"
+        style="@style/NumberProgressBar_Passing_Green"
+        app:progress_current="95" />
+
+    <TextView
+        android:id="@+id/moneyStats"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Money : 0"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/energyPB"
+        app:layout_constraintTop_toBottomOf="@id/energyPB" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

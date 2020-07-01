@@ -18,6 +18,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room){
     private var timerCT: CountDownTimer? = null
     interface roomListener {
         fun gamePlayClicked()
+        fun heroesUpdateClicked()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,6 +41,9 @@ class FragmentRoom : Fragment(R.layout.fragment_room){
         playDotaGame.setOnClickListener {
             customSnackbar!!.show()
             timerCT?.start()
+        }
+        heroes_update.setOnClickListener {
+            roomListener.heroesUpdateClicked()
         }
 
         timerCT = object : CountDownTimer(3000, 1000) {
