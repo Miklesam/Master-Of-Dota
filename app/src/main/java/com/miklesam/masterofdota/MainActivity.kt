@@ -78,7 +78,8 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     }
 
     override fun backToLobbyCLicked() {
-
+        supportFragmentManager.popBackStack()
+        supportFragmentManager.popBackStack()
     }
 
 }

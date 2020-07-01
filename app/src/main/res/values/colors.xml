@@ -6,4 +6,8 @@
     <color name="white">#fff</color>
     <color name="black">#000</color>
     <color name="cancel_back">#29576d</color>
+    <color name="win">#008500</color>
+    <color name="lose">#A60000</color>
+    <color name="draw">#06266F</color>
+
 </resources>

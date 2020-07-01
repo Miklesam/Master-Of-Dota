@@ -22,6 +22,15 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val gameState = MutableLiveData<Int>()
     fun getTimeState(): LiveData<Int> = gameState
     var gameCount = 0
+    private val gameStart = MutableLiveData<Boolean>()
+    fun getStarted(): LiveData<Boolean> = gameStart
+    var callback: AssignCallback? = null
+    var gameEnd = false
+
+    init {
+        gameStart.value = true
+        generateMatch()
+    }
 
     val RadiantTeam = arrayListOf<HeroStats>(
         HeroStats(0, 0, 0, 1),
@@ -103,7 +112,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
         scope.launch {
             for (i in 0 until 3) {
-                delay(1000)
+                delay(500)
                 val midLane = calculateLineKills(arrayMidRaddiant, arrayMidDire)
                 if (midLane == 2) {
                     radiantMid++
@@ -219,5 +228,40 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             direTowers.allBuilds[8],
             direTowers.allBuilds[9]
         )
+    }
+
+    fun setCallbackToGame(call: AssignCallback) {
+        callback = call
+    }
+
+
+    private fun generateMatch() {
+        scope.launch {
+            delay(250)
+            while (!gameEnd) {
+                val arayPositions = arrayOf(
+                    (0..2).random(),
+                    (0..2).random(),
+                    (0..2).random(),
+                    (0..2).random(),
+                    (0..2).random(),
+                    (3..5).random(),
+                    (3..5).random(),
+                    (3..5).random(),
+                    (3..5).random(),
+                    (3..5).random()
+                )
+                delay(300)
+                callback?.onAssign(arayPositions)
+                delay(2000)
+                calculateLineAssign(arayPositions)
+                delay(2000)
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        scope.cancel()
     }
 }

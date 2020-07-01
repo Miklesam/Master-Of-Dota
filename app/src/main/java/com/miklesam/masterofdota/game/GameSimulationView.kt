@@ -10,6 +10,8 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.miklesam.masterofdota.Hero
 import com.miklesam.masterofdota.Heroes
 import com.miklesam.masterofdota.Lanes
@@ -43,9 +45,9 @@ class GameSimulationView : View {
 
     internal var RadiantTowers = listOf(true, true, true, true, true, true, true, true, true, true)
     internal var DireTowers = listOf(true, true, true, true, true, true, true, true, true, true)
-
     val mTimeAnimator = TimeAnimator()
     var mCurrentPlayTime: Long = 0
+
 
     internal val hero = arrayOf(
         Hero(0.0, 0.0),
