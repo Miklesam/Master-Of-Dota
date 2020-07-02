@@ -85,9 +85,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/player_update" />
 
+    <ImageView
+        android:id="@+id/medal"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/mmrStats"
+        app:layout_constraintTop_toBottomOf="@id/horizontal50"
+        app:layout_constraintBottom_toTopOf="@+id/energyStats"
+        android:src="@drawable/divinity_trans"
+        />
+
+
     <TextView
         android:id="@+id/mmrStats"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
@@ -127,6 +138,21 @@
         app:layout_constraintTop_toBottomOf="@id/energyStats"
         style="@style/NumberProgressBar_Passing_Green"
         app:progress_current="95" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:src="@drawable/dollar_trans"
+        app:layout_constraintEnd_toStartOf="@+id/mmrStats"
+        app:layout_constraintTop_toTopOf="@id/moneyStats" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:src="@drawable/battery_full"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/energyStats"
+        app:layout_constraintTop_toTopOf="@id/energyStats" />
 
     <TextView
         android:id="@+id/moneyStats"

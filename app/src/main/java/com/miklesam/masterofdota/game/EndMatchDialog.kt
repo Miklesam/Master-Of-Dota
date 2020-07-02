@@ -22,7 +22,7 @@ class EndMatchDialog() : AppCompatDialogFragment() {
     var mListener: toLobbyInterface? = null
 
     interface toLobbyInterface {
-        fun goToLobbyClick()
+        fun goToLobbyClick(points: Int)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -41,7 +41,7 @@ class EndMatchDialog() : AppCompatDialogFragment() {
                 )
             }
             2 -> {
-                match_result_text.text =  getString(R.string.you_lose)
+                match_result_text.text = getString(R.string.you_lose)
                 match_result_text.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
@@ -50,7 +50,7 @@ class EndMatchDialog() : AppCompatDialogFragment() {
                 )
             }
             3 -> {
-                match_result_text.text =  getString(R.string.draw)
+                match_result_text.text = getString(R.string.draw)
                 match_result_text.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
@@ -66,7 +66,7 @@ class EndMatchDialog() : AppCompatDialogFragment() {
         builder.setView(mycustomview)
         builder.setTitle(getString(R.string.match_is_over))
         builder.setPositiveButton(getString(R.string.quit)) { _, _ ->
-            mListener?.goToLobbyClick()
+            mListener?.goToLobbyClick(sude)
             Lock = false
         }
 

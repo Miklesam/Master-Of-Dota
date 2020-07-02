@@ -10,12 +10,13 @@ import com.miklesam.masterofdota.customsnackbar.SimpleCustomSnackbar
 import kotlinx.android.synthetic.main.fragment_room.*
 import kotlinx.coroutines.*
 
-class FragmentRoom : Fragment(R.layout.fragment_room){
+class FragmentRoom : Fragment(R.layout.fragment_room) {
 
     var weatherAnim: WeatherView? = null
     private var customSnackbar: SimpleCustomSnackbar? = null
-    private var scope :CoroutineScope? = null
+    private var scope: CoroutineScope? = null
     private var timerCT: CountDownTimer? = null
+
     interface roomListener {
         fun gamePlayClicked()
         fun heroesUpdateClicked()
@@ -68,10 +69,11 @@ class FragmentRoom : Fragment(R.layout.fragment_room){
 
          */
 
-
+        mmrStats.text = PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")
 
 
     }
+
     private fun onClick() {
         timerCT?.cancel()
         customSnackbar?.dismiss()
@@ -84,8 +86,8 @@ class FragmentRoom : Fragment(R.layout.fragment_room){
         super.onResume()
     }
 
-    private fun animateMonitor(){
-        scope=CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private fun animateMonitor() {
+        scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
         val turnDota = ContextCompat.getDrawable(
             requireContext(),
             R.drawable.mon_1
@@ -122,7 +124,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room){
     override fun onDestroyView() {
         timerCT?.cancel()
         customSnackbar?.dismiss()
-        weatherAnim=null
+        weatherAnim = null
         super.onDestroyView()
     }
 }

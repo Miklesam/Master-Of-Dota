@@ -7,7 +7,8 @@ import com.miklesam.masterofdota.game.FragmentGame
 import com.miklesam.masterofdota.pickstage.FragmentPickStage
 
 class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
-    FragmentPickStage.nextFromPick, FragmentGame.backToLobby {
+    FragmentPickStage.nextFromPick, FragmentGame.backToLobby,
+    FragmentYourNickName.nickNameListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +25,23 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     }
 
 
-    override fun gameClicked() {
+    override fun continueClicked() {
         showRoomFragment()
+    }
+
+    override fun newGameClicked() {
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment = FragmentYourNickName()
+        transaction.setCustomAnimations(
+            R.animator.scaley_enter,
+            R.animator.scaley_exit,
+            R.animator.scaley_enter,
+            R.animator.scaley_exit
+
+        )
+        transaction.replace(R.id.fragment_holder, fragment)
+            .addToBackStack(null)
+        transaction.commit()
     }
 
     private fun showRoomFragment() {
@@ -69,8 +85,8 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = FragmentHeroesUpdate()
         transaction.setCustomAnimations(
-            R.animator.stack_left_in,
-            R.animator.stack_right_out,
+            R.animator.scaley_enter,
+            R.animator.scaley_exit,
             R.animator.stack_left_in,
             R.animator.stack_right_out
 
@@ -95,6 +111,20 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     override fun backToLobbyCLicked() {
         supportFragmentManager.popBackStack()
         supportFragmentManager.popBackStack()
+    }
+
+    override fun toNewGameClicked() {
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment = FragmentRoom()
+        transaction.setCustomAnimations(
+            R.animator.scaley_enter,
+            R.animator.scaley_exit,
+            R.animator.scaley_enter,
+            R.animator.scaley_exit
+
+        )
+        transaction.replace(R.id.fragment_holder, fragment)
+        transaction.commit()
     }
 
 }

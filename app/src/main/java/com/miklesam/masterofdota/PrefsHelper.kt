@@ -8,6 +8,7 @@ object PrefsHelper {
     private lateinit var prefs: SharedPreferences
 
     private const val PREFS_NAME = "params"
+    const val MMR_COUNT = "mmr_count"
     const val NICK_NAME = "nick_name"
 
     fun init(context: Context) {

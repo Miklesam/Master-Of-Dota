@@ -13,4 +13,7 @@
     <string name="you_lose">You Lose</string>
     <string name="draw">Draw</string>
 
+    <string name="continue_game">Continue</string>
+    <string name="new_game">New Game</string>
+
 </resources>
