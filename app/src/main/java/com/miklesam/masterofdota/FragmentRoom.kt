@@ -69,7 +69,14 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
 
          */
 
-        mmrStats.text = PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")
+        val currentMMR=PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")?.toInt()?:0
+
+        mmrStats.text = currentMMR.toString()
+        if(currentMMR<500){
+            medal.setImageResource(R.drawable.recruit_trans)
+        }else{
+            medal.setImageResource(R.drawable.divinity_trans)
+        }
 
 
     }
