@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import com.miklesam.masterofdota.game.FragmentGame
+import com.miklesam.masterofdota.heroupdate.FragmentHeroesUpdate
+import com.miklesam.masterofdota.newgame.FragmentYourNickName
 import com.miklesam.masterofdota.pickstage.FragmentPickStage
 
 class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
@@ -83,7 +85,8 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
 
     override fun heroesUpdateClicked() {
         val transaction = supportFragmentManager.beginTransaction()
-        val fragment = FragmentHeroesUpdate()
+        val fragment =
+            FragmentHeroesUpdate()
         transaction.setCustomAnimations(
             R.animator.scaley_enter,
             R.animator.scaley_exit,

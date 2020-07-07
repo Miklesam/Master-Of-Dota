@@ -25,6 +25,6 @@ class HeroHolder(itemView: View, var heroListener: OnHeroListener) :
         heroProgress = itemView.progress_hero
         heroLateGame = itemView.heroLateGame
 
-        itemView.setOnClickListener(this)
+        heroLateGame.setOnClickListener(this)
     }
 }

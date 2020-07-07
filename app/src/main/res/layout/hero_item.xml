@@ -39,6 +39,7 @@
         <com.daimajia.numberprogressbar.NumberProgressBar
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             app:layout_constraintStart_toStartOf="@+id/guide_line_verical_40"
             app:layout_constraintEnd_toEndOf="@+id/guide_line_verical_80"
             app:layout_constraintTop_toTopOf="parent"
