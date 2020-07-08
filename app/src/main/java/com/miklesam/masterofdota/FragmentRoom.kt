@@ -20,6 +20,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
     interface roomListener {
         fun gamePlayClicked()
         fun heroesUpdateClicked()
+        fun playerUpdateClicked()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,6 +46,10 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         }
         heroes_update.setOnClickListener {
             roomListener.heroesUpdateClicked()
+        }
+
+        player_update.setOnClickListener {
+            roomListener.playerUpdateClicked()
         }
 
         timerCT = object : CountDownTimer(3000, 1000) {

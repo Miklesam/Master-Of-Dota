@@ -7,6 +7,7 @@ import com.miklesam.masterofdota.game.FragmentGame
 import com.miklesam.masterofdota.heroupdate.FragmentHeroesUpdate
 import com.miklesam.masterofdota.newgame.FragmentYourNickName
 import com.miklesam.masterofdota.pickstage.FragmentPickStage
+import com.miklesam.masterofdota.playerupdate.FragmentPlayerUpdate
 
 class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
     FragmentPickStage.nextFromPick, FragmentGame.backToLobby,
@@ -87,6 +88,22 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         val transaction = supportFragmentManager.beginTransaction()
         val fragment =
             FragmentHeroesUpdate()
+        transaction.setCustomAnimations(
+            R.animator.scaley_enter,
+            R.animator.scaley_exit,
+            R.animator.stack_left_in,
+            R.animator.stack_right_out
+
+        )
+        transaction.replace(R.id.fragment_holder, fragment)
+            .addToBackStack(null)
+        transaction.commit()
+    }
+
+    override fun playerUpdateClicked() {
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment =
+            FragmentPlayerUpdate()
         transaction.setCustomAnimations(
             R.animator.scaley_enter,
             R.animator.scaley_exit,
