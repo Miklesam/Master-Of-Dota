@@ -11,17 +11,5 @@ import kotlinx.android.synthetic.main.hero_item.view.*
 class EmptyHolder(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
 
-    val heroIcon: ImageView
-    val heroName: TextView
 
-    val heroProgress: NumberProgressBar
-    val heroLateGame: TextView
-
-    init {
-        heroIcon = itemView.heroIcon
-        heroName = itemView.heroName
-        heroProgress = itemView.progress_hero
-        heroLateGame = itemView.heroLateGame
-
-    }
 }

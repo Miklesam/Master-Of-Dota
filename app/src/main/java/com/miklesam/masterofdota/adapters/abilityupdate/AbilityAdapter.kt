@@ -10,15 +10,15 @@ import com.miklesam.masterofdota.datamodels.HeroProgress
 
 class AbilityAdapter(
     val abilityListener: OnAbilityListener
-) : RecyclerView.Adapter<AbilityHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var progressHeroesList: List<HeroProgress>? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder<> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
             ITEM_HEADER -> {
                 val itemView = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.hero_item, parent, false)
+                    .inflate(R.layout.empty_item, parent, false)
                 return EmptyHolder(
                     itemView
                 )
@@ -46,12 +46,18 @@ class AbilityAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: AbilityHolder, position: Int) {
-        val ability = PersonalAbility.values()[position]
-        holder.abilityName.text = ability.nameAbility
-        //holder.abilityIcon.setImageResource(ability.image_pick)
-        holder.abilityProgress.progress = progressHeroesList?.get(position)?.progress ?: 0
-        //holder.heroLateGame.text = hero.lateGame.toString()
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+        when (holder) {
+            is AbilityHolder -> {
+                val ability = PersonalAbility.values()[position]
+                holder.abilityName.text = ability.nameAbility
+                //holder.abilityIcon.setImageResource(ability.image_pick)
+                holder.abilityProgress.progress = progressHeroesList?.get(position)?.progress ?: 0
+                //holder.heroLateGame.text = hero.lateGame.toString()
+            }
+        }
+
     }
 
     fun setProgressList(heroes: List<HeroProgress>) {
