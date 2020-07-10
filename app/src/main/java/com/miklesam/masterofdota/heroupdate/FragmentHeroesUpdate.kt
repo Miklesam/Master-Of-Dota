@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.miklesam.masterofdota.R
-import com.miklesam.masterofdota.adapters.HeroesAdapter
-import com.miklesam.masterofdota.adapters.OnHeroListener
+import com.miklesam.masterofdota.adapters.heroupdate.HeroesAdapter
+import com.miklesam.masterofdota.adapters.heroupdate.OnHeroListener
 import com.miklesam.masterofdota.datamodels.HeroProgress
 import kotlinx.android.synthetic.main.fragment_heroes_update.*
 import kotlinx.coroutines.CoroutineScope
@@ -18,7 +18,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-class FragmentHeroesUpdate : Fragment(R.layout.fragment_heroes_update), OnHeroListener {
+class FragmentHeroesUpdate : Fragment(R.layout.fragment_heroes_update),
+    OnHeroListener {
 
     private val updateViewModel: HeroUpdateViewModel by viewModels()
     private lateinit var updateHeroesList: List<HeroProgress>

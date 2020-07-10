@@ -1,4 +1,4 @@
-package com.miklesam.masterofdota.adapters
+package com.miklesam.masterofdota.adapters.heroupdate
 
 import androidx.recyclerview.widget.RecyclerView
 
