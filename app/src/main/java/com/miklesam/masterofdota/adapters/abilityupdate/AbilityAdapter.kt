@@ -3,9 +3,9 @@ package com.miklesam.masterofdota.adapters.abilityupdate
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.miklesam.masterofdota.PersonalAbility
+import com.miklesam.masterofdota.datamodels.PersonalAbility
 import com.miklesam.masterofdota.R
-import com.miklesam.masterofdota.datamodels.HeroProgress
+import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
 
 
 class AbilityAdapter(

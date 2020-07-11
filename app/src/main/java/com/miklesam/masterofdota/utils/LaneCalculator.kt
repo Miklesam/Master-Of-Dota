@@ -1,4 +1,7 @@
-package com.miklesam.masterofdota
+package com.miklesam.masterofdota.utils
+
+import com.miklesam.masterofdota.datamodels.HeroStats
+import com.miklesam.masterofdota.datamodels.Heroes
 
 
 class LaneCalculator {

@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.miklesam.masterofdota.HeroStats
-import com.miklesam.masterofdota.LaneCalculator
-import com.miklesam.masterofdota.Side
+import com.miklesam.masterofdota.datamodels.HeroStats
+import com.miklesam.masterofdota.utils.LaneCalculator
+import com.miklesam.masterofdota.utils.Side
 
 import kotlinx.coroutines.*
 import kotlin.collections.ArrayList
@@ -169,7 +169,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         dire: ArrayList<HeroStats>
     ): Int {
         val retVal =
-            LaneCalculator().calculateLineKills(radiant, dire, radiantHeroes, direHeroes, gameCount)
+            LaneCalculator()
+                .calculateLineKills(radiant, dire, radiantHeroes, direHeroes, gameCount)
         allPlayersStats.postValue(assignStats())
         return retVal
     }

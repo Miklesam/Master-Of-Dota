@@ -1,4 +1,4 @@
-package com.miklesam.masterofdota.datamodels
+package com.miklesam.masterofdota.datamodels.roommodels
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "heroes_progress_table")
 data class HeroProgress(
-    @ColumnInfo(name = "teamName")
+    @ColumnInfo(name = "id")
     var id: Int,
-    @ColumnInfo(name = "teamLogo")
+    @ColumnInfo(name = "name")
     var name: String,
-    @ColumnInfo(name = "teamDescription")
+    @ColumnInfo(name = "progress")
     var progress: Int
 ) {
     @PrimaryKey(autoGenerate = true)

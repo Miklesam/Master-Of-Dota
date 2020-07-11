@@ -4,7 +4,6 @@ import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.SoundPool
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -12,12 +11,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.miklesam.masterofdota.Heroes
+import com.miklesam.masterofdota.datamodels.Heroes
 import com.miklesam.masterofdota.R
-import com.miklesam.masterofdota.Visible
-import com.miklesam.masterofdota.showCustomToast
+import com.miklesam.masterofdota.utils.Visible
+import com.miklesam.masterofdota.utils.showCustomToast
 import kotlinx.android.synthetic.main.fragment_pick_stage.*
-import kotlinx.coroutines.*
 
 
 class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback {

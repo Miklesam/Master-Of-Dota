@@ -3,9 +3,9 @@ package com.miklesam.masterofdota.adapters.heroupdate
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.miklesam.masterofdota.Heroes
+import com.miklesam.masterofdota.datamodels.Heroes
 import com.miklesam.masterofdota.R
-import com.miklesam.masterofdota.datamodels.HeroProgress
+import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
 
 
 class HeroesAdapter(

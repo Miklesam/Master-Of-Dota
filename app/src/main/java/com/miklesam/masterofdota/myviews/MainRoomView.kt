@@ -1,4 +1,4 @@
-package com.miklesam.masterofdota
+package com.miklesam.masterofdota.myviews
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.miklesam.masterofdota.R
 
 class MainRoomView : View {
 

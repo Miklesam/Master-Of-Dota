@@ -10,11 +10,9 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.miklesam.masterofdota.Hero
-import com.miklesam.masterofdota.Heroes
-import com.miklesam.masterofdota.Lanes
+import com.miklesam.masterofdota.datamodels.Hero
+import com.miklesam.masterofdota.datamodels.Heroes
+import com.miklesam.masterofdota.datamodels.Lanes
 import com.miklesam.masterofdota.R
 
 

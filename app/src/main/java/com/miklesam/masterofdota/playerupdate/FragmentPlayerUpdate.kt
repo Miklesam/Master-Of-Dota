@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.miklesam.masterofdota.R
 import com.miklesam.masterofdota.adapters.abilityupdate.AbilityAdapter
 import com.miklesam.masterofdota.adapters.abilityupdate.OnAbilityListener
-import com.miklesam.masterofdota.adapters.heroupdate.HeroesAdapter
-import com.miklesam.masterofdota.datamodels.HeroProgress
-import kotlinx.android.synthetic.main.fragment_heroes_update.*
+import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
 import kotlinx.android.synthetic.main.fragment_player_update.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

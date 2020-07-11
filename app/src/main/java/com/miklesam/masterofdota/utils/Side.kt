@@ -1,4 +1,4 @@
-package com.miklesam.masterofdota
+package com.miklesam.masterofdota.utils
 
 import android.util.Log
 

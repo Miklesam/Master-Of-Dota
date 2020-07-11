@@ -1,4 +1,4 @@
-package com.miklesam.masterofdota
+package com.miklesam.masterofdota.datamodels
 
 enum class PersonalAbility(val id: Int, val nameAbility: String) {
     //Technical characteristics

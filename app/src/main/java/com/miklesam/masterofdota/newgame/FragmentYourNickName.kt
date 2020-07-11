@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.miklesam.masterofdota.PrefsHelper
+import com.miklesam.masterofdota.utils.PrefsHelper
 import com.miklesam.masterofdota.R
 import com.miklesam.masterofdota.heroupdate.HeroUpdateViewModel
 import com.miklesam.masterofdota.room.HeroProgressList

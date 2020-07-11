@@ -3,8 +3,7 @@ package com.miklesam.masterofdota.pickstage
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.miklesam.masterofdota.Heroes
-import kotlinx.android.synthetic.main.fragment_pick_stage.*
+import com.miklesam.masterofdota.datamodels.Heroes
 import kotlinx.coroutines.*
 
 class PickStageViewModel : ViewModel() {

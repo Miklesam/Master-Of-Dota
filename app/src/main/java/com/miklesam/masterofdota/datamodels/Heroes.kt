@@ -1,4 +1,6 @@
-package com.miklesam.masterofdota
+package com.miklesam.masterofdota.datamodels
+
+import com.miklesam.masterofdota.R
 
 enum class Heroes(
     val id: Int,

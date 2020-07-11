@@ -3,7 +3,7 @@ package com.miklesam.masterofdota.heroupdate
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.miklesam.masterofdota.datamodels.HeroProgress
+import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
 
 class HeroUpdateViewModel(application: Application) : AndroidViewModel(application) {
     private var repository: HeroesUpdateRepository = HeroesUpdateRepository(application)

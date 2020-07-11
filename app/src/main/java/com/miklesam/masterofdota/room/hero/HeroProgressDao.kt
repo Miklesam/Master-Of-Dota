@@ -1,11 +1,11 @@
-package com.miklesam.masterofdota.room
+package com.miklesam.masterofdota.room.hero
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.miklesam.masterofdota.datamodels.HeroProgress
+import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
 
 @Dao
 interface HeroProgressDao {

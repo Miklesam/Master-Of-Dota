@@ -7,6 +7,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.miklesam.masterofdota.customsnackbar.SimpleCustomSnackbar
+import com.miklesam.masterofdota.myviews.WeatherView
+import com.miklesam.masterofdota.utils.PrefsHelper
 import kotlinx.android.synthetic.main.fragment_room.*
 import kotlinx.coroutines.*
 
@@ -74,7 +76,8 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
 
          */
 
-        val currentMMR = PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")?.toInt() ?: 0
+        val currentMMR = PrefsHelper.read(
+            PrefsHelper.MMR_COUNT, "0")?.toInt() ?: 0
         val mmrString = "MMR: 10$currentMMR"
         mmrStats.text = mmrString
         if (currentMMR < 500) {

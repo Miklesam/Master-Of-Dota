@@ -1,6 +1,7 @@
 package com.miklesam.masterofdota
 
 import android.app.Application
+import com.miklesam.masterofdota.utils.PrefsHelper
 import values.TypefaceUtil
 
 

@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.miklesam.masterofdota.Gone
-import com.miklesam.masterofdota.Heroes
-import com.miklesam.masterofdota.PrefsHelper
+import com.miklesam.masterofdota.utils.Gone
+import com.miklesam.masterofdota.datamodels.Heroes
+import com.miklesam.masterofdota.utils.PrefsHelper
 import com.miklesam.masterofdota.R
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
@@ -193,7 +193,8 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
     }
 
     override fun goToLobbyClick(points: Int) {
-        var currentMMR = PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")?.toInt() ?: 0
+        var currentMMR = PrefsHelper.read(
+            PrefsHelper.MMR_COUNT, "0")?.toInt() ?: 0
         when (points) {
             1 -> currentMMR += 25
             2 -> currentMMR -= 25
