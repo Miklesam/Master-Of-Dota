@@ -36,12 +36,12 @@ class AbilityAdapter(
     }
 
     override fun getItemCount(): Int {
-        return PersonalAbility.values().size
+        return PersonalAbility.values().size + 3
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
-            0 -> ITEM_HEADER
+            0, 6, 13 -> ITEM_HEADER
             else -> ITEM_DEFAULT
         }
     }
@@ -50,13 +50,38 @@ class AbilityAdapter(
 
         when (holder) {
             is AbilityHolder -> {
-                val ability = PersonalAbility.values()[position]
+                val ability = if (position > 13) {
+                    PersonalAbility.values()[position - 3]
+                } else if (position > 6) {
+                    PersonalAbility.values()[position - 2]
+                } else {
+                    PersonalAbility.values()[position - 1]
+                }
+
                 holder.abilityName.text = ability.nameAbility
                 //holder.abilityIcon.setImageResource(ability.image_pick)
-                holder.abilityProgress.progress = progressHeroesList?.get(position)?.progress ?: 0
+                //holder.abilityProgress.progress = progressHeroesList?.get(position)?.progress ?: 0
                 //holder.heroLateGame.text = hero.lateGame.toString()
             }
+            is EmptyHolder -> {
+                when (position) {
+                    0 -> {
+                        holder.abilityTitle.text = "Technical characteristics"
+                    }
+                    6 -> {
+                        holder.abilityTitle.text = "Moral characteristics"
+                    }
+                    13 -> {
+                        holder.abilityTitle.text = "Game characteristics"
+                    }
+                }
+
+            }
         }
+
+    }
+
+    fun setList() {
 
     }
 

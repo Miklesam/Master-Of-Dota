@@ -5,23 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:orientation="vertical"
-    app:cardBackgroundColor="@color/walls"
-    app:cardCornerRadius="30dp"
-    app:cardElevation="5dp"
-    app:contentPadding="2dp">
+    app:cardBackgroundColor="@color/walls">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/button_end">
+        android:layout_height="match_parent">
 
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/emptyText"
+            android:text="Text"
             android:textColor="@color/white"
-            android:textSize="10sp"
-            android:text="ASDASD"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
