@@ -13,13 +13,13 @@ interface AbilityProgressDao {
     @Insert
     fun insertAbilityProgress(data: List<AbilityProgress>)
 
-    @Query("SELECT * FROM heroes_progress_table ")
-    fun getAllHeroes(): LiveData<List<AbilityProgress>>
+    @Query("SELECT * FROM ability_progress_table ")
+    fun getAllAbilities(): LiveData<List<AbilityProgress>>
 
     @Update
-    fun updateHeroProgress(heroProgress: AbilityProgress)
+    fun updateAbilityProgress(heroProgress: AbilityProgress)
 
-    @Query("DELETE FROM heroes_progress_table")
+    @Query("DELETE FROM ability_progress_table")
     fun nukeTable()
 
 }

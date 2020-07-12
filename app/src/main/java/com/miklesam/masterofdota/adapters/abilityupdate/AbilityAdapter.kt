@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.miklesam.masterofdota.datamodels.PersonalAbility
 import com.miklesam.masterofdota.R
+import com.miklesam.masterofdota.datamodels.roommodels.AbilityProgress
 import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
 
 
@@ -12,7 +13,7 @@ class AbilityAdapter(
     val abilityListener: OnAbilityListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var progressHeroesList: List<HeroProgress>? = null
+    var progressHeroesList: List<AbilityProgress>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
@@ -51,16 +52,21 @@ class AbilityAdapter(
         when (holder) {
             is AbilityHolder -> {
                 val ability = if (position > 13) {
+                    holder.abilityProgress.progress =
+                        progressHeroesList?.get(position - 3)?.progress ?: 0
                     PersonalAbility.values()[position - 3]
                 } else if (position > 6) {
+                    holder.abilityProgress.progress =
+                        progressHeroesList?.get(position - 2)?.progress ?: 0
                     PersonalAbility.values()[position - 2]
                 } else {
+                    holder.abilityProgress.progress =
+                        progressHeroesList?.get(position - 1)?.progress ?: 0
                     PersonalAbility.values()[position - 1]
                 }
 
                 holder.abilityName.text = ability.nameAbility
                 //holder.abilityIcon.setImageResource(ability.image_pick)
-                //holder.abilityProgress.progress = progressHeroesList?.get(position)?.progress ?: 0
                 //holder.heroLateGame.text = hero.lateGame.toString()
             }
             is EmptyHolder -> {
@@ -81,12 +87,8 @@ class AbilityAdapter(
 
     }
 
-    fun setList() {
-
-    }
-
-    fun setProgressList(heroes: List<HeroProgress>) {
-        progressHeroesList = heroes
+    fun setProgressList(abilities: List<AbilityProgress>) {
+        progressHeroesList = abilities
     }
 
     companion object {

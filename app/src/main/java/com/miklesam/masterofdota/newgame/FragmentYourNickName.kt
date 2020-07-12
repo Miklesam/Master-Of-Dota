@@ -8,6 +8,7 @@ import com.miklesam.masterofdota.utils.PrefsHelper
 import com.miklesam.masterofdota.R
 import com.miklesam.masterofdota.heroupdate.HeroUpdateViewModel
 import com.miklesam.masterofdota.room.HeroProgressList
+import com.miklesam.masterofdota.room.ability.AbilityProgressList
 import kotlinx.android.synthetic.main.fragment_your_nickname.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +23,7 @@ class FragmentYourNickName : Fragment(R.layout.fragment_your_nickname) {
     }
 
     val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-    private val updateViewModel: HeroUpdateViewModel by viewModels()
+    private val updateViewModel: NewGameViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val nickNameList: nickNameListener = activity as nickNameListener
@@ -32,8 +33,11 @@ class FragmentYourNickName : Fragment(R.layout.fragment_your_nickname) {
                     PrefsHelper.MMR_COUNT,
                     "500"
                 )
-                updateViewModel.nukeProgress()
-                updateViewModel.initNewProgress(HeroProgressList.AllHeroProgress)
+                updateViewModel.nukeHeroesProgress()
+                updateViewModel.nukeAbilityProgress()
+                updateViewModel.initNewHeroesProgress(HeroProgressList.AllHeroProgress)
+                updateViewModel.initNewAbilityProgress(AbilityProgressList.AllAbilityProgress)
+
                 nickNameList.toNewGameClicked()
             }
         }
