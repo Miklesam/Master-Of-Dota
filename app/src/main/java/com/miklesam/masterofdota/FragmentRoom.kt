@@ -23,6 +23,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         fun gamePlayClicked()
         fun heroesUpdateClicked()
         fun playerUpdateClicked()
+        fun settingsClicked()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,6 +55,11 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
             roomListener.playerUpdateClicked()
         }
 
+        settings.setOnClickListener {
+            roomListener.settingsClicked()
+        }
+
+
         timerCT = object : CountDownTimer(3000, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
@@ -76,8 +82,16 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
 
          */
 
+
+        val fon = ContextCompat.getDrawable(
+            requireContext(),
+            R.drawable.china_view
+        )
+        weatherAnim?.setFon(fon)
+
         val currentMMR = PrefsHelper.read(
-            PrefsHelper.MMR_COUNT, "0")?.toInt() ?: 0
+            PrefsHelper.MMR_COUNT, "0"
+        )?.toInt() ?: 0
         val mmrString = "MMR: 10$currentMMR"
         mmrStats.text = mmrString
         if (currentMMR < 500) {

@@ -24,6 +24,7 @@ class WeatherView : View {
     private var mCurrentPlayTime: Long = 0
     private var mDrawable: Drawable? = null
     private var mPartition: Drawable? = null
+    private var streetView: Drawable? = null
     private var mWall: Drawable? = null
     private var mPosition: Int = 0
     private var Night = false
@@ -48,16 +49,18 @@ class WeatherView : View {
     }
 
     private fun init() {
-        mDrawable = ContextCompat.getDrawable(context,
+        mDrawable = ContextCompat.getDrawable(
+            context,
             R.drawable.sun
         )
-        mPartition = ContextCompat.getDrawable(context,
+        mPartition = ContextCompat.getDrawable(
+            context,
             R.drawable.part_new_green
         )
-        mWall = ContextCompat.getDrawable(context,
+        mWall = ContextCompat.getDrawable(
+            context,
             R.drawable.wall_new_green
         )
-
     }
 
 
@@ -75,6 +78,12 @@ class WeatherView : View {
     }
 
     override fun onDraw(canvas: Canvas) {
+
+        streetView?.setBounds(
+            (10 * sizeX / 100).toInt(),
+            0, (90 * sizeX / 100).toInt(), sizeY.toInt()
+        )
+        streetView?.draw(canvas)
 
         mDrawable?.setBounds(
             (mPosition + 98 * sizeX / 100 + (-kubikSize).toInt()).toInt(),
@@ -119,12 +128,9 @@ class WeatherView : View {
 
     fun start(view: View) {
         mView = view
-        val layout = mView?.findViewById<WeatherView>(
-            R.id.weatherAnim
-        )
         //layout?.setBackgroundResource(R.drawable.panoramanew)
         //layout?.setBackgroundResource(R.drawable.mars_nasa)
-        layout?.setBackgroundResource(R.drawable.original_space)
+        //layout?.setBackgroundResource(R.drawable.original_space)
         mTimeAnimator = TimeAnimator()
         mTimeAnimator!!.setTimeListener(object : TimeAnimator.TimeListener {
             override fun onTimeUpdate(animation: TimeAnimator, totalTime: Long, deltaTime: Long) {
@@ -156,6 +162,11 @@ class WeatherView : View {
         }
     }
 
+
+    fun setFon(fon: Drawable?) {
+        streetView = fon
+    }
+
     fun resume() {
         if (mTimeAnimator != null && mTimeAnimator!!.isPaused()) {
             mTimeAnimator!!.start()
@@ -184,7 +195,8 @@ class WeatherView : View {
     private fun swap() {
         Night = !Night
         if (Night) {
-            mDrawable = ContextCompat.getDrawable(context,
+            mDrawable = ContextCompat.getDrawable(
+                context,
                 R.drawable.moonlite
             )
             val layout = mView?.findViewById<WeatherView>(
@@ -192,7 +204,8 @@ class WeatherView : View {
             )
             //layout?.setBackgroundResource(R.drawable.panoramanew_dark)
         } else {
-            mDrawable = ContextCompat.getDrawable(context,
+            mDrawable = ContextCompat.getDrawable(
+                context,
                 R.drawable.sun
             )
             val layout = mView?.findViewById<WeatherView>(
