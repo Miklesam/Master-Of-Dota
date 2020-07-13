@@ -16,10 +16,12 @@ class StreetViewHolder(itemView: View, var heroListener: OnHeroListener) :
     }
 
     val streetView: ImageView
+    val chooseBttn: TextView
 
 
     init {
         streetView = itemView.streetView
+        chooseBttn=itemView.chooseBttn
         //heroLateGame.setOnClickListener(this)
     }
 }

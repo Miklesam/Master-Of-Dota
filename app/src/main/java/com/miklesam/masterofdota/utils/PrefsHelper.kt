@@ -10,10 +10,12 @@ object PrefsHelper {
     private const val PREFS_NAME = "params"
     const val MMR_COUNT = "mmr_count"
     const val NICK_NAME = "nick_name"
+    const val STREET_VIEW = "street_view"
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(
-            PREFS_NAME, Context.MODE_PRIVATE)
+            PREFS_NAME, Context.MODE_PRIVATE
+        )
     }
 
     fun read(key: String, value: String): String? {

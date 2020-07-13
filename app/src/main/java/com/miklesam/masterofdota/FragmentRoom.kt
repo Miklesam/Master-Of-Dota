@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.miklesam.masterofdota.customsnackbar.SimpleCustomSnackbar
+import com.miklesam.masterofdota.datamodels.StreetView
 import com.miklesam.masterofdota.myviews.WeatherView
 import com.miklesam.masterofdota.utils.PrefsHelper
 import kotlinx.android.synthetic.main.fragment_room.*
@@ -82,11 +83,14 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
 
          */
 
+        val currentView = PrefsHelper.read(PrefsHelper.STREET_VIEW, "0")?.toInt()
 
-        val fon = ContextCompat.getDrawable(
-            requireContext(),
-            R.drawable.china_view
-        )
+        val fon = StreetView.values().find { it.id == currentView }?.streetImage?.let {
+            ContextCompat.getDrawable(
+                requireContext(),
+                it
+            )
+        }
         weatherAnim?.setFon(fon)
 
         val currentMMR = PrefsHelper.read(

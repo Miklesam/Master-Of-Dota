@@ -8,6 +8,7 @@ import com.miklesam.masterofdota.R
 import com.miklesam.masterofdota.adapters.heroupdate.OnHeroListener
 import com.miklesam.masterofdota.datamodels.StreetView
 import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
+import com.miklesam.masterofdota.utils.PrefsHelper
 
 
 class SettingsAdapter(
@@ -28,12 +29,20 @@ class SettingsAdapter(
     }
 
     override fun onBindViewHolder(holder: StreetViewHolder, position: Int) {
+        val currentView = PrefsHelper.read(PrefsHelper.STREET_VIEW, "0")?.toInt()
         val streetView = StreetView.values()[position]
-        //holder.heroName.text = hero.heroName
-        //holder.heroIcon.setImageResource(hero.image_pick)
-        //holder.heroProgress.progress = progressHeroesList?.get(position)?.progress ?: 0
-        //holder.heroLateGame.text = hero.lateGame.toString()
         holder.streetView.setImageResource(streetView.streetImage)
+        if (currentView == position) {
+            holder.chooseBttn.text = "Выбрано"
+        } else {
+            holder.chooseBttn.text = "Выбрать"
+        }
+        holder.chooseBttn.setOnClickListener {
+            PrefsHelper.write(PrefsHelper.STREET_VIEW, position.toString())
+            holder.chooseBttn.text = "Выбрано"
+            notifyDataSetChanged()
+        }
+
     }
 
 
