@@ -1,4 +1,4 @@
-package com.miklesam.masterofdota.room
+package com.miklesam.masterofdota.room.hero
 
 import android.content.Context
 import android.util.Log
@@ -7,7 +7,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
-import com.miklesam.masterofdota.room.hero.HeroProgressDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -39,7 +38,7 @@ abstract class HeroProgressDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                HeroProgressDatabase::class.java, "players_main.db"
+                HeroProgressDatabase::class.java, "heroes_main.db"
             )
                 .addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {

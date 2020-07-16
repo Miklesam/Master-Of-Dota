@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
 import com.miklesam.masterofdota.room.hero.HeroProgressDao
-import com.miklesam.masterofdota.room.HeroProgressDatabase
+import com.miklesam.masterofdota.room.hero.HeroProgressDatabase
 
 class HeroesUpdateRepository(application: Application) {
     private var heroesDao: HeroProgressDao

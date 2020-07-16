@@ -6,8 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.miklesam.masterofdota.utils.PrefsHelper
 import com.miklesam.masterofdota.R
-import com.miklesam.masterofdota.heroupdate.HeroUpdateViewModel
-import com.miklesam.masterofdota.room.HeroProgressList
+import com.miklesam.masterofdota.room.hero.HeroProgressList
 import com.miklesam.masterofdota.room.ability.AbilityProgressList
 import kotlinx.android.synthetic.main.fragment_your_nickname.*
 import kotlinx.coroutines.CoroutineScope

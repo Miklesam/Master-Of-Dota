@@ -1,4 +1,4 @@
-package com.miklesam.masterofdota.room
+package com.miklesam.masterofdota.room.hero
 
 import com.miklesam.masterofdota.datamodels.Heroes
 import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
