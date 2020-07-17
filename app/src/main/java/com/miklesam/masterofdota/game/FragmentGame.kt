@@ -194,10 +194,11 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
 
     override fun goToLobbyClick(points: Int) {
         var currentMMR = PrefsHelper.read(
-            PrefsHelper.MMR_COUNT, "0")?.toInt() ?: 0
+            PrefsHelper.MMR_COUNT, "0"
+        )?.toInt() ?: 0
         when (points) {
-            1 -> currentMMR += 25
-            2 -> currentMMR -= 25
+            1 -> currentMMR += 30
+            2 -> currentMMR -= 30
         }
         PrefsHelper.write(PrefsHelper.MMR_COUNT, currentMMR.toString())
 

@@ -30,6 +30,7 @@ class EndMatchDialog() : AppCompatDialogFragment() {
         val inflater = requireActivity().layoutInflater
         val mycustomview = inflater.inflate(R.layout.layout_end_match_dialog, null)
         val match_result_text = mycustomview.findViewById<TextView>(R.id.match_result_text)
+        val pts_view = mycustomview.findViewById<TextView>(R.id.pts_view)
         when (sude) {
             1 -> {
                 match_result_text.text = getString(R.string.you_win)
@@ -39,6 +40,14 @@ class EndMatchDialog() : AppCompatDialogFragment() {
                         R.color.win
                     )
                 )
+                pts_view.text = "+30"
+                pts_view.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.win
+                    )
+                )
+
             }
             2 -> {
                 match_result_text.text = getString(R.string.you_lose)
@@ -48,10 +57,24 @@ class EndMatchDialog() : AppCompatDialogFragment() {
                         R.color.lose
                     )
                 )
+                pts_view.text = "-30"
+                pts_view.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.lose
+                    )
+                )
             }
             3 -> {
                 match_result_text.text = getString(R.string.draw)
                 match_result_text.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.draw
+                    )
+                )
+                pts_view.text = "+0"
+                pts_view.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.draw
