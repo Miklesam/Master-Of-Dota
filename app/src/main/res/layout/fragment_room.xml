@@ -85,6 +85,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/player_update" />
 
+    <ImageView
+        android:id="@+id/sleep"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/bed_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/settings" />
+
     <TextView
         android:id="@+id/dayStats"
         android:layout_width="0dp"
@@ -150,7 +160,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/energyStats"
         app:layout_constraintTop_toBottomOf="@id/energyStats"
-        app:progress_current="95" />
+        app:progress_current="0" />
 
     <ImageView
         android:layout_width="40dp"

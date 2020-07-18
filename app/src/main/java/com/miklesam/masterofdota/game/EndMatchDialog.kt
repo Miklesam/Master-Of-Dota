@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.core.content.ContextCompat
 import com.miklesam.masterofdota.R
+import com.miklesam.masterofdota.utils.PrefsHelper
 
 class EndMatchDialog() : AppCompatDialogFragment() {
     constructor(myListener: toLobbyInterface, side: Int) : this() {
@@ -26,11 +27,12 @@ class EndMatchDialog() : AppCompatDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val builder = AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireContext(),R.style.EndDialogTitle)
         val inflater = requireActivity().layoutInflater
         val mycustomview = inflater.inflate(R.layout.layout_end_match_dialog, null)
         val match_result_text = mycustomview.findViewById<TextView>(R.id.match_result_text)
         val pts_view = mycustomview.findViewById<TextView>(R.id.pts_view)
+        val currentMMR = PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")
         when (sude) {
             1 -> {
                 match_result_text.text = getString(R.string.you_win)
@@ -40,7 +42,7 @@ class EndMatchDialog() : AppCompatDialogFragment() {
                         R.color.win
                     )
                 )
-                pts_view.text = "+30"
+                pts_view.text = "MMR: $currentMMR +30"
                 pts_view.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
@@ -57,7 +59,7 @@ class EndMatchDialog() : AppCompatDialogFragment() {
                         R.color.lose
                     )
                 )
-                pts_view.text = "-30"
+                pts_view.text = "MMR: $currentMMR -30"
                 pts_view.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
@@ -73,7 +75,7 @@ class EndMatchDialog() : AppCompatDialogFragment() {
                         R.color.draw
                     )
                 )
-                pts_view.text = "+0"
+                pts_view.text = "MMR: $currentMMR +0"
                 pts_view.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
@@ -87,7 +89,7 @@ class EndMatchDialog() : AppCompatDialogFragment() {
 
 
         builder.setView(mycustomview)
-        builder.setTitle(getString(R.string.match_is_over))
+        //builder.setTitle(getString(R.string.match_is_over))
         builder.setPositiveButton(getString(R.string.quit)) { _, _ ->
             mListener?.goToLobbyClick(sude)
             Lock = false

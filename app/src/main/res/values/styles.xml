@@ -14,5 +14,9 @@
         <item name="colorButtonNormal">@color/colorPrimary</item>
     </style>
 
+    <style name="EndDialogTitle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/popup_background</item>
+    </style>
+
 
 </resources>

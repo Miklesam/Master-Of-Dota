@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="20sp"
             android:gravity="center"
-            android:textColor="#45283c" />
+            android:textColor="@color/colorPrimary" />
 
 
         <LinearLayout
@@ -1069,7 +1069,6 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Plan_state"
         android:layout_width="200dp"
-        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -1079,7 +1078,9 @@
         android:layout_marginBottom="20dp"
         android:text="Play"
         android:textColor="#FFF"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:theme="@style/ThemeOverlayButton"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

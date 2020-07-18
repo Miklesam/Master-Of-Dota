@@ -3,6 +3,7 @@ package com.miklesam.masterofdota
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
@@ -45,8 +46,13 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         )
 
         playDotaGame.setOnClickListener {
-            customSnackbar!!.show()
-            timerCT?.start()
+            if (energyPB.progress > 5) {
+                customSnackbar!!.show()
+                timerCT?.start()
+            } else {
+                Toast.makeText(context, "low energy, please get some energy", Toast.LENGTH_SHORT).show()
+            }
+
         }
         heroes_update.setOnClickListener {
             roomListener.heroesUpdateClicked()
@@ -60,10 +66,20 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
             roomListener.settingsClicked()
         }
 
+        sleep.setOnClickListener {
+            Toast.makeText(context, "Energy is full", Toast.LENGTH_SHORT).show()
+            PrefsHelper.write(PrefsHelper.ENERGY, "100")
+            energyPB.progress = 100
+        }
+
 
         timerCT = object : CountDownTimer(3000, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
+
+                val current = energyPB.progress - 25
+                PrefsHelper.write(PrefsHelper.ENERGY, current.toString())
+                energyPB.progress = current
                 roomListener.gamePlayClicked()
             }
         }
@@ -96,13 +112,19 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         val currentMMR = PrefsHelper.read(
             PrefsHelper.MMR_COUNT, "0"
         )?.toInt() ?: 0
-        val mmrString = "MMR: 10$currentMMR"
+        val mmrString = "MMR: $currentMMR"
         mmrStats.text = mmrString
         if (currentMMR < 500) {
             medal.setImageResource(R.drawable.recruit_trans)
         } else {
             medal.setImageResource(R.drawable.divinity_trans)
         }
+
+        val currentEnergy = PrefsHelper.read(
+            PrefsHelper.ENERGY, "100"
+        )?.toInt() ?: 0
+        val thisEnergy = currentEnergy
+        energyPB.progress = thisEnergy
 
 
     }
