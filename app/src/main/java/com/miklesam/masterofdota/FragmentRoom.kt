@@ -20,6 +20,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
     private var customSnackbar: SimpleCustomSnackbar? = null
     private var scope: CoroutineScope? = null
     private var timerCT: CountDownTimer? = null
+    private var isSleeping = false
 
     interface roomListener {
         fun gamePlayClicked()
@@ -50,7 +51,8 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
                 customSnackbar!!.show()
                 timerCT?.start()
             } else {
-                Toast.makeText(context, "low energy, please get some energy", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "low energy, please get some energy", Toast.LENGTH_SHORT)
+                    .show()
             }
 
         }
@@ -67,9 +69,16 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         }
 
         sleep.setOnClickListener {
-            Toast.makeText(context, "Energy is full", Toast.LENGTH_SHORT).show()
-            PrefsHelper.write(PrefsHelper.ENERGY, "100")
-            energyPB.progress = 100
+            scope?.launch {
+                isSleeping = true
+                delay(3000)
+                isSleeping = false
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "Energy is full", Toast.LENGTH_SHORT).show()
+                    PrefsHelper.write(PrefsHelper.ENERGY, "100")
+                    energyPB.progress = 100
+                }
+            }
         }
 
 
@@ -155,17 +164,38 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
             requireContext(),
             R.drawable.start_game
         )
+
+        val nightScreen = ContextCompat.getDrawable(
+            requireContext(),
+            R.drawable.night_1
+        )
+
         scope?.launch {
             while (true) {
-                withContext(Dispatchers.Main) {
-                    teamSigning.setMonitorPicture(turnDota)
-                    delay(1000)
-                    teamSigning.setMonitorPicture(pickDota)
-                    delay(1000)
-                    teamSigning.setMonitorPicture(startGame)
-                    delay(1000)
+                if (!isSleeping) {
+                    withContext(Dispatchers.Main) {
+                        teamSigning.setMonitorPicture(turnDota)
+                        delay(1000)
+                        if (isSleeping) return@withContext
+                        teamSigning.setMonitorPicture(pickDota)
+                        delay(1000)
+                        if (isSleeping) return@withContext
+                        teamSigning.setMonitorPicture(startGame)
+                        delay(1000)
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        teamSigning.setMonitorPicture(nightScreen)
+                        delay(1000)
+                        teamSigning.setMonitorPicture(nightScreen)
+                        delay(1000)
+                        teamSigning.setMonitorPicture(nightScreen)
+                        delay(1000)
+                    }
                 }
             }
+
+
         }
     }
 
