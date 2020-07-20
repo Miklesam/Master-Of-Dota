@@ -134,6 +134,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         )?.toInt() ?: 0
         val thisEnergy = currentEnergy
         energyPB.progress = thisEnergy
+        energyPB.unreachedBarColor = ContextCompat.getColor(requireContext(), R.color.lose)
 
 
     }
