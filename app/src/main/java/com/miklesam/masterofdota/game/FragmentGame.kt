@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -161,6 +162,17 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
         commonsHideButton.setOnClickListener {
             commonsHideButton.Gone()
         }
+
+        gameViewModel.getHeroProgress().observe(viewLifecycleOwner, Observer {
+            if (it.isNotEmpty()) {
+                val currentHeroProgrss = it[this.heroes!![0]]
+                Toast.makeText(
+                    requireContext(),
+                    "${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
 
     }
 

@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.miklesam.masterofdota.datamodels.HeroStats
+import com.miklesam.masterofdota.heroupdate.HeroesUpdateRepository
 import com.miklesam.masterofdota.utils.LaneCalculator
 import com.miklesam.masterofdota.utils.Side
 
@@ -26,6 +27,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun getStarted(): LiveData<Boolean> = gameStart
     var callback: AssignCallback? = null
     var gameEnd = false
+    private var heroRepository: HeroesUpdateRepository = HeroesUpdateRepository(application)
+    fun getHeroProgress() = heroRepository.getHeroes()
 
     init {
         gameStart.value = true
@@ -234,7 +237,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun setCallbackToGame(call: AssignCallback) {
         callback = call
     }
-
 
     private fun generateMatch() {
         scope.launch {
