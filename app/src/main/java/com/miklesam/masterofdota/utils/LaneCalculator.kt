@@ -4,7 +4,7 @@ import com.miklesam.masterofdota.datamodels.HeroStats
 import com.miklesam.masterofdota.datamodels.Heroes
 
 
-class LaneCalculator {
+class LaneCalculator(val myHero: Int) {
     fun calculateLineKills(
         radiant: ArrayList<HeroStats>,
         dire: ArrayList<HeroStats>,
@@ -12,22 +12,44 @@ class LaneCalculator {
         direHeroes: ArrayList<Int>,
         gameCount: Int
     ): Int {
+
+        val myHeros = Heroes.values()
+            .find { it.id == myHero }
+
         var returningVal = 0
         if (radiant.isNotEmpty() && dire.isNotEmpty()) {
             var sumPointsRad = 0
             for (rad in radiant) {
                 sumPointsRad += when {
                     gameCount < 6 -> {
-                        Heroes.values()
-                            .find { it.id == radiantHeroes[rad.seq - 1] }?.laining!!
+
+                        if (myHero == radiantHeroes[rad.seq - 1]) {
+                            0
+                        } else {
+                            Heroes.values()
+                                .find { it.id == radiantHeroes[rad.seq - 1] }?.laining!!
+                        }
+
                     }
                     gameCount < 12 -> {
-                        Heroes.values()
-                            .find { it.id == radiantHeroes[rad.seq - 1] }?.fighting!!
+
+                        if (myHero == radiantHeroes[rad.seq - 1]) {
+                            0
+                        } else {
+                            Heroes.values()
+                                .find { it.id == radiantHeroes[rad.seq - 1] }?.fighting!!
+                        }
+
                     }
                     else -> {
-                        Heroes.values()
-                            .find { it.id == radiantHeroes[rad.seq - 1] }?.lateGame!!
+
+                        if (myHero == radiantHeroes[rad.seq - 1]) {
+                            0
+                        } else {
+                            Heroes.values()
+                                .find { it.id == radiantHeroes[rad.seq - 1] }?.lateGame!!
+                        }
+
                     }
                 }
             }

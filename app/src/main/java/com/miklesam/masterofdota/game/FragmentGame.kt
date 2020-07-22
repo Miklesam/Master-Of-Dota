@@ -15,6 +15,9 @@ import com.miklesam.masterofdota.utils.PrefsHelper
 import com.miklesam.masterofdota.R
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.random.Random.Default.nextInt
 
 class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
     EndMatchDialog.toLobbyInterface {
@@ -166,13 +169,19 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
         gameViewModel.getHeroProgress().observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
                 val currentHeroProgrss = it[this.heroes!![0]]
+                val rnds = (0..100).random()
+
                 Toast.makeText(
                     requireContext(),
-                    "${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress}",
+                    "${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds",
                     Toast.LENGTH_SHORT
                 ).show()
             }
         })
+
+
+
+        gameViewModel.setWinning()
 
     }
 

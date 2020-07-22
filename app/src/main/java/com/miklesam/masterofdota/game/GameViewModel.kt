@@ -172,11 +172,17 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         dire: ArrayList<HeroStats>
     ): Int {
         val retVal =
-            LaneCalculator()
+            LaneCalculator(radiantHeroes[0])
                 .calculateLineKills(radiant, dire, radiantHeroes, direHeroes, gameCount)
         allPlayersStats.postValue(assignStats())
         return retVal
     }
+
+
+    fun setWinning() {
+
+    }
+
 
     private fun calculateLineTower(
         radiant: Int,
