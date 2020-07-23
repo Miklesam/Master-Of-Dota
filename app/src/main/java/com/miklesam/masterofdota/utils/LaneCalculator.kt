@@ -4,7 +4,7 @@ import com.miklesam.masterofdota.datamodels.HeroStats
 import com.miklesam.masterofdota.datamodels.Heroes
 
 
-class LaneCalculator(val myHero: Int) {
+class LaneCalculator(val myHero: Int, val willYouWin: Boolean) {
     fun calculateLineKills(
         radiant: ArrayList<HeroStats>,
         dire: ArrayList<HeroStats>,
@@ -24,7 +24,11 @@ class LaneCalculator(val myHero: Int) {
                     gameCount < 6 -> {
 
                         if (myHero == radiantHeroes[rad.seq - 1]) {
-                            0
+                            if (willYouWin) {
+                                200
+                            } else {
+                                -50
+                            }
                         } else {
                             Heroes.values()
                                 .find { it.id == radiantHeroes[rad.seq - 1] }?.laining!!
@@ -34,7 +38,11 @@ class LaneCalculator(val myHero: Int) {
                     gameCount < 12 -> {
 
                         if (myHero == radiantHeroes[rad.seq - 1]) {
-                            0
+                            if (willYouWin) {
+                                200
+                            } else {
+                                -50
+                            }
                         } else {
                             Heroes.values()
                                 .find { it.id == radiantHeroes[rad.seq - 1] }?.fighting!!
@@ -44,7 +52,11 @@ class LaneCalculator(val myHero: Int) {
                     else -> {
 
                         if (myHero == radiantHeroes[rad.seq - 1]) {
-                            0
+                            if (willYouWin) {
+                                200
+                            } else {
+                                -50
+                            }
                         } else {
                             Heroes.values()
                                 .find { it.id == radiantHeroes[rad.seq - 1] }?.lateGame!!

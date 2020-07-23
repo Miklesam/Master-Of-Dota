@@ -171,17 +171,17 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
                 val currentHeroProgrss = it[this.heroes!![0]]
                 val rnds = (0..100).random()
 
+                val youWillWin = rnds > 50
+                gameViewModel.setWinning(youWillWin)
                 Toast.makeText(
                     requireContext(),
-                    "${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds",
+                    "${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds you wil win $youWillWin",
                     Toast.LENGTH_SHORT
                 ).show()
+
             }
         })
 
-
-
-        gameViewModel.setWinning()
 
     }
 

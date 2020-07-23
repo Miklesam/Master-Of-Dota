@@ -27,6 +27,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun getStarted(): LiveData<Boolean> = gameStart
     var callback: AssignCallback? = null
     var gameEnd = false
+    var willYouWin = false
     private var heroRepository: HeroesUpdateRepository = HeroesUpdateRepository(application)
     fun getHeroProgress() = heroRepository.getHeroes()
 
@@ -172,15 +173,15 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         dire: ArrayList<HeroStats>
     ): Int {
         val retVal =
-            LaneCalculator(radiantHeroes[0])
+            LaneCalculator(radiantHeroes[0],willYouWin)
                 .calculateLineKills(radiant, dire, radiantHeroes, direHeroes, gameCount)
         allPlayersStats.postValue(assignStats())
         return retVal
     }
 
 
-    fun setWinning() {
-
+    fun setWinning(willWin:Boolean) {
+        willYouWin=willWin
     }
 
 
