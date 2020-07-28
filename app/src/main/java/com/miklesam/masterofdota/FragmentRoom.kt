@@ -155,15 +155,15 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
         val turnDota = ContextCompat.getDrawable(
             requireContext(),
-            R.drawable.pick_stage_mon
+            R.drawable.night_1
         )
         val pickDota = ContextCompat.getDrawable(
             requireContext(),
-            R.drawable.pick_stage_mon
+            R.drawable.night_1
         )
         val startGame = ContextCompat.getDrawable(
             requireContext(),
-            R.drawable.start_game
+            R.drawable.night_1
         )
 
         val nightScreen = ContextCompat.getDrawable(
