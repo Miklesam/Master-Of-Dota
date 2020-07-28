@@ -9,10 +9,10 @@ import com.miklesam.masterofdota.adapters.heroupdate.OnHeroListener
 import kotlinx.android.synthetic.main.hero_item.view.*
 import kotlinx.android.synthetic.main.street_view_item.view.*
 
-class StreetViewHolder(itemView: View, var heroListener: OnHeroListener) :
+class StreetViewHolder(itemView: View, var heroListener: OnSettingsListener) :
     RecyclerView.ViewHolder(itemView), View.OnClickListener {
     override fun onClick(p0: View?) {
-        heroListener.onHeroClick((adapterPosition), this)
+        heroListener.onStreetClick(adapterPosition)
     }
 
     val streetView: ImageView
@@ -21,7 +21,7 @@ class StreetViewHolder(itemView: View, var heroListener: OnHeroListener) :
 
     init {
         streetView = itemView.streetView
-        chooseBttn=itemView.chooseBttn
+        chooseBttn = itemView.chooseBttn
         //heroLateGame.setOnClickListener(this)
     }
 }

@@ -8,6 +8,7 @@ import com.miklesam.masterofdota.heroupdate.FragmentHeroesUpdate
 import com.miklesam.masterofdota.newgame.FragmentYourNickName
 import com.miklesam.masterofdota.pickstage.FragmentPickStage
 import com.miklesam.masterofdota.playerupdate.FragmentPlayerUpdate
+import com.miklesam.masterofdota.settingsview.FragmentSettings
 
 class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
     FragmentPickStage.nextFromPick, FragmentGame.backToLobby,

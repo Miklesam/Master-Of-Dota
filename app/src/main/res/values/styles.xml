@@ -16,6 +16,12 @@
 
     <style name="EndDialogTitle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/popup_background</item>
+        <item name="android:windowAnimationStyle">@style/CustomDialogAnimation</item>
+    </style>
+
+    <style name="CustomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/fade_out</item>
+        <item name="android:windowExitAnimation">@anim/fade_in</item>
     </style>
 
 

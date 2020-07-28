@@ -3,17 +3,17 @@ package com.miklesam.masterofdota.adapters.settingsadapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.miklesam.masterofdota.datamodels.Heroes
 import com.miklesam.masterofdota.R
-import com.miklesam.masterofdota.adapters.heroupdate.OnHeroListener
 import com.miklesam.masterofdota.datamodels.StreetView
-import com.miklesam.masterofdota.datamodels.roommodels.HeroProgress
+import com.miklesam.masterofdota.datamodels.roommodels.StreetViewBlocked
 import com.miklesam.masterofdota.utils.PrefsHelper
 
 
 class SettingsAdapter(
-    val heroListener: OnHeroListener
+    val heroListener: OnSettingsListener
 ) : RecyclerView.Adapter<StreetViewHolder>() {
+
+    var dbSettings: List<StreetViewBlocked>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StreetViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -32,17 +32,29 @@ class SettingsAdapter(
         val currentView = PrefsHelper.read(PrefsHelper.STREET_VIEW, "0")?.toInt()
         val streetView = StreetView.values()[position]
         holder.streetView.setImageResource(streetView.streetImage)
+
+        dbSettings?.let {
+            if (it[position].unblocked) {
+                holder.chooseBttn.text = "Выбрать"
+            } else {
+                holder.chooseBttn.text = "Разблокировать\n1000"
+            }
+        }
         if (currentView == position) {
             holder.chooseBttn.text = "Выбрано"
-        } else {
-            holder.chooseBttn.text = "Выбрать"
         }
         holder.chooseBttn.setOnClickListener {
-            PrefsHelper.write(PrefsHelper.STREET_VIEW, position.toString())
-            holder.chooseBttn.text = "Выбрано"
-            notifyDataSetChanged()
+            heroListener.onStreetClick(position)
+            //PrefsHelper.write(PrefsHelper.STREET_VIEW, position.toString())
+            //holder.chooseBttn.text = "Выбрано"
+            //notifyDataSetChanged()
         }
 
+    }
+
+    fun setDataFromDB(it: List<StreetViewBlocked>) {
+        dbSettings = it
+        notifyDataSetChanged()
     }
 
 
