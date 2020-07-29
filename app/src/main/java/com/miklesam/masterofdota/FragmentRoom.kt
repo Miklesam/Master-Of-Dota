@@ -118,15 +118,29 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         }
         weatherAnim?.setFon(fon)
 
+        PrefsHelper.write(PrefsHelper.MMR_COUNT, "10500")
         val currentMMR = PrefsHelper.read(
             PrefsHelper.MMR_COUNT, "0"
         )?.toInt() ?: 0
+
         val mmrString = "MMR: $currentMMR"
         mmrStats.text = mmrString
-        if (currentMMR < 500) {
+        if (currentMMR < 800) {
             medal.setImageResource(R.drawable.recruit_trans)
-        } else {
+        } else if (currentMMR < 1600) {
+            medal.setImageResource(R.drawable.guardian_trans)
+        } else if (currentMMR < 2400) {
+            medal.setImageResource(R.drawable.knight_trans)
+        } else if (currentMMR < 3200) {
+            medal.setImageResource(R.drawable.hero_trans)
+        } else if (currentMMR < 4000) {
+            medal.setImageResource(R.drawable.legend_trans)
+        } else if (currentMMR < 4800) {
+            medal.setImageResource(R.drawable.sovereign_trans)
+        } else if (currentMMR < 5600) {
             medal.setImageResource(R.drawable.divinity_trans)
+        } else {
+            medal.setImageResource(R.drawable.titan_trans)
         }
 
         val currentEnergy = PrefsHelper.read(

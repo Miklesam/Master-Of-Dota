@@ -29,4 +29,8 @@ class ViewSettingsRepository(application: Application) {
         streetDao.nukeTable()
     }
 
+    fun updateStreetView(streetView: StreetViewBlocked) {
+        streetDao.updateStreetBlocked(streetView)
+    }
+
 }

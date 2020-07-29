@@ -16,4 +16,8 @@ class ViewSettingsViewModel(application: Application) : AndroidViewModel(applica
         repository.nukeProgress()
     }
 
+    fun updateStreetView(street: StreetViewBlocked) {
+        repository.updateStreetView(street)
+    }
+
 }

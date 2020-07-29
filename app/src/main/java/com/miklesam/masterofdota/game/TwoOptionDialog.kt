@@ -11,18 +11,21 @@ import androidx.core.content.ContextCompat
 import com.miklesam.masterofdota.R
 import com.miklesam.masterofdota.utils.PrefsHelper
 import kotlinx.android.synthetic.main.layout_two_option_dialog.view.*
+import java.text.FieldPosition
 
 class TwoOptionDialog() : AppCompatDialogFragment() {
-    constructor(myListener: toLobbyInterface) : this() {
+    constructor(myListener: toLobbyInterface, position: Int) : this() {
         mListener = myListener
+        positionView = position
     }
 
 
     var Lock = true
+    var positionView = 0
     var mListener: toLobbyInterface? = null
 
     interface toLobbyInterface {
-        fun goToLobbyClick(points: Int)
+        fun goToLobbyClick(position: Int)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -44,7 +47,7 @@ class TwoOptionDialog() : AppCompatDialogFragment() {
         }
 
         mycustomview.yes_dialog.setOnClickListener {
-            mListener?.goToLobbyClick(0)
+            mListener?.goToLobbyClick(positionView)
             Lock = false
             dialog.hide()
         }

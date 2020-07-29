@@ -44,10 +44,17 @@ class SettingsAdapter(
             holder.chooseBttn.text = "Выбрано"
         }
         holder.chooseBttn.setOnClickListener {
-            heroListener.onStreetClick(position)
-            //PrefsHelper.write(PrefsHelper.STREET_VIEW, position.toString())
-            //holder.chooseBttn.text = "Выбрано"
-            //notifyDataSetChanged()
+            dbSettings?.let {
+                if (it[position].unblocked) {
+                    PrefsHelper.write(PrefsHelper.STREET_VIEW, position.toString())
+                    holder.chooseBttn.text = "Выбрано"
+                    notifyDataSetChanged()
+                } else {
+                    heroListener.onStreetClick(position)
+                }
+            }
+
+
         }
 
     }
