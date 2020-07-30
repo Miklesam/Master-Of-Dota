@@ -12,6 +12,7 @@ object PrefsHelper {
     const val NICK_NAME = "nick_name"
     const val STREET_VIEW = "street_view"
     const val ENERGY = "energy"
+    const val FANS = "fans"
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(

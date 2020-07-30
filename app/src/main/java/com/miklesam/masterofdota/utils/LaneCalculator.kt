@@ -12,10 +12,6 @@ class LaneCalculator(val myHero: Int, val willYouWin: Boolean) {
         direHeroes: ArrayList<Int>,
         gameCount: Int
     ): Int {
-
-        val myHeros = Heroes.values()
-            .find { it.id == myHero }
-
         var returningVal = 0
         if (radiant.isNotEmpty() && dire.isNotEmpty()) {
             var sumPointsRad = 0
@@ -158,8 +154,7 @@ class LaneCalculator(val myHero: Int, val willYouWin: Boolean) {
 
 
     private fun calculateFirstPoint(heroesOnLine: ArrayList<HeroStats>): Int {
-        var firstPoint = 0
-        firstPoint = 10 + (heroesOnLine.size - 1) * 15
+        var firstPoint = 10 + (heroesOnLine.size - 1) * 15
         if (heroesOnLine.size == 5) {
             firstPoint += 20
         }
@@ -167,8 +162,7 @@ class LaneCalculator(val myHero: Int, val willYouWin: Boolean) {
     }
 
     private fun calculateSecondPoint(heroesOnLine: ArrayList<HeroStats>): Int {
-        var secondPoint = 0
-        secondPoint = 15 + (heroesOnLine.size - 1) * 20
+        var secondPoint = 15 + (heroesOnLine.size - 1) * 20
         if (heroesOnLine.size == 5) {
             secondPoint += 50
         }

@@ -95,6 +95,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/settings" />
 
+    <ImageView
+        android:id="@+id/twitter_write"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/twitter_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sleep" />
+
+    <ImageView
+        android:id="@+id/team_home"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/main_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/twitter_write" />
+
+
     <TextView
         android:id="@+id/dayStats"
         android:layout_width="0dp"

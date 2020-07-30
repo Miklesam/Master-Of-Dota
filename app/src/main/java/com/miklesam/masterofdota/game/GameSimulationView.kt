@@ -512,8 +512,9 @@ class GameSimulationView : View {
                             (Lanes.RADIANT_BOT_TIER_2_RADIANT_SIDE.positionX + 2 * i) * sizeX / 100 < hero[i].positionX
                         reverseY[i] =
                             (Lanes.RADIANT_BOT_TIER_2_RADIANT_SIDE.positionY + 2 * i) * sizeY / 100 < hero[i].positionY
-                    }else if ((DireTowers[5] && !RadiantTowers[5] && DireTowers[4] && !RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])||
-                        (!DireTowers[5] && !RadiantTowers[5] && DireTowers[4] && !RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])) {
+                    } else if ((DireTowers[5] && !RadiantTowers[5] && DireTowers[4] && !RadiantTowers[4] && DireTowers[3] && RadiantTowers[3]) ||
+                        (!DireTowers[5] && !RadiantTowers[5] && DireTowers[4] && !RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])
+                    ) {
                         blockY[i] =
                             ((Lanes.RADIANT_BOT_TIER_3_RADIANT_SIDE.positionY + 2 * i) * sizeY / 100)
                         blockX[i] =
@@ -522,8 +523,9 @@ class GameSimulationView : View {
                             (Lanes.RADIANT_BOT_TIER_3_RADIANT_SIDE.positionX + 2 * i) * sizeX / 100 < hero[i].positionX
                         reverseY[i] =
                             (Lanes.RADIANT_BOT_TIER_3_RADIANT_SIDE.positionY + 2 * i) * sizeY / 100 < hero[i].positionY
-                    }else if ((!DireTowers[5] && RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])||
-                        (!DireTowers[5] && !RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])) {
+                    } else if ((!DireTowers[5] && RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && DireTowers[3] && RadiantTowers[3]) ||
+                        (!DireTowers[5] && !RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])
+                    ) {
                         blockY[i] =
                             ((Lanes.DIRE_BOT_TIER_3_RADIANT_SIDE.positionY + 2 * i) * sizeY / 100)
                         blockX[i] =
@@ -556,7 +558,7 @@ class GameSimulationView : View {
                             (Lanes.DIRE_ANCIENT_RADIANT_SIDE.positionX + 2 * i) * sizeX / 100 < hero[i].positionX
                         reverseY[i] =
                             (Lanes.DIRE_ANCIENT_RADIANT_SIDE.positionY + 2 * i) * sizeY / 100 < hero[i].positionY
-                    }else {
+                    } else {
                         blockY[i] = ((Lanes.RADIANT_BOT.positionY + 2 * i) * sizeY / 100)
                         blockX[i] = ((Lanes.RADIANT_BOT.positionX + 2 * i) * sizeX / 100)
                         reverseX[i] =
@@ -744,8 +746,9 @@ class GameSimulationView : View {
                             (Lanes.RADIANT_BOT_TIER_2_DIRE_SIDE.positionX + (9 - i) * 2) * sizeX / 100 < hero[i].positionX
                         reverseY[i] =
                             (Lanes.RADIANT_BOT_TIER_2_DIRE_SIDE.positionY - (i - 4) * 2) * sizeY / 100 < hero[i].positionY
-                    } else if ((DireTowers[5] && !RadiantTowers[5] && DireTowers[4] && !RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])||
-                        (!DireTowers[5] && !RadiantTowers[5] && DireTowers[4] && !RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])) {
+                    } else if ((DireTowers[5] && !RadiantTowers[5] && DireTowers[4] && !RadiantTowers[4] && DireTowers[3] && RadiantTowers[3]) ||
+                        (!DireTowers[5] && !RadiantTowers[5] && DireTowers[4] && !RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])
+                    ) {
                         blockY[i] =
                             ((Lanes.RADIANT_BOT_TIER_3_DIRE_SIDE.positionY - (i - 4) * 2) * sizeY / 100)
                         blockX[i] =
@@ -754,8 +757,9 @@ class GameSimulationView : View {
                             (Lanes.RADIANT_BOT_TIER_3_DIRE_SIDE.positionX + (9 - i) * 2) * sizeX / 100 < hero[i].positionX
                         reverseY[i] =
                             (Lanes.RADIANT_BOT_TIER_3_DIRE_SIDE.positionY - (i - 4) * 2) * sizeY / 100 < hero[i].positionY
-                    }else if ((!DireTowers[5] && RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])||
-                        (!DireTowers[5] && !RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])) {
+                    } else if ((!DireTowers[5] && RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && DireTowers[3] && RadiantTowers[3]) ||
+                        (!DireTowers[5] && !RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && DireTowers[3] && RadiantTowers[3])
+                    ) {
                         blockY[i] =
                             ((Lanes.DIRE_BOT_TIER_3_DIRE_SIDE.positionY - (i - 4) * 2) * sizeY / 100)
                         blockX[i] =
@@ -764,7 +768,7 @@ class GameSimulationView : View {
                             (Lanes.DIRE_BOT_TIER_3_DIRE_SIDE.positionX + (9 - i) * 2) * sizeX / 100 < hero[i].positionX
                         reverseY[i] =
                             (Lanes.DIRE_BOT_TIER_3_DIRE_SIDE.positionY - (i - 4) * 2) * sizeY / 100 < hero[i].positionY
-                    }else if ((!DireTowers[5] && RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && !DireTowers[3] && RadiantTowers[3]) ||
+                    } else if ((!DireTowers[5] && RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && !DireTowers[3] && RadiantTowers[3]) ||
                         (!DireTowers[5] && !RadiantTowers[5] && !DireTowers[4] && RadiantTowers[4] && !DireTowers[3] && RadiantTowers[3]) ||
                         (!DireTowers[5] && !RadiantTowers[5] && !DireTowers[4] && !RadiantTowers[4] && !DireTowers[3] && RadiantTowers[3])
                     ) {
@@ -822,7 +826,7 @@ class GameSimulationView : View {
 
 
     fun pause() {
-        if (mTimeAnimator != null && mTimeAnimator.isRunning) {
+        if (mTimeAnimator.isRunning) {
             // Store the current play time for later.
             mCurrentPlayTime = mTimeAnimator.currentPlayTime
             mTimeAnimator.pause()
@@ -833,7 +837,7 @@ class GameSimulationView : View {
      * Resume the animation if not already running
      */
     fun resume() {
-        if (mTimeAnimator != null && mTimeAnimator.isPaused()) {
+        if (mTimeAnimator.isPaused()) {
             mTimeAnimator.start()
             // Why set the current play time?
             // TimeAnimator uses timestamps internally to determine the delta given

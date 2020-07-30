@@ -32,6 +32,15 @@ class FragmentYourNickName : Fragment(R.layout.fragment_your_nickname) {
                     PrefsHelper.MMR_COUNT,
                     "500"
                 )
+                PrefsHelper.write(
+                    PrefsHelper.FANS,
+                    "0"
+                )
+                PrefsHelper.write(
+                    PrefsHelper.NICK_NAME,
+                    nickNameEdit.text.toString()
+                )
+
                 updateViewModel.nukeHeroesProgress()
                 updateViewModel.nukeAbilityProgress()
                 updateViewModel.initNewHeroesProgress(HeroProgressList.AllHeroProgress)

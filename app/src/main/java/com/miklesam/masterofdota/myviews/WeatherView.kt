@@ -138,7 +138,7 @@ class WeatherView : View {
                     // Ignore all calls before the view has been measured and laid out.
                     return
                 }
-                updateState(deltaTime.toFloat())
+                updateState()
                 invalidate()
             }
         })
@@ -179,11 +179,7 @@ class WeatherView : View {
         }
     }
 
-    /**
-     * Progress the animation by moving the stars based on the elapsed time
-     * @param deltaMs time delta since the last frame, in millis
-     */
-    private fun updateState(deltaMs: Float) {
+    private fun updateState() {
         mPosition--
         if (mPosition < -98 * sizeX / 100) {
             swap()
@@ -199,9 +195,9 @@ class WeatherView : View {
                 context,
                 R.drawable.moonlite
             )
-            val layout = mView?.findViewById<WeatherView>(
-                R.id.weatherAnim
-            )
+            //val layout = mView?.findViewById<WeatherView>(
+            //    R.id.weatherAnim
+            //)
             //layout?.setBackgroundResource(R.drawable.panoramanew_dark)
         } else {
             mDrawable = ContextCompat.getDrawable(

@@ -12,7 +12,7 @@ import com.miklesam.masterofdota.settingsview.FragmentSettings
 
 class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
     FragmentPickStage.nextFromPick, FragmentGame.backToLobby,
-    FragmentYourNickName.nickNameListener {
+    FragmentYourNickName.nickNameListener, FragmentTwitter.TweetClicked {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,6 +133,22 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         transaction.commit()
     }
 
+    override fun twitterClicked() {
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment =
+            FragmentTwitter()
+        transaction.setCustomAnimations(
+            R.animator.scaley_enter,
+            R.animator.scaley_exit,
+            R.animator.stack_left_in,
+            R.animator.stack_right_out
+
+        )
+        transaction.replace(R.id.fragment_holder, fragment)
+            .addToBackStack(null)
+        transaction.commit()
+    }
+
     override fun pickEnded(radiant: ArrayList<Int>, direPicks: ArrayList<Int>) {
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = FragmentGame()
@@ -162,6 +178,10 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         )
         transaction.replace(R.id.fragment_holder, fragment)
         transaction.commit()
+    }
+
+    override fun tweet() {
+        supportFragmentManager.popBackStack()
     }
 
 }

@@ -1,6 +1,5 @@
 package com.miklesam.masterofdota.customsnackbar
 
-import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.miklesam.masterofdota.R
-import kotlinx.android.synthetic.main.view_snackbar_simple.view.*
 
 class SimpleCustomSnackbar private constructor(
     parent: ViewGroup,
@@ -74,28 +72,28 @@ class SimpleCustomSnackbar private constructor(
         }
 
         private fun findParentViewGroup(view: View?): ViewGroup? {
-            var view = view
+            var viewMy = view
             var fallback: ViewGroup? = null
             do {
-                if (view is CoordinatorLayout) {
+                if (viewMy is CoordinatorLayout) {
                     // We've found a CoordinatorLayout, use it
-                    return view
-                } else if (view is FrameLayout) {
-                    if (view.id == android.R.id.content) {
+                    return viewMy
+                } else if (viewMy is FrameLayout) {
+                    if (viewMy.id == android.R.id.content) {
                         // If we've hit the decor content view, then we didn't find a CoL in the
                         // hierarchy, so use it.
-                        return view
+                        return viewMy
                     } else {
                         // It's not the content view but we'll use it as our fallback
-                        fallback = view
+                        fallback = viewMy
                     }
                 }
-                if (view != null) {
+                if (viewMy != null) {
                     // Else, we will loop and crawl up the view hierarchy and try to find a parent
-                    val parent = view.parent
-                    view = if (parent is View) parent else null
+                    val parent = viewMy.parent
+                    viewMy = if (parent is View) parent else null
                 }
-            } while (view != null)
+            } while (viewMy != null)
 
             // If we reach here then we didn't find a CoL or a suitable content view so we'll fallback
             return fallback

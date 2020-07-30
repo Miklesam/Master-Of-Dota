@@ -201,7 +201,7 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
 
     private fun createEndMatchDialogDialog(side: Int) {
         val dialog = EndMatchDialog(this, side)
-        fragmentManager?.let { dialog.show(it, "CreateEndMatchDialogDialog") }
+        activity?.supportFragmentManager?.let { dialog.show(it, "CreateEndMatchDialogDialog") }
     }
 
 

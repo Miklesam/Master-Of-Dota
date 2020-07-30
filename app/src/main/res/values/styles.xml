@@ -25,4 +25,11 @@
     </style>
 
 
+    <style name="TwitterEdit" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@color/twitter</item>
+        <item name="colorControlActivated">@color/twitter</item>
+        <item name="colorControlHighlight">@color/twitter</item>
+    </style>
+
+
 </resources>

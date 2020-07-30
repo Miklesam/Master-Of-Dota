@@ -27,6 +27,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         fun heroesUpdateClicked()
         fun playerUpdateClicked()
         fun settingsClicked()
+        fun twitterClicked()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,6 +67,10 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
 
         settings.setOnClickListener {
             roomListener.settingsClicked()
+        }
+
+        twitter_write.setOnClickListener {
+            roomListener.twitterClicked()
         }
 
         sleep.setOnClickListener {
@@ -118,7 +123,14 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         }
         weatherAnim?.setFon(fon)
 
-        PrefsHelper.write(PrefsHelper.MMR_COUNT, "10500")
+        val currentFans = PrefsHelper.read(
+            PrefsHelper.FANS, "0"
+        )?.toInt() ?: 0
+
+        val fansString = "Fans: $currentFans"
+
+        fansStats.text = fansString
+
         val currentMMR = PrefsHelper.read(
             PrefsHelper.MMR_COUNT, "0"
         )?.toInt() ?: 0

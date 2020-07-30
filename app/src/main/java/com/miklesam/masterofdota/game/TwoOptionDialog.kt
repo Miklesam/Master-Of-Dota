@@ -32,9 +32,6 @@ class TwoOptionDialog() : AppCompatDialogFragment() {
         val builder = AlertDialog.Builder(requireContext(), R.style.EndDialogTitle)
         val inflater = requireActivity().layoutInflater
         val mycustomview = inflater.inflate(R.layout.layout_two_option_dialog, null)
-        val match_result_text = mycustomview.findViewById<TextView>(R.id.match_result_text)
-        val pts_view = mycustomview.findViewById<TextView>(R.id.pts_view)
-        val currentMMR = PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")
 
 
         builder.setView(mycustomview)
