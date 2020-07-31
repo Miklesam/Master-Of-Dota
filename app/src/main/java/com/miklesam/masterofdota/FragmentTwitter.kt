@@ -2,10 +2,13 @@ package com.miklesam.masterofdota
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.miklesam.masterofdota.utils.PrefsHelper
+import com.miklesam.masterofdota.utils.showCustomToast
 import kotlinx.android.synthetic.main.fragment_menu.*
 import kotlinx.android.synthetic.main.fragment_twitter.*
+import kotlinx.android.synthetic.main.your_custom_layout.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
 
@@ -29,15 +32,20 @@ class FragmentTwitter : Fragment(R.layout.fragment_twitter) {
         number_fans.text = currentFans
 
         tweet_text.setOnClickListener {
-            scope.launch {
-                PrefsHelper.write(PrefsHelper.FANS, (currentFansNumber + 100).toString())
-                for (i in 0..100) {
-                    val fans =
-                        "Fans ${currentFansNumber + i}"
-                    number_fans.text = fans
-                    delay(10)
+
+            if (twitter_edit.text.isNotEmpty()) {
+                scope.launch {
+                    PrefsHelper.write(PrefsHelper.FANS, (currentFansNumber + 100).toString())
+                    for (i in 0..100) {
+                        val fans =
+                            "Fans ${currentFansNumber + i}"
+                        number_fans.text = fans
+                        delay(10)
+                    }
+                    tweetListener.tweet()
                 }
-                tweetListener.tweet()
+            } else {
+                showCustomToast("Type what happens", Toast.LENGTH_SHORT)
             }
 
 
