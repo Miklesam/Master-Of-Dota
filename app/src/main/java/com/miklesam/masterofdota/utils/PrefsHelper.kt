@@ -13,6 +13,9 @@ object PrefsHelper {
     const val STREET_VIEW = "street_view"
     const val ENERGY = "energy"
     const val FANS = "fans"
+    const val DAYS = "days"
+    const val MONTH = "month"
+    const val YEARS = "years"
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(

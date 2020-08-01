@@ -24,6 +24,33 @@ fun Fragment.showCustomToast(message: String, long: Int) {
 }
 
 
+fun Fragment.plusDay() {
+    val currentDay = PrefsHelper.read(
+        PrefsHelper.DAYS, "0"
+    )?.toInt() ?: 0
+
+    val currentMonth = PrefsHelper.read(
+        PrefsHelper.MONTH, "0"
+    )?.toInt() ?: 0
+
+    val currentYear = PrefsHelper.read(
+        PrefsHelper.YEARS, "0"
+    )?.toInt() ?: 0
+    if (currentDay == 30) {
+        PrefsHelper.write(PrefsHelper.DAYS, "0")
+
+        if (currentMonth == 11) {
+            PrefsHelper.write(PrefsHelper.MONTH, "0")
+            PrefsHelper.write(PrefsHelper.YEARS, (currentYear + 1).toString())
+        } else {
+            PrefsHelper.write(PrefsHelper.MONTH, (currentMonth + 1).toString())
+        }
+    } else {
+        PrefsHelper.write(PrefsHelper.DAYS, (currentDay + 1).toString())
+    }
+
+}
+
 
 fun Fragment.hideKeyboard() {
     val view = this.activity?.currentFocus

@@ -49,6 +49,11 @@ class TwoOptionDialog() : AppCompatDialogFragment() {
             dialog.hide()
         }
 
+        mycustomview.no_dialog.setOnClickListener {
+            Lock = false
+            dialog.hide()
+        }
+
 
         return dialog
     }
@@ -57,5 +62,10 @@ class TwoOptionDialog() : AppCompatDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mListener = null
     }
 }

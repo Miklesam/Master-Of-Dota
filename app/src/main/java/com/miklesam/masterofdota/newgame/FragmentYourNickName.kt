@@ -37,6 +37,19 @@ class FragmentYourNickName : Fragment(R.layout.fragment_your_nickname) {
                     "0"
                 )
                 PrefsHelper.write(
+                    PrefsHelper.DAYS,
+                    "0"
+                )
+                PrefsHelper.write(
+                    PrefsHelper.MONTH,
+                    "0"
+                )
+                PrefsHelper.write(
+                    PrefsHelper.YEARS,
+                    "0"
+                )
+
+                PrefsHelper.write(
                     PrefsHelper.NICK_NAME,
                     nickNameEdit.text.toString()
                 )

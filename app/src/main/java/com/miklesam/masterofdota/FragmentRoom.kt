@@ -11,6 +11,7 @@ import com.miklesam.masterofdota.customsnackbar.SimpleCustomSnackbar
 import com.miklesam.masterofdota.datamodels.StreetView
 import com.miklesam.masterofdota.myviews.WeatherView
 import com.miklesam.masterofdota.utils.PrefsHelper
+import com.miklesam.masterofdota.utils.plusDay
 import kotlinx.android.synthetic.main.fragment_room.*
 import kotlinx.coroutines.*
 
@@ -76,10 +77,12 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         sleep.setOnClickListener {
             scope?.launch {
                 isSleeping = true
-                delay(3000)
+                delay(100)
                 isSleeping = false
                 withContext(Dispatchers.Main) {
                     Toast.makeText(context, "Energy is full", Toast.LENGTH_SHORT).show()
+                    plusDay()
+                    updateCalendar()
                     PrefsHelper.write(PrefsHelper.ENERGY, "100")
                     energyPB.progress = 100
                 }
@@ -123,6 +126,11 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         }
         weatherAnim?.setFon(fon)
 
+        updateCalendar()
+
+
+
+
         val currentFans = PrefsHelper.read(
             PrefsHelper.FANS, "0"
         )?.toInt() ?: 0
@@ -163,6 +171,24 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         energyPB.unreachedBarColor = ContextCompat.getColor(requireContext(), R.color.lose)
 
 
+    }
+
+    private fun updateCalendar(){
+        val currentDay = PrefsHelper.read(
+            PrefsHelper.DAYS, "0"
+        )?.toInt() ?: 0
+
+        val currentMonth = PrefsHelper.read(
+            PrefsHelper.MONTH, "0"
+        )?.toInt() ?: 0
+
+        val currentYear = PrefsHelper.read(
+            PrefsHelper.YEARS, "0"
+        )?.toInt() ?: 0
+
+        val todayIs = "Y: $currentYear M: $currentMonth D: $currentDay"
+
+        dayStats.text = todayIs
     }
 
     private fun onClick() {
