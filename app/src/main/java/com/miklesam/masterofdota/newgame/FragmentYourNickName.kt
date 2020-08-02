@@ -30,11 +30,15 @@ class FragmentYourNickName : Fragment(R.layout.fragment_your_nickname) {
             scope.launch {
                 PrefsHelper.write(
                     PrefsHelper.MMR_COUNT,
-                    "500"
+                    "12500"
                 )
                 PrefsHelper.write(
                     PrefsHelper.FANS,
-                    "0"
+                    "100000"
+                )
+                PrefsHelper.write(
+                    PrefsHelper.MONEY,
+                    "3000000"
                 )
                 PrefsHelper.write(
                     PrefsHelper.DAYS,

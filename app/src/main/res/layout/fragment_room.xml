@@ -54,16 +54,27 @@
     </FrameLayout>
 
 
+    <ImageView
+        android:id="@+id/xp_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/icon_fox_xp"
+        app:layout_constraintEnd_toEndOf="@+id/money_ima"
+        app:layout_constraintTop_toBottomOf="@+id/money_ima" />
+
+
     <TextView
         android:id="@+id/xp_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Найти игру"
+        android:text="XP : 150"
         android:textColor="#fff"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/heroes_update"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintBottom_toBottomOf="@+id/xp_icon"
+        app:layout_constraintStart_toEndOf="@+id/xp_icon"
+        app:layout_constraintTop_toTopOf="@+id/xp_icon"
+        app:layout_constraintVertical_bias="0.437" />
 
     <ImageView
         android:id="@+id/heroes_update"
@@ -195,6 +206,7 @@
         app:progress_current="0" />
 
     <ImageView
+        android:id="@+id/money_ima"
         android:layout_width="40dp"
         android:layout_height="20dp"
         android:src="@drawable/dollar_trans"

@@ -129,8 +129,6 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         updateCalendar()
 
 
-
-
         val currentFans = PrefsHelper.read(
             PrefsHelper.FANS, "0"
         )?.toInt() ?: 0
@@ -138,6 +136,21 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         val fansString = "Fans: $currentFans"
 
         fansStats.text = fansString
+
+        val currentXP = PrefsHelper.read(
+            PrefsHelper.XP, "0"
+        )?.toInt() ?: 0
+
+        val xpString = "XP: $currentXP"
+
+        xp_update.text = xpString
+
+        val currentMoney = PrefsHelper.read(
+            PrefsHelper.MONEY, "0"
+        )?.toInt() ?: 0
+
+        val moneyString = "Money: $currentMoney"
+        moneyStats.text = moneyString
 
         val currentMMR = PrefsHelper.read(
             PrefsHelper.MMR_COUNT, "0"
@@ -173,7 +186,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
 
     }
 
-    private fun updateCalendar(){
+    private fun updateCalendar() {
         val currentDay = PrefsHelper.read(
             PrefsHelper.DAYS, "0"
         )?.toInt() ?: 0
