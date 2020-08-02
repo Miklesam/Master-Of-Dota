@@ -54,6 +54,17 @@
     </FrameLayout>
 
 
+    <TextView
+        android:id="@+id/xp_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Найти игру"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/heroes_update"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
     <ImageView
         android:id="@+id/heroes_update"
         android:layout_width="32dp"
@@ -81,7 +92,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/watch_replay"
+        android:src="@drawable/google_chrome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/player_update" />
 
