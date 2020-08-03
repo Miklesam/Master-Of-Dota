@@ -9,6 +9,7 @@ import com.miklesam.masterofdota.newgame.FragmentYourNickName
 import com.miklesam.masterofdota.pickstage.FragmentPickStage
 import com.miklesam.masterofdota.playerupdate.FragmentPlayerUpdate
 import com.miklesam.masterofdota.settingsview.FragmentSettings
+import com.miklesam.masterofdota.utils.PrefsHelper
 
 class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
     FragmentPickStage.nextFromPick, FragmentGame.backToLobby,
@@ -77,8 +78,8 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         transaction.setCustomAnimations(
             R.animator.card_flip_vertical_right_in,
             R.animator.card_flip_vertical_left_out,
-            R.animator.card_flip_vertical_left_in,
-            R.animator.card_flip_vertical_right_out
+            R.animator.stack_left_in,
+            R.animator.stack_right_out
         )
         transaction.replace(R.id.fragment_holder, fragment)
             .addToBackStack(null)
@@ -162,6 +163,8 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     }
 
     override fun backToLobbyCLicked() {
+        val currentXP = PrefsHelper.read(PrefsHelper.XP, "0")?.toInt() ?: 0
+        PrefsHelper.write(PrefsHelper.XP, (currentXP + 100).toString())
         supportFragmentManager.popBackStack()
         supportFragmentManager.popBackStack()
     }
