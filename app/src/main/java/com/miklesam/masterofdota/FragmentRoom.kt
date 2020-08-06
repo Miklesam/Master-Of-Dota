@@ -102,20 +102,6 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         }
 
 
-        /*
-        scope.launch {
-            while (true) {
-                withContext(Dispatchers.Main) {
-                    teamSigning.moveHand()
-                    delay(100)
-                    teamSigning.moveHand()
-                    delay(100)
-                }
-            }
-        }
-
-         */
-
         val currentView = PrefsHelper.read(PrefsHelper.STREET_VIEW, "0")?.toInt()
 
         val fon = StreetView.values().find { it.id == currentView }?.streetImage?.let {
@@ -220,15 +206,15 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
         val turnDota = ContextCompat.getDrawable(
             requireContext(),
-            R.drawable.night_1
+            R.drawable.bottom_fight
         )
         val pickDota = ContextCompat.getDrawable(
             requireContext(),
-            R.drawable.night_1
+            R.drawable.pick_stage_m
         )
         val startGame = ContextCompat.getDrawable(
             requireContext(),
-            R.drawable.night_1
+            R.drawable.start_mon
         )
 
         val nightScreen = ContextCompat.getDrawable(
@@ -240,29 +226,39 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
             while (true) {
                 if (!isSleeping) {
                     withContext(Dispatchers.Main) {
-                        teamSigning.setMonitorPicture(turnDota)
-                        delay(1000)
-                        if (isSleeping) return@withContext
                         teamSigning.setMonitorPicture(pickDota)
                         delay(1000)
                         if (isSleeping) return@withContext
                         teamSigning.setMonitorPicture(startGame)
+                        delay(1000)
+                        if (isSleeping) return@withContext
+                        teamSigning.setMonitorPicture(turnDota)
                         delay(1000)
                     }
                 } else {
                     withContext(Dispatchers.Main) {
                         teamSigning.setMonitorPicture(nightScreen)
                         delay(1000)
-                        teamSigning.setMonitorPicture(nightScreen)
+                        teamSigning.setMonitorPicture(startGame)
                         delay(1000)
                         teamSigning.setMonitorPicture(nightScreen)
                         delay(1000)
                     }
                 }
             }
-
-
         }
+
+        scope?.launch {
+            while (true) {
+                withContext(Dispatchers.Main) {
+                    teamSigning.moveHand()
+                    delay(100)
+                    teamSigning.moveHand()
+                    delay(100)
+                }
+            }
+        }
+
     }
 
     override fun onPause() {
