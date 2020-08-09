@@ -49,6 +49,7 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback {
         soundPull = null
         Heros_icon = emptyArray()
         Pick_stage = emptyArray()
+        Ban_stage = emptyArray()
     }
 
     override fun onPause() {

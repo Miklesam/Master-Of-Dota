@@ -2,7 +2,15 @@ package com.miklesam.masterofdota
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.view.WindowManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.games.AchievementsClient
+import com.google.android.gms.games.Games
+import com.google.android.gms.games.LeaderboardsClient
 import com.miklesam.masterofdota.game.FragmentGame
 import com.miklesam.masterofdota.heroupdate.FragmentHeroesUpdate
 import com.miklesam.masterofdota.newgame.FragmentYourNickName
@@ -15,10 +23,14 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     FragmentPickStage.nextFromPick, FragmentGame.backToLobby,
     FragmentYourNickName.nickNameListener, FragmentTwitter.TweetClicked {
 
+    private var googleSignInClient: GoogleSignInClient? = null
+    private var achievementClient: AchievementsClient? = null
+    private var leaderboardsClient: LeaderboardsClient? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        initGoogleClientAndSignin()
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -27,6 +39,39 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
             showMenuFragment()
         }
 
+    }
+
+    fun initGoogleClientAndSignin() {
+        Log.w("Activity", "try to  init")
+        googleSignInClient = GoogleSignIn.getClient(
+            this,
+            GoogleSignInOptions.Builder(
+                GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN
+            ).build()
+        )
+
+        googleSignInClient?.silentSignIn()?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.w("Activity", "succes Sign")
+                achievementClient = Games.getAchievementsClient(
+                    this,
+                    task.result!!
+                )
+                leaderboardsClient = Games.getLeaderboardsClient(
+                    this,
+                    task.result!!
+                )
+            } else {
+                Log.e("Error", "signInError", task.exception)
+            }
+        }
+    }
+
+    private fun showAchievements() {
+        achievementClient?.achievementsIntent?.addOnSuccessListener { intent ->
+            Log.w("Activity", "start Activity")
+            startActivityForResult(intent, 0)
+        }
     }
 
 
@@ -47,6 +92,10 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         transaction.replace(R.id.fragment_holder, fragment)
             .addToBackStack(null)
         transaction.commit()
+    }
+
+    override fun achivmentsClicked() {
+        showAchievements()
     }
 
     private fun showRoomFragment() {
@@ -164,7 +213,7 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
 
     override fun backToLobbyCLicked() {
         val currentXP = PrefsHelper.read(PrefsHelper.XP, "0")?.toInt() ?: 0
-        PrefsHelper.write(PrefsHelper.XP, (currentXP + 100).toString())
+        PrefsHelper.write(PrefsHelper.XP, (currentXP + 200).toString())
         supportFragmentManager.popBackStack()
         supportFragmentManager.popBackStack()
     }

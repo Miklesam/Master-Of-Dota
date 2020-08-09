@@ -13,6 +13,7 @@ import com.miklesam.masterofdota.utils.Gone
 import com.miklesam.masterofdota.datamodels.Heroes
 import com.miklesam.masterofdota.utils.PrefsHelper
 import com.miklesam.masterofdota.R
+import com.miklesam.masterofdota.utils.showCustomToast
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
 import java.util.*
@@ -170,15 +171,13 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
             if (it.isNotEmpty()) {
                 val currentHeroProgrss = it[this.heroes!![0]]
                 val rnds = (0..100).random()
-
-                val youWillWin = rnds > 50
+                val minus = currentHeroProgrss.progress / 10
+                val youWillWin = rnds > 50 - minus
                 gameViewModel.setWinning(youWillWin)
-                Toast.makeText(
-                    requireContext(),
-                    "${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds you wil win $youWillWin",
+                showCustomToast(
+                    "${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds you wil win $youWillWin minus = $minus",
                     Toast.LENGTH_SHORT
-                ).show()
-
+                )
             }
         })
 

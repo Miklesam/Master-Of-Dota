@@ -11,6 +11,7 @@ class FragmentMenu : Fragment(R.layout.fragment_menu) {
     interface MenuListener {
         fun continueClicked()
         fun newGameClicked()
+        fun achivmentsClicked()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -18,5 +19,6 @@ class FragmentMenu : Fragment(R.layout.fragment_menu) {
         val menuListener = activity as MenuListener
         continue_game.setOnClickListener { menuListener.continueClicked() }
         new_game_bttn.setOnClickListener { menuListener.newGameClicked() }
+        achivments.setOnClickListener { menuListener.achivmentsClicked() }
     }
 }

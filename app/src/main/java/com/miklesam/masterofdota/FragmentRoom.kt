@@ -12,6 +12,7 @@ import com.miklesam.masterofdota.datamodels.StreetView
 import com.miklesam.masterofdota.myviews.WeatherView
 import com.miklesam.masterofdota.utils.PrefsHelper
 import com.miklesam.masterofdota.utils.plusDay
+import com.miklesam.masterofdota.utils.showCustomToast
 import kotlinx.android.synthetic.main.fragment_room.*
 import kotlinx.coroutines.*
 
@@ -53,8 +54,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
                 customSnackbar!!.show()
                 timerCT?.start()
             } else {
-                Toast.makeText(context, "low energy, please get some energy", Toast.LENGTH_SHORT)
-                    .show()
+                showCustomToast("low energy, please get some energy", Toast.LENGTH_SHORT)
             }
 
         }
@@ -80,7 +80,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
                 delay(100)
                 isSleeping = false
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Energy is full", Toast.LENGTH_SHORT).show()
+                    showCustomToast("Energy is full", Toast.LENGTH_SHORT)
                     plusDay()
                     updateCalendar()
                     PrefsHelper.write(PrefsHelper.ENERGY, "100")
@@ -204,10 +204,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
 
     private fun animateMonitor() {
         scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-        val turnDota = ContextCompat.getDrawable(
-            requireContext(),
-            R.drawable.bottom_fight
-        )
+
         val pickDota = ContextCompat.getDrawable(
             requireContext(),
             R.drawable.pick_stage_m
@@ -232,7 +229,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
                         teamSigning.setMonitorPicture(startGame)
                         delay(1000)
                         if (isSleeping) return@withContext
-                        teamSigning.setMonitorPicture(turnDota)
+                        teamSigning.setMonitorPicture(pickDota)
                         delay(1000)
                     }
                 } else {
