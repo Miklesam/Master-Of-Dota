@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
             ).build()
         )
 
+        Log.w("Activity", "googleSignInClient $googleSignInClient")
+
         googleSignInClient?.silentSignIn()?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Log.w("Activity", "succes Sign")

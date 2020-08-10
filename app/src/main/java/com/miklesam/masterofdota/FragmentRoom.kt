@@ -50,43 +50,62 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         )
 
         playDotaGame.setOnClickListener {
-            if (energyPB.progress > 5) {
-                customSnackbar!!.show()
-                timerCT?.start()
-            } else {
-                showCustomToast("low energy, please get some energy", Toast.LENGTH_SHORT)
+
+            if (!isSleeping) {
+                if (energyPB.progress > 5) {
+                    customSnackbar!!.show()
+                    timerCT?.start()
+                } else {
+                    showCustomToast("low energy, please get some energy", Toast.LENGTH_SHORT)
+                }
             }
+
 
         }
         heroes_update.setOnClickListener {
-            roomListener.heroesUpdateClicked()
+            if (!isSleeping) {
+                roomListener.heroesUpdateClicked()
+            }
+
         }
 
         player_update.setOnClickListener {
-            roomListener.playerUpdateClicked()
+            if (!isSleeping) {
+                roomListener.playerUpdateClicked()
+            }
+
         }
 
         settings.setOnClickListener {
-            roomListener.settingsClicked()
+            if (!isSleeping) {
+                roomListener.settingsClicked()
+            }
+
         }
 
         twitter_write.setOnClickListener {
-            roomListener.twitterClicked()
+            if (!isSleeping) {
+                roomListener.twitterClicked()
+            }
+
         }
 
         sleep.setOnClickListener {
-            scope?.launch {
-                isSleeping = true
-                delay(100)
-                isSleeping = false
-                withContext(Dispatchers.Main) {
-                    showCustomToast("Energy is full", Toast.LENGTH_SHORT)
-                    plusDay()
-                    updateCalendar()
-                    PrefsHelper.write(PrefsHelper.ENERGY, "100")
-                    energyPB.progress = 100
+            if (!isSleeping) {
+                scope?.launch {
+                    isSleeping = true
+                    delay(3000)
+                    isSleeping = false
+                    withContext(Dispatchers.Main) {
+                        showCustomToast("Energy is full", Toast.LENGTH_SHORT)
+                        plusDay()
+                        updateCalendar()
+                        PrefsHelper.write(PrefsHelper.ENERGY, "100")
+                        energyPB.progress = 100
+                    }
                 }
             }
+
         }
 
 
@@ -236,7 +255,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
                     withContext(Dispatchers.Main) {
                         teamSigning.setMonitorPicture(nightScreen)
                         delay(1000)
-                        teamSigning.setMonitorPicture(startGame)
+                        teamSigning.setMonitorPicture(nightScreen)
                         delay(1000)
                         teamSigning.setMonitorPicture(nightScreen)
                         delay(1000)
@@ -248,10 +267,12 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         scope?.launch {
             while (true) {
                 withContext(Dispatchers.Main) {
-                    teamSigning.moveHand()
-                    delay(100)
-                    teamSigning.moveHand()
-                    delay(100)
+                    if (!isSleeping) {
+                        teamSigning.moveHand()
+                        delay(100)
+                        teamSigning.moveHand()
+                        delay(100)
+                    }
                 }
             }
         }
