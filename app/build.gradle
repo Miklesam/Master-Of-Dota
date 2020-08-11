@@ -19,8 +19,8 @@ android {
         applicationId "com.miklesam.masterofdota"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 2
-        versionName "1.1"
+        versionCode 7
+        versionName "1.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -61,7 +61,7 @@ dependencies {
     implementation "android.arch.persistence.room:rxjava2:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    implementation 'com.google.android.gms:play-services-games:18.0.1'
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-games:19.0.0'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
 
 }

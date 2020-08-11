@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initGoogleClientAndSignin()
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -39,10 +38,13 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
             showMenuFragment()
         }
 
+        initGoogleClientAndSignin()
+
+
     }
 
     fun initGoogleClientAndSignin() {
-        Log.w("Activity", "try to  init")
+        Log.w("Activity Google", "try to  init")
         googleSignInClient = GoogleSignIn.getClient(
             this,
             GoogleSignInOptions.Builder(
@@ -50,11 +52,11 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
             ).build()
         )
 
-        Log.w("Activity", "googleSignInClient $googleSignInClient")
+        Log.w("Activity Google", "googleSignInClient $googleSignInClient")
 
         googleSignInClient?.silentSignIn()?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Log.w("Activity", "succes Sign")
+                Log.w("Activity Google ", "succes Sign")
                 achievementClient = Games.getAchievementsClient(
                     this,
                     task.result!!
@@ -64,14 +66,21 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
                     task.result!!
                 )
             } else {
-                Log.e("Error", "signInError", task.exception)
+                Log.w("Activity Google", "signInError", task.exception)
             }
         }
     }
 
     private fun showAchievements() {
+        Log.w("Activity Google", "try to start Activity")
         achievementClient?.achievementsIntent?.addOnSuccessListener { intent ->
-            Log.w("Activity", "start Activity")
+            Log.w("Activity Google", "start Activity")
+            startActivityForResult(intent, 0)
+        }
+    }
+
+    private fun showTopPlayers() {
+        leaderboardsClient?.allLeaderboardsIntent?.addOnSuccessListener { intent ->
             startActivityForResult(intent, 0)
         }
     }
@@ -98,6 +107,10 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
 
     override fun achivmentsClicked() {
         showAchievements()
+    }
+
+    override fun leaderBoardClicked() {
+        showTopPlayers()
     }
 
     private fun showRoomFragment() {
