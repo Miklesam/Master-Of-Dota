@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:text="LeaderBoard"
             android:textColor="#FFF"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:theme="@style/ThemeOverlayButton"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

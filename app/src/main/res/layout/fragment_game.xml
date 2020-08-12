@@ -72,7 +72,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-    <com.miklesam.masterofdota.game.GameSimulationView
+    <com.miklesam.mastersofdota.game.GameSimulationView
         android:id="@+id/gameGame"
         android:layout_width="0dp"
         android:layout_height="0dp"

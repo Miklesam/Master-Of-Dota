@@ -16,11 +16,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.miklesam.masterofdota"
+        applicationId "com.miklesam.mastersofdota"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 7
-        versionName "1.7"
+        versionCode 2
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
