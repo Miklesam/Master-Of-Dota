@@ -30,6 +30,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         fun playerUpdateClicked()
         fun settingsClicked()
         fun twitterClicked()
+        fun teamsClicked()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,6 +89,12 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
                 roomListener.twitterClicked()
             }
 
+        }
+
+        team_home.setOnClickListener {
+            if (!isSleeping) {
+                roomListener.teamsClicked()
+            }
         }
 
         sleep.setOnClickListener {

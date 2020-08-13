@@ -16,6 +16,7 @@ import com.miklesam.mastersofdota.heroupdate.FragmentHeroesUpdate
 import com.miklesam.mastersofdota.newgame.FragmentYourNickName
 import com.miklesam.mastersofdota.pickstage.FragmentPickStage
 import com.miklesam.mastersofdota.playerupdate.FragmentPlayerUpdate
+import com.miklesam.mastersofdota.proteams.FragmentProTeams
 import com.miklesam.mastersofdota.settingsview.FragmentSettings
 import com.miklesam.mastersofdota.utils.PrefsHelper
 import kotlinx.android.synthetic.main.your_custom_layout.*
@@ -205,6 +206,22 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         val transaction = supportFragmentManager.beginTransaction()
         val fragment =
             FragmentTwitter()
+        transaction.setCustomAnimations(
+            R.animator.scaley_enter,
+            R.animator.scaley_exit,
+            R.animator.stack_left_in,
+            R.animator.stack_right_out
+
+        )
+        transaction.replace(R.id.fragment_holder, fragment)
+            .addToBackStack(null)
+        transaction.commit()
+    }
+
+    override fun teamsClicked() {
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment =
+            FragmentProTeams()
         transaction.setCustomAnimations(
             R.animator.scaley_enter,
             R.animator.scaley_exit,
