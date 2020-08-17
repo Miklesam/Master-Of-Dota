@@ -18,14 +18,18 @@ import kotlinx.coroutines.Dispatchers.Main
 class FragmentTeamRequirement : Fragment(R.layout.proteams_require) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        icon_logo.setImageResource(ProTeamsEnum.values()[0].teamLogo)
-        your_nickname.text = ProTeamsEnum.values()[0].teamName
+        val tt = arguments?.getInt("position") ?: 0
+
+        icon_logo.setImageResource(ProTeamsEnum.values()[tt].teamLogo)
+        your_nickname.text = ProTeamsEnum.values()[tt].teamName
         var requiersListText = ""
-        ProTeamsEnum.values()[0].requires.forEach {
+        ProTeamsEnum.values()[tt].requires.forEach {
             requiersListText += "${it.first.nameAbility} > ${it.second}\n"
         }
 
         requersList.text = requiersListText
-
+        try_to_join.setOnClickListener {
+            showCustomToast("Trying to join the team", Toast.LENGTH_SHORT)
+        }
     }
 }

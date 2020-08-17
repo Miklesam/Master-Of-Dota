@@ -37,6 +37,9 @@ class FragmentProTeams : Fragment(R.layout.fragment_proteams), OnProTeamsListene
             R.animator.stack_right_out
 
         )
+        val bundle = Bundle()
+        bundle.putInt("position", position)
+        fragment.arguments = bundle
         transaction.replace(R.id.fragment_holder, fragment)
             .addToBackStack(null)
         transaction.commit()
