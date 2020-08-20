@@ -102,7 +102,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
             if (!isSleeping) {
                 scope?.launch {
                     isSleeping = true
-                    delay(3000)
+                    delay(100)
                     isSleeping = false
                     withContext(Dispatchers.Main) {
                         showCustomToast("Energy is full", Toast.LENGTH_SHORT)
@@ -169,13 +169,6 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
 
         xp_update.text = xpString
 
-        val currentMoney = PrefsHelper.read(
-            PrefsHelper.MONEY, "0"
-        )?.toInt() ?: 0
-
-        val moneyString = "Money: $currentMoney"
-        moneyStats.text = moneyString
-
         val currentMMR = PrefsHelper.read(
             PrefsHelper.MMR_COUNT, "0"
         )?.toInt() ?: 0
@@ -226,6 +219,14 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         val todayIs = "Y: $currentYear M: $currentMonth D: $currentDay"
 
         dayStats.text = todayIs
+
+        val currentMoney = PrefsHelper.read(
+            PrefsHelper.MONEY, "0"
+        )?.toInt() ?: 0
+
+        val moneyString = "Money: $currentMoney"
+        moneyStats.text = moneyString
+
     }
 
     private fun onClick() {

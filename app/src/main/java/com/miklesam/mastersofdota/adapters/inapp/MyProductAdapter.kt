@@ -22,6 +22,7 @@ class MyProductAdapter(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val textProduct: TextView = itemView.findViewById(R.id.txt_product_name)
+        val plusMoney: TextView = itemView.findViewById(R.id.plusMoney)
         lateinit var iInnAppProductListener: InnAppProductListener
 
         init {
@@ -47,6 +48,11 @@ class MyProductAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.textProduct.text = skuDetails[position].title
+        holder.plusMoney.text = when (position) {
+            0 -> "+5000"
+            1 -> "+1000"
+            else -> "+0"
+        }
         holder.iInnAppProductListener = object : InnAppProductListener {
             override fun onProductClickListener(view: View, position: Int) {
                 val billingFlowParams = BillingFlowParams.newBuilder()

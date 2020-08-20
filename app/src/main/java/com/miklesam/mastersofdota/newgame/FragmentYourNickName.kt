@@ -68,6 +68,10 @@ class FragmentYourNickName : Fragment(R.layout.fragment_your_nickname) {
                     PrefsHelper.YOUR_TEAM_ID,
                     "3000"
                 )
+                PrefsHelper.write(
+                    PrefsHelper.CONTINUE_VISIBLE,
+                    "1"
+                )
                 updateViewModel.nukeHeroesProgress()
                 updateViewModel.nukeAbilityProgress()
                 updateViewModel.initNewHeroesProgress(HeroProgressList.AllHeroProgress)

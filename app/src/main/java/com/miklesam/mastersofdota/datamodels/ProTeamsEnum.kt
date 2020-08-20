@@ -51,7 +51,7 @@ enum class ProTeamsEnum(
         "Team Dignitas",
         R.drawable.team_dignitas,
         arrayListOf(Pair(PersonalAbility.MACRO_CONTROL, 15))
-        ,500
+        ,750000
     ),
     TEAM_ANVORGESA(
         4,

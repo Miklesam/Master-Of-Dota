@@ -8,6 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.miklesam.mastersofdota.R
+import com.miklesam.mastersofdota.datamodels.ProTeamsEnum
+import kotlinx.android.synthetic.main.fragment_room.*
 
 
 fun Fragment.showCustomToast(message: String, long: Int) {
@@ -38,6 +40,18 @@ fun Fragment.plusDay() {
     )?.toInt() ?: 0
     if (currentDay == 30) {
         PrefsHelper.write(PrefsHelper.DAYS, "0")
+        val currentTeam = PrefsHelper.read(
+            PrefsHelper.YOUR_TEAM_ID, "3000"
+        )?.toInt() ?: 3000
+
+        val currentMoney = PrefsHelper.read(
+            PrefsHelper.MONEY, "0"
+        )?.toInt() ?: 0
+
+        if (currentTeam != 3000) PrefsHelper.write(
+            PrefsHelper.MONEY,
+            (currentMoney + ProTeamsEnum.values()[currentTeam].salary).toString()
+        )
 
         if (currentMonth == 11) {
             PrefsHelper.write(PrefsHelper.MONTH, "0")

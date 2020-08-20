@@ -161,7 +161,8 @@
         android:layout_height="32dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/main_menu"
+        android:src="@drawable/team_logo"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/twitter_write" />
 

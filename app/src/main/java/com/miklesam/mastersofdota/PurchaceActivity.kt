@@ -3,10 +3,14 @@ package com.miklesam.mastersofdota
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.billingclient.api.*
 import com.miklesam.mastersofdota.adapters.inapp.MyProductAdapter
+import com.miklesam.mastersofdota.datamodels.ProTeamsEnum
+import com.miklesam.mastersofdota.utils.InAppEnum
+import com.miklesam.mastersofdota.utils.PrefsHelper
 import kotlinx.android.synthetic.main.activity_purchace.*
 
 class PurchaceActivity : AppCompatActivity(), PurchasesUpdatedListener {
@@ -16,41 +20,13 @@ class PurchaceActivity : AppCompatActivity(), PurchasesUpdatedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_purchace)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setupBillingClient()
-
         recycler_product.setHasFixedSize(true)
         recycler_product.layoutManager = LinearLayoutManager(this)
-
-        btn_load_product.setOnClickListener {
-            if (billingClient.isReady) {
-                val params = SkuDetailsParams.newBuilder()
-                    .setSkusList(listOf("purchase_small_money", "purchase_big_money"))
-                    .setType(BillingClient.SkuType.INAPP)
-                    .build()
-                billingClient.querySkuDetailsAsync(
-                    params
-                ) { responseCode, skuDetailsList ->
-                    if (responseCode == BillingClient.BillingResponse.OK) {
-                        loadProductToRecycler(skuDetailsList)
-                    } else {
-                        Toast.makeText(
-                            this@PurchaceActivity,
-                            "Can not query products",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-
-            } else {
-                Toast.makeText(
-                    this@PurchaceActivity,
-                    "Billing client not ready",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-        }
-
     }
 
     private fun loadProductToRecycler(skuDetailsList: MutableList<SkuDetails>?) {
@@ -76,6 +52,38 @@ class PurchaceActivity : AppCompatActivity(), PurchasesUpdatedListener {
                         "Success to connect Billing",
                         Toast.LENGTH_SHORT
                     ).show()
+                    if (billingClient.isReady) {
+                        val params = SkuDetailsParams.newBuilder()
+                            .setSkusList(
+                                listOf(
+                                    InAppEnum.BOX_OF_MONEY.productId,
+                                    InAppEnum.BIG_BOX_OF_MONEY.productId
+                                )
+                            )
+                            .setType(BillingClient.SkuType.INAPP)
+                            .build()
+                        billingClient.querySkuDetailsAsync(
+                            params
+                        ) { responseCode, skuDetailsList ->
+                            if (responseCode == BillingClient.BillingResponse.OK) {
+                                loadProductToRecycler(skuDetailsList)
+                            } else {
+                                Toast.makeText(
+                                    this@PurchaceActivity,
+                                    "Can not query products",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+
+                    } else {
+                        Toast.makeText(
+                            this@PurchaceActivity,
+                            "Billing client not ready",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
                 } else {
                     Toast.makeText(this@PurchaceActivity, "$responseCode", Toast.LENGTH_SHORT)
                         .show()
@@ -94,9 +102,23 @@ class PurchaceActivity : AppCompatActivity(), PurchasesUpdatedListener {
                 Log.w("Consumed", "Consumed $responseCode -- $purchaseToken")
             }
         if (purchases != null) {
+
             for (purchase in purchases) {
                 billingClient.consumeAsync(purchase.purchaseToken, listener)
+                val plusMoney = when (purchase.sku) {
+                    InAppEnum.BOX_OF_MONEY.productId -> InAppEnum.BOX_OF_MONEY.plusMoney
+                    InAppEnum.BIG_BOX_OF_MONEY.productId -> InAppEnum.BIG_BOX_OF_MONEY.plusMoney
+                    else -> 0
+                }
+                val currentMoney = PrefsHelper.read(
+                    PrefsHelper.MONEY, "0"
+                )?.toInt() ?: 0
+                PrefsHelper.write(
+                    PrefsHelper.MONEY,
+                    (currentMoney + plusMoney).toString()
+                )
             }
+
         }
 
         Toast.makeText(
