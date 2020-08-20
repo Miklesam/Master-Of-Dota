@@ -1,5 +1,6 @@
 package com.miklesam.mastersofdota
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -115,6 +116,11 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
 
     override fun leaderBoardClicked() {
         showTopPlayers()
+    }
+
+    override fun marketClicked() {
+        val intent = Intent(this, PurchaceActivity::class.java)
+        startActivity(intent)
     }
 
     private fun showRoomFragment() {

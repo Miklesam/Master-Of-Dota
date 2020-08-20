@@ -19,11 +19,13 @@ class ProTeamsHolder(itemView: View, var heroListener: OnProTeamsListener) :
 
     val heroIcon: ImageView
     val heroName: TextView
+    val salaryCount : TextView
     val full : CardView
 
     init {
         heroIcon = itemView.heroIcon
         heroName = itemView.heroName
+        salaryCount=itemView.salaryCount
         full=itemView.full
         full.setOnClickListener(this)
         //heroLateGame.setOnClickListener(this)

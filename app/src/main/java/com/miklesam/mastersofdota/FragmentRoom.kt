@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.miklesam.mastersofdota.customsnackbar.SimpleCustomSnackbar
+import com.miklesam.mastersofdota.datamodels.ProTeamsEnum
 import com.miklesam.mastersofdota.datamodels.StreetView
 import com.miklesam.mastersofdota.myviews.WeatherView
 import com.miklesam.mastersofdota.utils.PrefsHelper
@@ -139,6 +140,17 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         weatherAnim?.setFon(fon)
 
         updateCalendar()
+
+        val currentTeam = PrefsHelper.read(
+            PrefsHelper.YOUR_TEAM_ID, "3000"
+        )?.toInt() ?: 3000
+
+        if (currentTeam != 3000) {
+            your_team_logo.setImageResource(ProTeamsEnum.values()[currentTeam].teamLogo)
+        } else {
+            your_team_logo.visibility = View.GONE
+            your_team_text.visibility = View.GONE
+        }
 
 
         val currentFans = PrefsHelper.read(

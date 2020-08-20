@@ -18,6 +18,7 @@ object PrefsHelper {
     const val DAYS = "days"
     const val MONTH = "month"
     const val YEARS = "years"
+    const val YOUR_TEAM_ID = "your_team_id"
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(

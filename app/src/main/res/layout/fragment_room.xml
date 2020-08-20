@@ -11,6 +11,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal80"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
     <com.miklesam.mastersofdota.myviews.WeatherView
         android:id="@+id/weatherAnim"
         android:layout_width="0dp"
@@ -32,6 +39,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horizontal50" />
 
+    <TextView
+        android:id="@+id/your_team_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="You team"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/your_team_logo" />
+
+    <ImageView
+        android:id="@+id/your_team_logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/wings_gaming"
+        app:layout_constraintBottom_toTopOf="@id/horizontal80"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
     <FrameLayout
         android:id="@+id/playDotaGame"
         android:layout_width="160dp"
@@ -47,7 +75,7 @@
             android:layout_height="35dp"
             android:layout_marginBottom="2dp"
             android:gravity="center"
-            android:text="Найти игру"
+            android:text="Find Match"
             android:textColor="#fff"
             android:textSize="12sp" />
 

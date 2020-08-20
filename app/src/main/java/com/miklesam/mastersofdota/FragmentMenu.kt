@@ -13,6 +13,7 @@ class FragmentMenu : Fragment(R.layout.fragment_menu) {
         fun newGameClicked()
         fun achivmentsClicked()
         fun leaderBoardClicked()
+        fun marketClicked()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -22,5 +23,6 @@ class FragmentMenu : Fragment(R.layout.fragment_menu) {
         new_game_bttn.setOnClickListener { menuListener.newGameClicked() }
         achivments.setOnClickListener { menuListener.achivmentsClicked() }
         leaderboard.setOnClickListener { menuListener.leaderBoardClicked() }
+        market.setOnClickListener { menuListener.marketClicked() }
     }
 }

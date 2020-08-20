@@ -5,8 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.miklesam.mastersofdota.FragmentTeamRequirement
-import com.miklesam.mastersofdota.FragmentTwitter
+import com.miklesam.mastersofdota.teamsrequires.FragmentTeamRequirement
 import com.miklesam.mastersofdota.R
 import com.miklesam.mastersofdota.adapters.proteams.OnProTeamsListener
 import com.miklesam.mastersofdota.adapters.proteams.ProTeamsAdapter

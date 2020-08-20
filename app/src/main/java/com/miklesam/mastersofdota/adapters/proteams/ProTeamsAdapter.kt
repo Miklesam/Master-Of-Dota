@@ -32,6 +32,7 @@ class ProTeamsAdapter(
         val team = ProTeamsEnum.values()[position]
         holder.heroName.text = team.teamName
         holder.heroIcon.setImageResource(team.teamLogo)
+        holder.salaryCount.text = team.salary.toString()
         //holder.heroProgress.progress = progressHeroesList?.get(position)?.progress ?: 0
         //holder.heroLateGame.text = hero.lateGame.toString()
     }

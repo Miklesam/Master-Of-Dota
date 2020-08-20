@@ -60,12 +60,14 @@ class FragmentYourNickName : Fragment(R.layout.fragment_your_nickname) {
                     PrefsHelper.YEARS,
                     "0"
                 )
-
                 PrefsHelper.write(
                     PrefsHelper.NICK_NAME,
                     nickNameEdit.text.toString()
                 )
-
+                PrefsHelper.write(
+                    PrefsHelper.YOUR_TEAM_ID,
+                    "3000"
+                )
                 updateViewModel.nukeHeroesProgress()
                 updateViewModel.nukeAbilityProgress()
                 updateViewModel.initNewHeroesProgress(HeroProgressList.AllHeroProgress)
