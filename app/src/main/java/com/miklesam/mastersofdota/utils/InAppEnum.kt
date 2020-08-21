@@ -4,16 +4,20 @@ import com.miklesam.mastersofdota.R
 
 enum class InAppEnum(
     val productId: String,
-    val plusMoney: Int
+    val plusMoney: Int,
+    val image : Int
 ) {
     BOX_OF_MONEY(
         "purchase_small_money",
-        1000
+        1000,
+        R.drawable.coin_01d
     ),
     BIG_BOX_OF_MONEY(
         "purchase_big_money",
         3000
     )
+
+    treasure
 
 
 }
