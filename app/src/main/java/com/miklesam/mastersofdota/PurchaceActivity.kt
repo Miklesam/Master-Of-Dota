@@ -56,8 +56,13 @@ class PurchaceActivity : AppCompatActivity(), PurchasesUpdatedListener {
                         val params = SkuDetailsParams.newBuilder()
                             .setSkusList(
                                 listOf(
-                                    InAppEnum.BOX_OF_MONEY.productId,
-                                    InAppEnum.BIG_BOX_OF_MONEY.productId
+                                    InAppEnum.BAG_OF_COINS.productId,
+                                    InAppEnum.BIG_BAG_OF_COINS.productId,
+                                    InAppEnum.SMALL_BOX_OF_MONEY.productId,
+                                    InAppEnum.MIDDLE_BOX_OF_MONEY.productId,
+                                    InAppEnum.BIG_BOX_OF_MONEY.productId,
+                                    InAppEnum.TREASURE.productId,
+                                    InAppEnum.GREAT_TREASURE.productId
                                 )
                             )
                             .setType(BillingClient.SkuType.INAPP)
@@ -105,11 +110,8 @@ class PurchaceActivity : AppCompatActivity(), PurchasesUpdatedListener {
 
             for (purchase in purchases) {
                 billingClient.consumeAsync(purchase.purchaseToken, listener)
-                val plusMoney = when (purchase.sku) {
-                    InAppEnum.BOX_OF_MONEY.productId -> InAppEnum.BOX_OF_MONEY.plusMoney
-                    InAppEnum.BIG_BOX_OF_MONEY.productId -> InAppEnum.BIG_BOX_OF_MONEY.plusMoney
-                    else -> 0
-                }
+                val plusMoney =
+                    InAppEnum.values().find { it.productId == purchase.sku }?.plusMoney ?: 0
                 val currentMoney = PrefsHelper.read(
                     PrefsHelper.MONEY, "0"
                 )?.toInt() ?: 0

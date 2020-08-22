@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         googleSignInClient?.silentSignIn()?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Log.w("Activity Google ", "succes Sign")
-                Toast.makeText(this, "succes sign", Toast.LENGTH_SHORT).show()
                 achievementClient = Games.getAchievementsClient(
                     this,
                     task.result!!
@@ -70,7 +69,6 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
                     task.result!!
                 )
             } else {
-                Toast.makeText(this, "signInError ${task.exception}", Toast.LENGTH_SHORT).show()
                 Log.w("Activity Google", "signInError", task.exception)
             }
         }
@@ -255,6 +253,8 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     override fun backToLobbyCLicked() {
         val currentXP = PrefsHelper.read(PrefsHelper.XP, "0")?.toInt() ?: 0
         PrefsHelper.write(PrefsHelper.XP, (currentXP + 200).toString())
+        val currentMMR = PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")?.toInt() ?: 0
+        leaderboardsClient?.submitScore(getString(R.string.leadearboard_id), currentMMR.toLong())
         supportFragmentManager.popBackStack()
         supportFragmentManager.popBackStack()
     }
