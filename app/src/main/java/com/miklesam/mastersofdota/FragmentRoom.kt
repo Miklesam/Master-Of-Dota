@@ -102,7 +102,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
             if (!isSleeping) {
                 scope?.launch {
                     isSleeping = true
-                    delay(100)
+                    delay(3000)
                     isSleeping = false
                     withContext(Dispatchers.Main) {
                         showCustomToast("Energy is full", Toast.LENGTH_SHORT)

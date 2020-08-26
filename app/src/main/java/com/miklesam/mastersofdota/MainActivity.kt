@@ -121,6 +121,20 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         startActivity(intent)
     }
 
+    override fun countersClicked() {
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment = FragmentCounters()
+        transaction.setCustomAnimations(
+            R.animator.scaley_enter,
+            R.animator.scaley_exit,
+            R.animator.scaley_enter,
+            R.animator.scaley_exit
+        )
+        transaction.replace(R.id.fragment_holder, fragment)
+            .addToBackStack(null)
+        transaction.commit()
+    }
+
     private fun showRoomFragment() {
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = FragmentRoom()
@@ -252,9 +266,17 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
 
     override fun backToLobbyCLicked() {
         val currentXP = PrefsHelper.read(PrefsHelper.XP, "0")?.toInt() ?: 0
-        PrefsHelper.write(PrefsHelper.XP, (currentXP + 200).toString())
+        PrefsHelper.write(PrefsHelper.XP, (currentXP + 2).toString())
         val currentMMR = PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")?.toInt() ?: 0
         leaderboardsClient?.submitScore(getString(R.string.leadearboard_id), currentMMR.toLong())
+        when (currentMMR) {
+            in (991..1039) -> achievementClient?.unlock(getString(R.string.ach_1000_mmr))
+            in (1991..2039) -> achievementClient?.unlock(getString(R.string.ach_2000_mmr))
+            in (2991..3039) -> achievementClient?.unlock(getString(R.string.ach_3000_mmr))
+            in (3991..4039) -> achievementClient?.unlock(getString(R.string.ach_4000_mmr))
+            in (4991..5039) -> achievementClient?.unlock(getString(R.string.ach_5000_mmr))
+        }
+
         supportFragmentManager.popBackStack()
         supportFragmentManager.popBackStack()
     }

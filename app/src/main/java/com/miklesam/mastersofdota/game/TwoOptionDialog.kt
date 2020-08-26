@@ -5,8 +5,10 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.miklesam.mastersofdota.R
+import com.miklesam.mastersofdota.datamodels.StreetView
 import kotlinx.android.synthetic.main.layout_two_option_dialog.view.*
 
 class TwoOptionDialog() : AppCompatDialogFragment() {
@@ -28,8 +30,9 @@ class TwoOptionDialog() : AppCompatDialogFragment() {
         val builder = AlertDialog.Builder(requireContext(), R.style.EndDialogTitle)
         val inflater = requireActivity().layoutInflater
         val mycustomview = inflater.inflate(R.layout.layout_two_option_dialog, null)
-
-
+        val view_price = mycustomview.findViewById<TextView>(R.id.match_result_text)
+        val priceString = "Price ${StreetView.values()[positionView].price}"
+        view_price.text = priceString
         builder.setView(mycustomview)
 
         val dialog = builder.create()
@@ -42,12 +45,12 @@ class TwoOptionDialog() : AppCompatDialogFragment() {
         mycustomview.yes_dialog.setOnClickListener {
             mListener?.goToLobbyClick(positionView)
             Lock = false
-            dialog.hide()
+            dialog.dismiss()
         }
 
         mycustomview.no_dialog.setOnClickListener {
             Lock = false
-            dialog.hide()
+            dialog.dismiss()
         }
 
 

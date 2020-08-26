@@ -12,23 +12,29 @@ enum class Heroes(
     val mipmap: Int,
     val laining: Int,
     val fighting: Int,
-    val lateGame: Int
+    val lateGame: Int,
+    val countretBy: List<Int>,
+    val counters: List<Int>
 ) {
-    ABADON(
+    ABADDON(
         0, "Abadon",
         R.drawable.abadon_picked,
         R.drawable.abadon_icon,
         R.drawable.abadon_large_ban,
         R.drawable.abadon_min_ban,
-        R.drawable.abadon_mipmap, 85, 70, 55
+        R.drawable.abadon_mipmap, 85, 70, 55,
+        listOf(78, 19, 80, 99, 64),
+        listOf(77, 106, 43, 107, 47)
     ),
-    ALCHEMIC(
+    ALCHEMIST(
         1, "Alchemist",
         R.drawable.alcemic_picked,
         R.drawable.alchemic_icon,
         R.drawable.alcemic_large_ban,
         R.drawable.alcemic_min_ban,
-        R.drawable.alcemic_mipmap, 70, 85, 70
+        R.drawable.alcemic_mipmap, 70, 85, 70,
+        listOf(54, 14, 55, 63, 75),
+        listOf(42, 111, 78, 15, 100)
     ),
     AXE(
         2, "Axe",
@@ -36,7 +42,9 @@ enum class Heroes(
         R.drawable.axe_icon,
         R.drawable.axe_large_ban,
         R.drawable.axe_min_ban,
-        R.drawable.axe_mipmap, 85, 80, 70
+        R.drawable.axe_mipmap, 85, 80, 70,
+        listOf(99, 71, 83, 77, 112),
+        listOf(60, 42, 56, 38, 55)
     ),
     BEASTMASTER(
         3, "Beastmaster",
@@ -44,7 +52,9 @@ enum class Heroes(
         R.drawable.beastmater_icon,
         R.drawable.beastmaster_large_ban,
         R.drawable.beastmaster_min_ban,
-        R.drawable.beastmaster_mipmap, 90, 65, 65
+        R.drawable.beastmaster_mipmap, 90, 65, 65,
+        listOf(37, 51, 5, 102, 65),
+        listOf(78, 15, 42, 111, 98)
     ),
     BREWMASTER(
         4, "Brewmaster",
@@ -52,7 +62,9 @@ enum class Heroes(
         R.drawable.brewmaster_icon,
         R.drawable.brewmaster_ban,
         R.drawable.brewmaster_min_ban,
-        R.drawable.brewmaster_mipmap, 70, 75, 70
+        R.drawable.brewmaster_mipmap, 70, 75, 70,
+        listOf(37, 102, 46, 108, 38),
+        listOf(15, 52, 78, 111, 75)
     ),
     BRISTLEBACK(
         5, "Bristleback",
@@ -60,7 +72,9 @@ enum class Heroes(
         R.drawable.bristleback_icon,
         R.drawable.bristleback_ban,
         R.drawable.bristleback_min_ban,
-        R.drawable.bristleback_mipmap, 85, 70, 70
+        R.drawable.bristleback_mipmap, 85, 70, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     CENTAUR(
         6, "Centaur",
@@ -68,7 +82,9 @@ enum class Heroes(
         R.drawable.centaur_icon,
         R.drawable.centaur_large_ban,
         R.drawable.centaur_min_ban,
-        R.drawable.centaur_mipmap, 80, 80, 70
+        R.drawable.centaur_mipmap, 80, 80, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     CHAOS(
         7, "Chaos",
@@ -76,7 +92,9 @@ enum class Heroes(
         R.drawable.chaos_icon,
         R.drawable.chaos_large_ban,
         R.drawable.chaos_min_ban,
-        R.drawable.chaos_mipmap, 85, 70, 80
+        R.drawable.chaos_mipmap, 85, 70, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     CLOCKWERK(
         8, "Clockwerk",
@@ -84,7 +102,9 @@ enum class Heroes(
         R.drawable.clockwerk_icon,
         R.drawable.clockwerk_large_ban,
         R.drawable.clockwerk_min_ban,
-        R.drawable.clockwerk_mipmap, 85, 85, 60
+        R.drawable.clockwerk_mipmap, 85, 85, 60,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     DOOM(
         9, "Doom",
@@ -92,7 +112,9 @@ enum class Heroes(
         R.drawable.doom_icon,
         R.drawable.doom_large_ban,
         R.drawable.doom_min_ban,
-        R.drawable.doom_mipmap, 70, 65, 65
+        R.drawable.doom_mipmap, 70, 65, 65,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     DK(
         10, "Dragon Knight",
@@ -100,7 +122,9 @@ enum class Heroes(
         R.drawable.dk_icon,
         R.drawable.dk_large_ban,
         R.drawable.dk_min_ban,
-        R.drawable.dragonknight_mipmap, 85, 70, 80
+        R.drawable.dragonknight_mipmap, 85, 70, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     EARTH_SPIRIT(
         11, "Earth Spirit",
@@ -108,7 +132,9 @@ enum class Heroes(
         R.drawable.earth_spirit_icon,
         R.drawable.earthspirit_large_ban,
         R.drawable.earthspirit_min_ban,
-        R.drawable.earthspirit_mipmap, 80, 85, 70
+        R.drawable.earthspirit_mipmap, 80, 85, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     EARTH_SHAKER(
         12, "Earthshaker",
@@ -116,7 +142,9 @@ enum class Heroes(
         R.drawable.eartshaker_icon,
         R.drawable.shaker_large_ban,
         R.drawable.shaker_min_ban,
-        R.drawable.earthshaker_mipmap, 60, 90, 70
+        R.drawable.earthshaker_mipmap, 60, 90, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     ELDER_TITAN(
         13, "Elder Titan",
@@ -124,7 +152,9 @@ enum class Heroes(
         R.drawable.eldertitan_icon,
         R.drawable.eldertitan_large_ban,
         R.drawable.eldertitan_min_ban,
-        R.drawable.eldertitan_mipmap, 70, 75, 80
+        R.drawable.eldertitan_mipmap, 70, 75, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     HUSKAR(
         14, "Huskar",
@@ -132,7 +162,9 @@ enum class Heroes(
         R.drawable.huskar_icon,
         R.drawable.huskar_large_ban,
         R.drawable.huskar_min_ban,
-        R.drawable.huskar_mipmap, 90, 90, 60
+        R.drawable.huskar_mipmap, 90, 90, 60,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     IO(
         15, "IO",
@@ -140,7 +172,9 @@ enum class Heroes(
         R.drawable.io_icon,
         R.drawable.io_large_ban,
         R.drawable.io_min_ban,
-        R.drawable.wisp_mipmap, 80, 80, 80
+        R.drawable.wisp_mipmap, 80, 80, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     KUNNKA(
         16, "Kunnka",
@@ -148,7 +182,9 @@ enum class Heroes(
         R.drawable.kunnka_icon,
         R.drawable.kunnka_large_ban,
         R.drawable.kunnka_min_ban,
-        R.drawable.kunnka_mipmap, 85, 85, 80
+        R.drawable.kunnka_mipmap, 85, 85, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     LC(
         17, "Legion Commander",
@@ -156,7 +192,9 @@ enum class Heroes(
         R.drawable.lc_icon,
         R.drawable.lc_large_ban,
         R.drawable.lc_min_ban,
-        R.drawable.lc_mipmap, 75, 70, 80
+        R.drawable.lc_mipmap, 75, 70, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     LIFESTEALER(
         18, "Lifestealer",
@@ -164,7 +202,9 @@ enum class Heroes(
         R.drawable.lifestealer_icon,
         R.drawable.lifestealer_large_ban,
         R.drawable.lifestealer_min_ban,
-        R.drawable.lifestealer_mipmap, 85, 90, 75
+        R.drawable.lifestealer_mipmap, 85, 90, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     LYCAN(
         19, "Lycan",
@@ -172,7 +212,9 @@ enum class Heroes(
         R.drawable.lycan_icon,
         R.drawable.lycan_large_ban,
         R.drawable.lycan_min_ban,
-        R.drawable.lycan_mipmap, 95, 85, 75
+        R.drawable.lycan_mipmap, 95, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     MAGNUS(
         20, "Magnus",
@@ -180,7 +222,9 @@ enum class Heroes(
         R.drawable.magnus_icon,
         R.drawable.magnus_large_ban,
         R.drawable.magnus_min_ban,
-        R.drawable.magnus_mipmap, 65, 95, 80
+        R.drawable.magnus_mipmap, 65, 95, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     MARS(
         21, "Mars",
@@ -188,7 +232,9 @@ enum class Heroes(
         R.drawable.mars_icon,
         R.drawable.mars_large_ban,
         R.drawable.mars_min_ban,
-        R.drawable.mars_mipmap, 80, 85, 75
+        R.drawable.mars_mipmap, 80, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     NS(
         22, "Night Stalker",
@@ -196,7 +242,9 @@ enum class Heroes(
         R.drawable.night_stalker_icon,
         R.drawable.ns_large_ban,
         R.drawable.ns_min_ban,
-        R.drawable.ns_mipmap, 75, 70, 70
+        R.drawable.ns_mipmap, 75, 70, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     OMNIKNIGHT(
         23, "Omniknight",
@@ -204,7 +252,9 @@ enum class Heroes(
         R.drawable.omniknight_icon,
         R.drawable.omnik_large_ban,
         R.drawable.omnik_min_ban,
-        R.drawable.omnik_mipmap, 70, 80, 80
+        R.drawable.omnik_mipmap, 70, 80, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     PHOENIX(
         24, "Phoenix",
@@ -212,7 +262,9 @@ enum class Heroes(
         R.drawable.phoenix_icon,
         R.drawable.phoenix_large_ban,
         R.drawable.phoenix_min_ban,
-        R.drawable.phoenix_mipmap, 80, 85, 75
+        R.drawable.phoenix_mipmap, 80, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     PUDGE(
         25, "Pudge",
@@ -220,7 +272,9 @@ enum class Heroes(
         R.drawable.pudge_icon,
         R.drawable.pudge_large_ban,
         R.drawable.pudge_min_ban,
-        R.drawable.pudge_mipmap, 60, 70, 75
+        R.drawable.pudge_mipmap, 60, 70, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SAND_KING(
         26, "Sand King",
@@ -228,7 +282,9 @@ enum class Heroes(
         R.drawable.sand_king_icon,
         R.drawable.sandking_large_ban,
         R.drawable.sandking_min_ban,
-        R.drawable.sandking_mipmap, 85, 85, 65
+        R.drawable.sandking_mipmap, 85, 85, 65,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SLARDAR(
         27, "Slardar",
@@ -236,7 +292,9 @@ enum class Heroes(
         R.drawable.slardar_icon,
         R.drawable.slardar_large_ban,
         R.drawable.slardar_min_ban,
-        R.drawable.slardar_mipmap, 70, 75, 80
+        R.drawable.slardar_mipmap, 70, 75, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SPIRIT_BREAKER(
         28, "Spirit Breaker",
@@ -244,7 +302,9 @@ enum class Heroes(
         R.drawable.spirit_breaker_icon,
         R.drawable.spiritbraker_large_ban,
         R.drawable.spiritbreaker_min_ban,
-        R.drawable.spiritbreaker_mipmap, 75, 75, 65
+        R.drawable.spiritbreaker_mipmap, 75, 75, 65,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SVEN(
         29, "Sven",
@@ -252,7 +312,9 @@ enum class Heroes(
         R.drawable.sven_icon,
         R.drawable.sven_large_ban,
         R.drawable.sven_min_ban,
-        R.drawable.sven_mipmap, 85, 85, 75
+        R.drawable.sven_mipmap, 85, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     TIDEHUNTER(
         30, "Tidehunter",
@@ -260,7 +322,9 @@ enum class Heroes(
         R.drawable.tidehunter_icon,
         R.drawable.tidehunter_large_ban,
         R.drawable.tidehunter_min_ban,
-        R.drawable.tidehunter_mipmap, 85, 85, 75
+        R.drawable.tidehunter_mipmap, 85, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     TIMBERSAW(
         31, "Timbersaw",
@@ -268,7 +332,9 @@ enum class Heroes(
         R.drawable.timbersaw_icon,
         R.drawable.timbersaw_large_ban,
         R.drawable.timbersaw_min_ban,
-        R.drawable.timbersaw_mipmap, 85, 85, 70
+        R.drawable.timbersaw_mipmap, 85, 85, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     TINY(
         32, "Tiny",
@@ -276,7 +342,9 @@ enum class Heroes(
         R.drawable.tiny_icon,
         R.drawable.tiny_large_ban,
         R.drawable.tiny_min_ban,
-        R.drawable.tiny_mipmap, 75, 80, 85
+        R.drawable.tiny_mipmap, 75, 80, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     TREANT(
         33, "Treant Protector",
@@ -284,7 +352,9 @@ enum class Heroes(
         R.drawable.treant_icon,
         R.drawable.treant_large_ban,
         R.drawable.treant_min_ban,
-        R.drawable.treant_mipmap, 85, 80, 60
+        R.drawable.treant_mipmap, 85, 80, 60,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     TUSK(
         34, "Tusk",
@@ -292,7 +362,9 @@ enum class Heroes(
         R.drawable.tusk_icon,
         R.drawable.tusk_large_ban,
         R.drawable.tusk_min_ban,
-        R.drawable.tusk_mipmap, 75, 80, 75
+        R.drawable.tusk_mipmap, 75, 80, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     UNDERLORD(
         35, "Underlord",
@@ -300,7 +372,9 @@ enum class Heroes(
         R.drawable.underlord_icon,
         R.drawable.underlord_large_ban,
         R.drawable.underlord_min_ban,
-        R.drawable.underlord_mipmap, 85, 80, 65
+        R.drawable.underlord_mipmap, 85, 80, 65,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     UNDYING(
         36, "Undying",
@@ -308,7 +382,9 @@ enum class Heroes(
         R.drawable.undying_icon,
         R.drawable.undying_large_ban,
         R.drawable.undying_min_ban,
-        R.drawable.undying_mipmap, 85, 80, 55
+        R.drawable.undying_mipmap, 85, 80, 55,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     WK(
         37, "Wraith King",
@@ -316,7 +392,9 @@ enum class Heroes(
         R.drawable.wk_icon,
         R.drawable.wk_large_ban,
         R.drawable.wk_min_ban,
-        R.drawable.wk_mipmap, 80, 80, 90
+        R.drawable.wk_mipmap, 80, 80, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
 
     //Agility
@@ -326,7 +404,9 @@ enum class Heroes(
         R.drawable.anti_mage_icon,
         R.drawable.antimag_large_ban,
         R.drawable.antimag_min_ban,
-        R.drawable.antimag_mip_map, 55, 70, 90
+        R.drawable.antimag_mip_map, 55, 70, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     ARC_WARDEN(
         39, "Arc Warden",
@@ -334,7 +414,9 @@ enum class Heroes(
         R.drawable.arc_warden_icon,
         R.drawable.arcwarden_large_ban,
         R.drawable.arcwarden_min_ban,
-        R.drawable.arcwarden_mipmap, 80, 75, 90
+        R.drawable.arcwarden_mipmap, 80, 75, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     BLOODSEEKER(
         40, "Bloodseeker",
@@ -342,7 +424,9 @@ enum class Heroes(
         R.drawable.bloodseeker_icon,
         R.drawable.bloodweeker_large_ban,
         R.drawable.bloodseeker_min_ban,
-        R.drawable.bloodseeker_mipmap, 80, 75, 70
+        R.drawable.bloodseeker_mipmap, 80, 75, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     BOUNTY(
         41, "Bounty Hunter",
@@ -350,7 +434,9 @@ enum class Heroes(
         R.drawable.bounty_hunter_icon,
         R.drawable.bounty_large_ban,
         R.drawable.bounty_min_ban,
-        R.drawable.bounty_mipmap, 75, 60, 70
+        R.drawable.bounty_mipmap, 75, 60, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     BROODMOTHER(
         42, "Broodmother",
@@ -358,7 +444,9 @@ enum class Heroes(
         R.drawable.broodmother_icon,
         R.drawable.broodmother_large_ban,
         R.drawable.broodmother_min_ban,
-        R.drawable.broodmother_mipmap, 95, 70, 80
+        R.drawable.broodmother_mipmap, 95, 70, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     CLINKZ(
         43, "Clinkz",
@@ -366,7 +454,9 @@ enum class Heroes(
         R.drawable.clinkz_icon,
         R.drawable.clinkz_large_ban,
         R.drawable.clinkz_min_ban,
-        R.drawable.clinkz_mipmap, 85, 75, 80
+        R.drawable.clinkz_mipmap, 85, 75, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     DROW(
         44, "Drow Ranger",
@@ -374,7 +464,9 @@ enum class Heroes(
         R.drawable.drow_icon,
         R.drawable.drow_large_ban,
         R.drawable.drow_min_ban,
-        R.drawable.drow_mipmap, 70, 80, 85
+        R.drawable.drow_mipmap, 70, 80, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     EMBER(
         45, "Ember Spirit",
@@ -382,7 +474,9 @@ enum class Heroes(
         R.drawable.ember_icon,
         R.drawable.ember_large_ban,
         R.drawable.ember_min_ban,
-        R.drawable.emberspirit_mipmap, 70, 85, 90
+        R.drawable.emberspirit_mipmap, 70, 85, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     FACELESS_VOID(
         46, "Faceless Void",
@@ -390,7 +484,9 @@ enum class Heroes(
         R.drawable.facelessvoid_icon,
         R.drawable.faceless_large_ban,
         R.drawable.faceless_min_ban,
-        R.drawable.facelessvoid_mipmap, 70, 85, 90
+        R.drawable.facelessvoid_mipmap, 70, 85, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     GYROCOPTER(
         47, "Gyrocopter",
@@ -398,7 +494,9 @@ enum class Heroes(
         R.drawable.gyrocopter_icon,
         R.drawable.gyrocopter_large_ban,
         R.drawable.gyrocopter_min_ban,
-        R.drawable.gyrocopter_mipmap, 75, 75, 80
+        R.drawable.gyrocopter_mipmap, 75, 75, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     JUGGERNAUT(
         48, "Juggernaut",
@@ -406,7 +504,9 @@ enum class Heroes(
         R.drawable.jaggernaut_icon,
         R.drawable.juggernaut_large_ban,
         R.drawable.jugernaut_min_ban,
-        R.drawable.jaggernaut_mipmap, 80, 80, 80
+        R.drawable.jaggernaut_mipmap, 80, 80, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     LONE_DRUID(
         49, "Lone Druid",
@@ -414,7 +514,9 @@ enum class Heroes(
         R.drawable.lonedruid_icon,
         R.drawable.lonedruid_large_ban,
         R.drawable.lonedruid_min_ban,
-        R.drawable.lonedruid_mipmap, 85, 75, 85
+        R.drawable.lonedruid_mipmap, 85, 75, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     LUNA(
         50, "Luna",
@@ -422,7 +524,9 @@ enum class Heroes(
         R.drawable.luna_icon,
         R.drawable.luna_large_ban,
         R.drawable.luna_min_ban,
-        R.drawable.luna_mipmap, 70, 80, 90
+        R.drawable.luna_mipmap, 70, 80, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     MEDUSA(
         51, "Medusa",
@@ -430,7 +534,9 @@ enum class Heroes(
         R.drawable.medusa_icon,
         R.drawable.medusa_large_ban,
         R.drawable.medusa_min_ban,
-        R.drawable.medusa_mipmap, 65, 80, 90
+        R.drawable.medusa_mipmap, 65, 80, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     MEEPO(
         52, "Meepo",
@@ -438,7 +544,9 @@ enum class Heroes(
         R.drawable.meepo_icon,
         R.drawable.meepo_large_ban,
         R.drawable.meepo_min_ban,
-        R.drawable.meepo_mipmap, 85, 90, 75
+        R.drawable.meepo_mipmap, 85, 90, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     MIRANA(
         53, "Mirana",
@@ -446,7 +554,9 @@ enum class Heroes(
         R.drawable.mirana_icon,
         R.drawable.mirana_large_ban,
         R.drawable.mirana_min_ban,
-        R.drawable.mirana_mipmap, 70, 75, 80
+        R.drawable.mirana_mipmap, 70, 75, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     MONKEY_KING(
         54, "Monkey King",
@@ -454,7 +564,9 @@ enum class Heroes(
         R.drawable.monkey_king_icon,
         R.drawable.monkeyking_large_ban,
         R.drawable.monkeyking_min_ban,
-        R.drawable.monkeyking_mipmap, 85, 80, 80
+        R.drawable.monkeyking_mipmap, 85, 80, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     MORPHLING(
         55, "Morphling",
@@ -462,7 +574,9 @@ enum class Heroes(
         R.drawable.morpling_icon,
         R.drawable.morphling_large_ban,
         R.drawable.morpling_min_ban,
-        R.drawable.morphling_mipmap, 70, 85, 95
+        R.drawable.morphling_mipmap, 70, 85, 95,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     NAGA(
         56, "Naga Siren",
@@ -470,7 +584,9 @@ enum class Heroes(
         R.drawable.naga_icon,
         R.drawable.naga_large_ban,
         R.drawable.naga_min_ban,
-        R.drawable.naga_mipmap, 70, 80, 90
+        R.drawable.naga_mipmap, 70, 80, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     NYX(
         57, "Nyx Assassin",
@@ -478,7 +594,9 @@ enum class Heroes(
         R.drawable.nyx_icon,
         R.drawable.nyx_large_ban,
         R.drawable.nyx_min_ban,
-        R.drawable.nyx_mipmap, 70, 85, 70
+        R.drawable.nyx_mipmap, 70, 85, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     PANGOLIER(
         58, "Pangolier",
@@ -486,7 +604,9 @@ enum class Heroes(
         R.drawable.pangolier,
         R.drawable.pango_large_ban,
         R.drawable.pango_min_ban,
-        R.drawable.pango_mipmap, 80, 85, 80
+        R.drawable.pango_mipmap, 80, 85, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     PA(
         59, "Phantom Assassin",
@@ -494,7 +614,9 @@ enum class Heroes(
         R.drawable.phantom_assasin_icon,
         R.drawable.pa_large_ban,
         R.drawable.pa_min_ban,
-        R.drawable.pa_mipmap, 75, 85, 75
+        R.drawable.pa_mipmap, 75, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     PHANTOM_LANCER(
         60, "Phantom Lancer",
@@ -502,7 +624,9 @@ enum class Heroes(
         R.drawable.phantom_lancer_icon,
         R.drawable.pl_large_ban,
         R.drawable.pl_min_ban,
-        R.drawable.pl_mipmap, 70, 80, 90
+        R.drawable.pl_mipmap, 70, 80, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     RAZOR(
         61, "Razor",
@@ -510,7 +634,9 @@ enum class Heroes(
         R.drawable.razor_icon,
         R.drawable.razor_large_ban,
         R.drawable.razor_min_ban,
-        R.drawable.razor_mipmap, 85, 80, 70
+        R.drawable.razor_mipmap, 85, 80, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     RIKI(
         62, "Riki",
@@ -518,7 +644,9 @@ enum class Heroes(
         R.drawable.riki_icon,
         R.drawable.riki_large_ban,
         R.drawable.riki_min_ban,
-        R.drawable.riki_mipmap, 75, 85, 85
+        R.drawable.riki_mipmap, 75, 85, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SHADOW_FIEND(
         63, "Shadow Fiend",
@@ -526,7 +654,9 @@ enum class Heroes(
         R.drawable.shadow_fiend_icon,
         R.drawable.sf_large_ban,
         R.drawable.sf_min_ban,
-        R.drawable.sf_mipmap, 80, 85, 80
+        R.drawable.sf_mipmap, 80, 85, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SLARK(
         64, "Slark",
@@ -534,7 +664,9 @@ enum class Heroes(
         R.drawable.slark_icon,
         R.drawable.slark_large_ban,
         R.drawable.slark_min_ban,
-        R.drawable.slark_mipmap, 70, 75, 90
+        R.drawable.slark_mipmap, 70, 75, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SNIPER(
         65, "Sniper",
@@ -542,7 +674,9 @@ enum class Heroes(
         R.drawable.sniper_icon,
         R.drawable.sniper_large_ban,
         R.drawable.sniper_min_ban,
-        R.drawable.sniper_mipmap, 65, 70, 90
+        R.drawable.sniper_mipmap, 65, 70, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SPECTRE(
         66, "Spectre",
@@ -550,7 +684,9 @@ enum class Heroes(
         R.drawable.spectre_icon,
         R.drawable.spectre_large_ban,
         R.drawable.spectre_min_ban,
-        R.drawable.spectre_mipmap, 55, 80, 95
+        R.drawable.spectre_mipmap, 55, 80, 95,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     TEMPLAR_ASSASIN(
         67, "Templar Assasin",
@@ -558,7 +694,9 @@ enum class Heroes(
         R.drawable.templarassasin_icon,
         R.drawable.ta_large_ban,
         R.drawable.ta_min_ban,
-        R.drawable.ta_mipmap, 85, 80, 80
+        R.drawable.ta_mipmap, 85, 80, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     TERROBLADE(
         68, "Terroblade",
@@ -566,7 +704,9 @@ enum class Heroes(
         R.drawable.teroblade_icon,
         R.drawable.tb_large_ban,
         R.drawable.tb_min_ban,
-        R.drawable.tb_mipmap, 70, 80, 95
+        R.drawable.tb_mipmap, 70, 80, 95,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     TROLL_WARLORD(
         69, "Troll Warlord",
@@ -574,7 +714,9 @@ enum class Heroes(
         R.drawable.troll_warlord_icon,
         R.drawable.trollwarlord_large_ban,
         R.drawable.trollwarlord_min_ban,
-        R.drawable.trollwarlord_mipmap, 70, 90, 85
+        R.drawable.trollwarlord_mipmap, 70, 90, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     URSA(
         70, "Ursa",
@@ -582,7 +724,9 @@ enum class Heroes(
         R.drawable.ursa_icon,
         R.drawable.ursa_large_ban,
         R.drawable.ursa_min_ban,
-        R.drawable.ursa_mipmap, 85, 85, 70
+        R.drawable.ursa_mipmap, 85, 85, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     VENOMANCER(
         71, "Venomancer",
@@ -590,7 +734,9 @@ enum class Heroes(
         R.drawable.venomancer_icon,
         R.drawable.venomancer_large_ban,
         R.drawable.venomancer_min_ban,
-        R.drawable.venomancer_mipmap, 85, 90, 60
+        R.drawable.venomancer_mipmap, 85, 90, 60,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     VENGEFUL(
         72, "Vengeful Spirit",
@@ -598,7 +744,9 @@ enum class Heroes(
         R.drawable.vengespirit_icon,
         R.drawable.vengeful_large_ban,
         R.drawable.vengeful_min_ban,
-        R.drawable.vengeful_mipmap, 75, 75, 75
+        R.drawable.vengeful_mipmap, 75, 75, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     VIPER(
         73, "Viper",
@@ -606,7 +754,9 @@ enum class Heroes(
         R.drawable.viper_icon,
         R.drawable.viper_large_ban,
         R.drawable.viper_min_ban,
-        R.drawable.viper_mipmap, 85, 85, 75
+        R.drawable.viper_mipmap, 85, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     WIVER(
         74, "Weaver",
@@ -614,7 +764,9 @@ enum class Heroes(
         R.drawable.wiver_icon,
         R.drawable.wiver_large_ban,
         R.drawable.wiver_min_ban,
-        R.drawable.wiver_mipmap, 75, 80, 80
+        R.drawable.wiver_mipmap, 75, 80, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
 
     //Intelegent
@@ -624,7 +776,9 @@ enum class Heroes(
         R.drawable.aa_icon,
         R.drawable.aa_large_ban,
         R.drawable.aa_min_ban,
-        R.drawable.aa_mipmap, 75, 75, 75
+        R.drawable.aa_mipmap, 75, 75, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     BANE(
         76, "Bane",
@@ -632,7 +786,9 @@ enum class Heroes(
         R.drawable.bane_icon,
         R.drawable.bane_large_ban,
         R.drawable.bane_min_ban,
-        R.drawable.bane_mipmap, 95, 80, 75
+        R.drawable.bane_mipmap, 95, 80, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     BATHRIDER(
         77, "Batrider",
@@ -640,7 +796,9 @@ enum class Heroes(
         R.drawable.batrider_icon,
         R.drawable.batrider_large_ban,
         R.drawable.batrider_min_ban,
-        R.drawable.bathrider_mipmap, 90, 80, 75
+        R.drawable.bathrider_mipmap, 90, 80, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     CHEN(
         78, "Chen",
@@ -648,7 +806,9 @@ enum class Heroes(
         R.drawable.chen_icon,
         R.drawable.chen_large_ban,
         R.drawable.chen_min_ban,
-        R.drawable.chen_mipmap, 85, 85, 45
+        R.drawable.chen_mipmap, 85, 85, 45,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     CM(
         79, "Crystal Maiden",
@@ -656,7 +816,9 @@ enum class Heroes(
         R.drawable.crystal_maden_icon,
         R.drawable.cm_large_ban,
         R.drawable.cm_min_ban,
-        R.drawable.crystalmaden_mipmap, 75, 90, 60
+        R.drawable.crystalmaden_mipmap, 75, 90, 60,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     DARKSEER(
         80, "Dark Seer",
@@ -664,7 +826,9 @@ enum class Heroes(
         R.drawable.dark_seer_icon,
         R.drawable.darkseer_large_ban,
         R.drawable.darkseer_min_ban,
-        R.drawable.darkseer_mipmap, 80, 85, 75
+        R.drawable.darkseer_mipmap, 80, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     DARK_WILLOW(
         81, "Dark Willow",
@@ -672,7 +836,9 @@ enum class Heroes(
         R.drawable.dark_willow_icon,
         R.drawable.darkwillow_large_ban,
         R.drawable.darkwillow_min_ban,
-        R.drawable.darkwillow_mipmap, 80, 85, 75
+        R.drawable.darkwillow_mipmap, 80, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     DAZZLE(
         82, "Dazzle",
@@ -680,7 +846,9 @@ enum class Heroes(
         R.drawable.duzzle_icon,
         R.drawable.dazzle_large_ban,
         R.drawable.dazzle_min_ban,
-        R.drawable.dazzle_mipmap, 80, 90, 75
+        R.drawable.dazzle_mipmap, 80, 90, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     DEATH_PROPHET(
         83, "Death Prophet",
@@ -688,7 +856,9 @@ enum class Heroes(
         R.drawable.death_prophet_icon,
         R.drawable.dp_large_ban,
         R.drawable.dp_min_ban,
-        R.drawable.death_prophet_mipmap, 80, 90, 85
+        R.drawable.death_prophet_mipmap, 80, 90, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     DISRUPTOR(
         84, "Disruptor",
@@ -696,7 +866,9 @@ enum class Heroes(
         R.drawable.disruptor_icon,
         R.drawable.distruptor_large_ban,
         R.drawable.disruptor_min_ban,
-        R.drawable.disruptor_mipmap, 80, 90, 60
+        R.drawable.disruptor_mipmap, 80, 90, 60,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     ENCHANTRESS(
         85, "Enchantress",
@@ -704,7 +876,9 @@ enum class Heroes(
         R.drawable.enchantress_icon,
         R.drawable.enchantress_large_ban,
         R.drawable.enchantress_min_ban,
-        R.drawable.enchauntress_mipmap, 80, 75, 80
+        R.drawable.enchauntress_mipmap, 80, 75, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     ENIGMA(
         86, "Enigma",
@@ -712,7 +886,9 @@ enum class Heroes(
         R.drawable.enigma_icon,
         R.drawable.enigma_large_ban,
         R.drawable.enigma_min_ban,
-        R.drawable.enigma_mipmap, 60, 90, 90
+        R.drawable.enigma_mipmap, 60, 90, 90,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     GRIMSTROKE(
         87, "Grimstroke",
@@ -720,7 +896,9 @@ enum class Heroes(
         R.drawable.grimstroke_icon,
         R.drawable.grimstroke_large_ban,
         R.drawable.grimstroke_min_ban,
-        R.drawable.grimstroke_mipmap, 75, 80, 70
+        R.drawable.grimstroke_mipmap, 75, 80, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     INVOKER(
         88, "Invoker",
@@ -728,7 +906,9 @@ enum class Heroes(
         R.drawable.invoker_icon,
         R.drawable.invoker_large_ban,
         R.drawable.invoker_min_ban,
-        R.drawable.invoker_mipmap, 70, 95, 75
+        R.drawable.invoker_mipmap, 70, 95, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     JAKIRO(
         89, "Jakiro",
@@ -736,7 +916,9 @@ enum class Heroes(
         R.drawable.jakiro_icon,
         R.drawable.jakiro_large_ban,
         R.drawable.jakiro_min_ban,
-        R.drawable.jakiro_mipmap, 85, 85, 60
+        R.drawable.jakiro_mipmap, 85, 85, 60,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     KEEPER_OF_THE_LIGHT(
         90, "Keeper of the Light",
@@ -744,7 +926,9 @@ enum class Heroes(
         R.drawable.keeper_of_the_light_icon,
         R.drawable.kotl_large_ban,
         R.drawable.kotl_min_ban,
-        R.drawable.kotl_mipmap, 70, 95, 60
+        R.drawable.kotl_mipmap, 70, 95, 60,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     LESHRAC(
         91, "Leshrac",
@@ -752,7 +936,9 @@ enum class Heroes(
         R.drawable.lechrak_icon,
         R.drawable.lechrac_large_ban,
         R.drawable.lechrac_min_ban,
-        R.drawable.leshrac_mipmap, 80, 90, 75
+        R.drawable.leshrac_mipmap, 80, 90, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     LICH(
         92, "Lich",
@@ -760,7 +946,9 @@ enum class Heroes(
         R.drawable.lich_icon,
         R.drawable.lich_large_ban,
         R.drawable.lich_min_ban,
-        R.drawable.lich_mipmap, 75, 90, 60
+        R.drawable.lich_mipmap, 75, 90, 60,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     LINA(
         93, "Lina",
@@ -768,7 +956,9 @@ enum class Heroes(
         R.drawable.lina_icon,
         R.drawable.lina_large_ban,
         R.drawable.lina_min_ban,
-        R.drawable.lina_mipmap, 85, 80, 80
+        R.drawable.lina_mipmap, 85, 80, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     LION(
         94, "Lion",
@@ -776,7 +966,9 @@ enum class Heroes(
         R.drawable.lion_icon,
         R.drawable.lion_large_ban,
         R.drawable.lion_min_ban,
-        R.drawable.lion_mipmap, 75, 75, 85
+        R.drawable.lion_mipmap, 75, 75, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     NATURES_PROPHET(
         95, "Nature's Prophet",
@@ -784,7 +976,9 @@ enum class Heroes(
         R.drawable.natures_prophet_icon,
         R.drawable.naturesprophet_large_ban,
         R.drawable.naturesprophet_min_ban,
-        R.drawable.naturesphrophet_mipmap, 80, 75, 80
+        R.drawable.naturesphrophet_mipmap, 80, 75, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     NECROPHOS(
         96, "Necrophos",
@@ -792,7 +986,9 @@ enum class Heroes(
         R.drawable.necrophos_icon,
         R.drawable.necrophos_large_ban,
         R.drawable.necrophos_min_ban,
-        R.drawable.necrophos_mipmap, 80, 80, 70
+        R.drawable.necrophos_mipmap, 80, 80, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     OGREMAGI(
         97, "Ogre Magi",
@@ -800,7 +996,9 @@ enum class Heroes(
         R.drawable.ogre_magi_icon,
         R.drawable.ogremagi_large_ban,
         R.drawable.ogremagi_min_ban,
-        R.drawable.ogremagi_mipmap, 75, 80, 65
+        R.drawable.ogremagi_mipmap, 75, 80, 65,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     ORACLE(
         98, "Oracle",
@@ -808,7 +1006,9 @@ enum class Heroes(
         R.drawable.oracle_icon,
         R.drawable.oracle_large_ban,
         R.drawable.oracle_min_ban,
-        R.drawable.oracle_mipmap, 80, 80, 70
+        R.drawable.oracle_mipmap, 80, 80, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     OD(
         99, "Outworld Devourer",
@@ -816,7 +1016,9 @@ enum class Heroes(
         R.drawable.od_icon,
         R.drawable.od_large_ban,
         R.drawable.od_min_ban,
-        R.drawable.od_mipmap, 75, 90, 80
+        R.drawable.od_mipmap, 75, 90, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     PUCK(
         100, "Puck",
@@ -824,7 +1026,9 @@ enum class Heroes(
         R.drawable.puck_icon,
         R.drawable.puck_large_ban,
         R.drawable.puck_min_ban,
-        R.drawable.puck_mipmap, 75, 90, 75
+        R.drawable.puck_mipmap, 75, 90, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     PUGNA(
         101, "Pugna",
@@ -832,7 +1036,9 @@ enum class Heroes(
         R.drawable.pugna_icon,
         R.drawable.pugna_large_ban,
         R.drawable.pugna_min_ban,
-        R.drawable.pugna_mipmap, 85, 85, 70
+        R.drawable.pugna_mipmap, 85, 85, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     QOP(
         102, "Queen of Pain",
@@ -840,7 +1046,9 @@ enum class Heroes(
         R.drawable.qop_icon,
         R.drawable.qop_large_ban,
         R.drawable.qop_min_ban,
-        R.drawable.qop_mipmap, 85, 85, 75
+        R.drawable.qop_mipmap, 85, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     RUBICK(
         103, "Rubick",
@@ -848,7 +1056,9 @@ enum class Heroes(
         R.drawable.rubick_icon,
         R.drawable.rubick_large_ban,
         R.drawable.rubick_min_ban,
-        R.drawable.rubick_mipmap, 60, 80, 80
+        R.drawable.rubick_mipmap, 60, 80, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SHADOW_DEMON(
         104, "Shadow Demon",
@@ -856,7 +1066,9 @@ enum class Heroes(
         R.drawable.shadow_demon_icon,
         R.drawable.shadowfemon_large_ban,
         R.drawable.shadow_demon_min_ban,
-        R.drawable.shadowdemon_mipmap, 85, 75, 80
+        R.drawable.shadowdemon_mipmap, 85, 75, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SHADOW_SHAMAN(
         105, "Shadow Shaman",
@@ -864,7 +1076,9 @@ enum class Heroes(
         R.drawable.shadow_shaman_icon,
         R.drawable.shadowsjaman_large_ban,
         R.drawable.shadowshaman_min_ban,
-        R.drawable.shadowshaman_mipmap, 80, 70, 70
+        R.drawable.shadowshaman_mipmap, 80, 70, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SILENCER(
         106, "Silencer",
@@ -872,7 +1086,9 @@ enum class Heroes(
         R.drawable.silencer_icon,
         R.drawable.silencer_large_ban,
         R.drawable.silencer_min_ban,
-        R.drawable.silencer_mipmap, 70, 85, 85
+        R.drawable.silencer_mipmap, 70, 85, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SKY_MAG(
         107, "Skywrath Mage",
@@ -880,7 +1096,9 @@ enum class Heroes(
         R.drawable.skymag_icon,
         R.drawable.skymag_large_ban,
         R.drawable.skymag_min_ban,
-        R.drawable.skymag_mipmap, 95, 80, 85
+        R.drawable.skymag_mipmap, 95, 80, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     STORM_SPIRIT(
         108, "Storm Spirit",
@@ -888,7 +1106,9 @@ enum class Heroes(
         R.drawable.stormspirit_icon,
         R.drawable.storm_spirit_large_ban,
         R.drawable.storm_spirit_min_ban,
-        R.drawable.stormspirit_mipmap, 70, 90, 85
+        R.drawable.stormspirit_mipmap, 70, 90, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     TECHIES(
         109, "Techies",
@@ -896,7 +1116,9 @@ enum class Heroes(
         R.drawable.techies_willow_icon,
         R.drawable.techies_large_ban,
         R.drawable.techies_min_ban,
-        R.drawable.techies_mipmap, 65, 50, 95
+        R.drawable.techies_mipmap, 65, 50, 95,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     TINKER(
         110, "Tinker",
@@ -904,7 +1126,9 @@ enum class Heroes(
         R.drawable.tinker_icon,
         R.drawable.tinker_large_ban,
         R.drawable.tinker_min_ban,
-        R.drawable.tinker_mipmap, 65, 80, 85
+        R.drawable.tinker_mipmap, 65, 80, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     VISAGE(
         111, "Visage",
@@ -912,7 +1136,9 @@ enum class Heroes(
         R.drawable.visage_icon,
         R.drawable.visage_large_ban,
         R.drawable.visage_min_ban,
-        R.drawable.visage_mipmap, 80, 80, 75
+        R.drawable.visage_mipmap, 80, 80, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     WARLOCK(
         112, "Warlock",
@@ -920,7 +1146,9 @@ enum class Heroes(
         R.drawable.warlock_icon,
         R.drawable.warlock_large_ban,
         R.drawable.warlock_min_ban,
-        R.drawable.warlock_mipmap, 80, 90, 75
+        R.drawable.warlock_mipmap, 80, 90, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     WINDRANGER(
         113, "Windranger",
@@ -928,7 +1156,9 @@ enum class Heroes(
         R.drawable.windranger_icon,
         R.drawable.windranger_large_ban,
         R.drawable.windranger_min_ban,
-        R.drawable.windranger_mipmap, 70, 70, 85
+        R.drawable.windranger_mipmap, 70, 70, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     WYNTER_WYWERN(
         114, "Winter Wyvern",
@@ -936,7 +1166,9 @@ enum class Heroes(
         R.drawable.ww_icon,
         R.drawable.ww_large_ban,
         R.drawable.ww_min_ban,
-        R.drawable.winterwywern_mipmap, 75, 85, 75
+        R.drawable.winterwywern_mipmap, 75, 85, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     WITCH_DOCTOR(
         115, "Witch Doctor",
@@ -944,7 +1176,9 @@ enum class Heroes(
         R.drawable.witch_doctor_icon,
         R.drawable.witch_doctor_large_ban,
         R.drawable.witchdoctor_min_ban,
-        R.drawable.witchdoctor_mipmap, 75, 75, 75
+        R.drawable.witchdoctor_mipmap, 75, 75, 75,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     ZEUS(
         116, "Zeus",
@@ -952,7 +1186,9 @@ enum class Heroes(
         R.drawable.zeus_icon,
         R.drawable.zeus_large_ban,
         R.drawable.zeus_min_ban,
-        R.drawable.zeus_mipmap, 70, 85, 85
+        R.drawable.zeus_mipmap, 70, 85, 85,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     SNAPFIRE(
         117, "Snapfire",
@@ -960,7 +1196,9 @@ enum class Heroes(
         R.drawable.snapfire_icon,
         R.drawable.snapfire_large_ban,
         R.drawable.snapfire_min_ban,
-        R.drawable.snapfire_minimap_icon, 75, 85, 70
+        R.drawable.snapfire_minimap_icon, 75, 85, 70,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     ),
     VOID_SPIRIT(
         118, "Void Spirit",
@@ -968,7 +1206,9 @@ enum class Heroes(
         R.drawable.void_spirit_icon,
         R.drawable.void_spirit_large_ban,
         R.drawable.void_spirit_min_ban,
-        R.drawable.void_spirit_minimap_icon, 80, 85, 80
+        R.drawable.void_spirit_minimap_icon, 80, 85, 80,
+        listOf(64, 106, 38, 73, 57),
+        listOf(19, 50, 3, 49, 37)
     );
 
 }

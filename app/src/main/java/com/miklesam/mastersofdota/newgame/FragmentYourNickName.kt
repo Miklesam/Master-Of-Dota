@@ -72,6 +72,10 @@ class FragmentYourNickName : Fragment(R.layout.fragment_your_nickname) {
                     PrefsHelper.CONTINUE_VISIBLE,
                     "1"
                 )
+                PrefsHelper.write(
+                    PrefsHelper.STREET_VIEW,
+                    "0"
+                )
                 updateViewModel.nukeHeroesProgress()
                 updateViewModel.nukeAbilityProgress()
                 updateViewModel.initNewHeroesProgress(HeroProgressList.AllHeroProgress)

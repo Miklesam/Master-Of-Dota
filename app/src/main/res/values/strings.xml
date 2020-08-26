@@ -19,4 +19,10 @@
 
     <string name="leadearboard_id">CgkIgOzau8MZEAIQAg</string>
 
+    <string name="ach_1000_mmr">CgkIgOzau8MZEAIQAQ</string>
+    <string name="ach_2000_mmr">CgkIgOzau8MZEAIQAw</string>
+    <string name="ach_3000_mmr">CgkIgOzau8MZEAIQBA</string>
+    <string name="ach_4000_mmr">CgkIgOzau8MZEAIQBQ</string>
+    <string name="ach_5000_mmr">CgkIgOzau8MZEAIQBg</string>
+
 </resources>

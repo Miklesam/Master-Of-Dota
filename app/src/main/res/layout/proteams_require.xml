@@ -19,7 +19,6 @@
         android:id="@+id/icon_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/twitter_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -68,7 +67,7 @@
 
 
     </ScrollView>
-
+M
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/try_to_join"
@@ -76,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
-        android:background="@drawable/tweet_background"
+        android:theme="@style/ThemeOverlayButton"
         android:text="Try to join"
         android:textColor="#FFF"
         android:textSize="25sp"

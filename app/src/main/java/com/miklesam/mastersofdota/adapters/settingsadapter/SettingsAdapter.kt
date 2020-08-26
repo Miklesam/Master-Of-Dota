@@ -35,19 +35,19 @@ class SettingsAdapter(
 
         dbSettings?.let {
             if (it[position].unblocked) {
-                holder.chooseBttn.text = "Выбрать"
+                holder.chooseBttn.text = "Choose"
             } else {
-                holder.chooseBttn.text = "Разблокировать\n1000"
+                holder.chooseBttn.text = "Unblock\n${streetView.price}"
             }
         }
         if (currentView == position) {
-            holder.chooseBttn.text = "Выбрано"
+            holder.chooseBttn.text = "Selected"
         }
         holder.chooseBttn.setOnClickListener {
             dbSettings?.let {
                 if (it[position].unblocked) {
                     PrefsHelper.write(PrefsHelper.STREET_VIEW, position.toString())
-                    holder.chooseBttn.text = "Выбрано"
+                    holder.chooseBttn.text = "Selected"
                     notifyDataSetChanged()
                 } else {
                     heroListener.onStreetClick(position)

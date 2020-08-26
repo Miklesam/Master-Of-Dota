@@ -15,6 +15,7 @@ class FragmentMenu : Fragment(R.layout.fragment_menu) {
         fun achivmentsClicked()
         fun leaderBoardClicked()
         fun marketClicked()
+        fun countersClicked()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -25,6 +26,7 @@ class FragmentMenu : Fragment(R.layout.fragment_menu) {
         achivments.setOnClickListener { menuListener.achivmentsClicked() }
         leaderboard.setOnClickListener { menuListener.leaderBoardClicked() }
         market.setOnClickListener { menuListener.marketClicked() }
+        counters.setOnClickListener { menuListener.countersClicked() }
 
         val continueVisible = PrefsHelper.read(
             PrefsHelper.CONTINUE_VISIBLE, "0"

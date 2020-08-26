@@ -309,8 +309,8 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback {
         Heros_icon[118] = VoidSpirit
 
 
-        Heros_icon[0]!!.setImageResource(Heroes.ABADON.icon)
-        Heros_icon[1]!!.setImageResource(Heroes.ALCHEMIC.icon)
+        Heros_icon[0]!!.setImageResource(Heroes.ABADDON.icon)
+        Heros_icon[1]!!.setImageResource(Heroes.ALCHEMIST.icon)
         Heros_icon[2]!!.setImageResource(Heroes.AXE.icon)
         Heros_icon[3]!!.setImageResource(Heroes.BEASTMASTER.icon)
         Heros_icon[4]!!.setImageResource(Heroes.BREWMASTER.icon)

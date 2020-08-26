@@ -23,9 +23,6 @@ class FragmentProTeams : Fragment(R.layout.fragment_proteams), OnProTeamsListene
     }
 
     override fun onHeroClick(position: Int) {
-        showCustomToast("position $position", Toast.LENGTH_SHORT)
-
-
         val transaction = parentFragmentManager.beginTransaction()
         val fragment =
             FragmentTeamRequirement()

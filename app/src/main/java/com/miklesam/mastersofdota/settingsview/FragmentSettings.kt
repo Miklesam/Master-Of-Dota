@@ -2,6 +2,7 @@ package com.miklesam.mastersofdota.settingsview
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -9,8 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.miklesam.mastersofdota.R
 import com.miklesam.mastersofdota.adapters.settingsadapter.OnSettingsListener
 import com.miklesam.mastersofdota.adapters.settingsadapter.SettingsAdapter
+import com.miklesam.mastersofdota.datamodels.StreetView
 import com.miklesam.mastersofdota.datamodels.roommodels.StreetViewBlocked
 import com.miklesam.mastersofdota.game.TwoOptionDialog
+import com.miklesam.mastersofdota.utils.PrefsHelper
+import com.miklesam.mastersofdota.utils.showCustomToast
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -47,17 +51,26 @@ class FragmentSettings : Fragment(R.layout.fragment_settings), OnSettingsListene
     override fun onStreetClick(position: Int) {
         val dialog = TwoOptionDialog(this, position)
         activity?.supportFragmentManager?.let {
-            dialog.show(it, "CreateEndMatchDialogDialog")
-
+            dialog.show(it, null)
         }
     }
 
     override fun goToLobbyClick(position: Int) {
-        scope.launch {
-            val street = streetList[position]
-            street.unblocked = true
-            settingsViewModel.updateStreetView(street)
+        val currentMoney = PrefsHelper.read(PrefsHelper.MONEY, "0")?.toInt() ?: 0
+        if ((currentMoney - StreetView.values()[position].price) > 0) {
+            scope.launch {
+                val street = streetList[position]
+                street.unblocked = true
+                settingsViewModel.updateStreetView(street)
+                PrefsHelper.write(
+                    PrefsHelper.MONEY,
+                    (currentMoney - StreetView.values()[position].price).toString()
+                )
+            }
+        } else {
+            showCustomToast("Not Enough Money", Toast.LENGTH_SHORT)
         }
+
     }
 
 }

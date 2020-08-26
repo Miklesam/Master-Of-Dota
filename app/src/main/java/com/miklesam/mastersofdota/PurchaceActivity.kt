@@ -47,11 +47,6 @@ class PurchaceActivity : AppCompatActivity(), PurchasesUpdatedListener {
 
             override fun onBillingSetupFinished(responseCode: Int) {
                 if (responseCode == BillingClient.BillingResponse.OK) {
-                    Toast.makeText(
-                        this@PurchaceActivity,
-                        "Success to connect Billing",
-                        Toast.LENGTH_SHORT
-                    ).show()
                     if (billingClient.isReady) {
                         val params = SkuDetailsParams.newBuilder()
                             .setSkusList(
@@ -122,11 +117,5 @@ class PurchaceActivity : AppCompatActivity(), PurchasesUpdatedListener {
             }
 
         }
-
-        Toast.makeText(
-            this@PurchaceActivity,
-            "Purchase item : ${purchases?.size}",
-            Toast.LENGTH_SHORT
-        ).show()
     }
 }

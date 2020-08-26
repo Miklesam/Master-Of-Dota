@@ -90,6 +90,18 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/leaderboard" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/counters"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Counters"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            android:theme="@style/ThemeOverlayButton"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/market" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

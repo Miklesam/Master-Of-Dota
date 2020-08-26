@@ -45,14 +45,9 @@ class FragmentTeamRequirement : Fragment(R.layout.proteams_require) {
         try_to_join.setOnClickListener {
             var join = true
             for (req in requires) {
-                Log.w("Requires List", "Requires  ${req.first.nameAbility} > ${req.second}")
-                Log.w(
-                    "Requires List",
-                    "Ability progress ${req.first.nameAbility} is  ${updateAbilitiesList[req.first.id].progress > req.second}}"
-                )
                 if (updateAbilitiesList[req.first.id].progress <= req.second) {
                     showCustomToast(
-                        "Progress ${req.first.nameAbility} is less then ${req.second}",
+                        "Progress ${req.first.nameAbility} is less then ${req.second + 1}",
                         Toast.LENGTH_SHORT
                     )
                     join = false

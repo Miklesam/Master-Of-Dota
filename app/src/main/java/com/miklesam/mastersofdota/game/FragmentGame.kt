@@ -173,7 +173,8 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
                 val youWillWin = rnds > 50 - minus
                 gameViewModel.setWinning(youWillWin)
                 showCustomToast(
-                    "${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds you wil win $youWillWin minus = $minus",
+                    "${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress}",
+                    //"${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds you wil win $youWillWin minus = $minus",
                     Toast.LENGTH_SHORT
                 )
             }
@@ -218,6 +219,7 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
             1 -> currentMMR += 30
             2 -> currentMMR -= 30
         }
+        if (currentMMR < 0) currentMMR = 0
         PrefsHelper.write(PrefsHelper.MMR_COUNT, currentMMR.toString())
 
         mListener.backToLobbyCLicked()
