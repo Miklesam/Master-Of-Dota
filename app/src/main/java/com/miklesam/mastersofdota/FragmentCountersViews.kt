@@ -13,6 +13,16 @@ class FragmentCountersViews : Fragment(R.layout.fragment_counters) {
         val myHero = Heroes.values()[tt]
         nameee.text = myHero.heroName
         icon.setImageResource(myHero.image_pick)
+        counters1.setImageResource(Heroes.values()[myHero.countretBy[0]].image_pick)
+        counters2.setImageResource(Heroes.values()[myHero.countretBy[1]].image_pick)
+        counters3.setImageResource(Heroes.values()[myHero.countretBy[2]].image_pick)
+        counters4.setImageResource(Heroes.values()[myHero.countretBy[3]].image_pick)
+        counters5.setImageResource(Heroes.values()[myHero.countretBy[4]].image_pick)
 
+        goodPicks1.setImageResource(Heroes.values()[myHero.counters[0]].image_pick)
+        goodPicks2.setImageResource(Heroes.values()[myHero.counters[1]].image_pick)
+        goodPicks3.setImageResource(Heroes.values()[myHero.counters[2]].image_pick)
+        goodPicks4.setImageResource(Heroes.values()[myHero.counters[3]].image_pick)
+        goodPicks5.setImageResource(Heroes.values()[myHero.counters[4]].image_pick)
     }
 }

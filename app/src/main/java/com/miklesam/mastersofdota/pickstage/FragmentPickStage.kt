@@ -13,12 +13,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.miklesam.mastersofdota.datamodels.Heroes
 import com.miklesam.mastersofdota.R
+import com.miklesam.mastersofdota.datamodels.roommodels.HeroProgress
+import com.miklesam.mastersofdota.game.PickInfoDialog
+import com.miklesam.mastersofdota.utils.PrefsHelper
 import com.miklesam.mastersofdota.utils.Visible
 import com.miklesam.mastersofdota.utils.showCustomToast
 import kotlinx.android.synthetic.main.fragment_pick_stage.*
 
 
-class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback {
+class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback,
+    PickInfoDialog.toGame {
     var Heros_icon =
         arrayOfNulls<ImageView>(119)
     var Pick_stage =
@@ -33,6 +37,7 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback {
     var soundTwo: Int = 0
     var yourBan = false
     var playerPick = 0
+    var heroesProgress = ArrayList<HeroProgress>()
     private val pickViewModel by viewModels<PickStageViewModel>()
 
 
@@ -86,20 +91,20 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val endedListener = activity as nextFromPick
         initViews()
         //player = MediaPlayer.create(context, R.raw.pick_music)
         player?.setOnCompletionListener { player?.start() }
         //player?.start()
 
         Plan_state.setOnClickListener {
-            val direPicks = arrayListOf(pick[0].id, pick[1].id, pick[3].id, pick[5].id, pick[8].id)
-            val radiantPicks =
-                arrayListOf(playerPick, pick[2].id, pick[4].id, pick[6].id, pick[7].id)
-            endedListener.pickEnded(
-                radiant = radiantPicks,
-                direPicks = direPicks
+
+            val dialog = PickInfoDialog(
+                this,
+                playerPick,
+                arrayListOf(pick[0].id, pick[1].id, pick[3].id, pick[5].id, pick[8].id),
+                heroesProgress[playerPick].progress
             )
+            activity?.supportFragmentManager?.let { dialog.show(it, "CreateEndMatchDialogDialog") }
         }
 
         pickViewModel.getBansArray().observe(viewLifecycleOwner, Observer {
@@ -111,6 +116,16 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback {
                 }
             }
         })
+
+
+        pickViewModel.getHeroProgress().observe(viewLifecycleOwner, Observer {
+            if (it.isNotEmpty()) {
+                heroesProgress = it as ArrayList<HeroProgress>
+            }
+        })
+
+
+
 
         pickViewModel.getPlayerBan().observe(viewLifecycleOwner, Observer { myInt ->
             Heros_icon[myInt]!!.setImageResource(
@@ -482,4 +497,14 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback {
         showCustomToast(getString(R.string.banned), Toast.LENGTH_SHORT)
     }
 
+    override fun goToGameClick(percentPointsToWin: Int) {
+        PrefsHelper.write(PrefsHelper.WIN_PERCENT, percentPointsToWin.toString())
+        val direPicks = arrayListOf(pick[0].id, pick[1].id, pick[3].id, pick[5].id, pick[8].id)
+        val radiantPicks =
+            arrayListOf(playerPick, pick[2].id, pick[4].id, pick[6].id, pick[7].id)
+        (activity as nextFromPick).pickEnded(
+            radiant = radiantPicks,
+            direPicks = direPicks
+        )
+    }
 }

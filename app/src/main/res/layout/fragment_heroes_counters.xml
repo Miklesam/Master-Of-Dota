@@ -22,7 +22,7 @@
         android:id="@+id/xp_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Counter Picks 7.27C"
+        android:text="Counter Picks by Dotabuff 7.27C"
         android:textColor="#fff"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/xp_icon"

@@ -1,12 +1,15 @@
 package com.miklesam.mastersofdota.pickstage
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.miklesam.mastersofdota.datamodels.Heroes
+import com.miklesam.mastersofdota.heroupdate.HeroesUpdateRepository
 import kotlinx.coroutines.*
 
-class PickStageViewModel : ViewModel() {
+class PickStageViewModel(application: Application) : AndroidViewModel(application) {
     private val allBans = MutableLiveData<ArrayList<Heroes>>()
     private val allPicks = MutableLiveData<ArrayList<Heroes>>()
     private val playerBan = MutableLiveData<Int>()
@@ -25,6 +28,8 @@ class PickStageViewModel : ViewModel() {
     var yourBanEnded = false
     var generatePicksEnded = false
     var yourPickEnded = false
+    private var heroRepository: HeroesUpdateRepository = HeroesUpdateRepository(application)
+    fun getHeroProgress() = heroRepository.getHeroes()
 
     init {
         pickNow.value = false
@@ -43,7 +48,7 @@ class PickStageViewModel : ViewModel() {
                 currentList.add(what)
                 allBans.postValue(currentList)
                 arrayHero.remove(what)
-                delay(500)
+                delay(100)
             }
             generateBansEnded = true
             withContext(Dispatchers.Main) {
@@ -64,7 +69,7 @@ class PickStageViewModel : ViewModel() {
                 currentList.add(what)
                 allPicks.postValue(currentList)
                 arrayHero.remove(what)
-                delay(500)
+                delay(100)
             }
             generatePicksEnded = true
             withContext(Dispatchers.Main) {

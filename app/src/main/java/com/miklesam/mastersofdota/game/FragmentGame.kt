@@ -167,13 +167,12 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
 
         gameViewModel.getHeroProgress().observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
-                val currentHeroProgrss = it[this.heroes!![0]]
+                val percentToWin = PrefsHelper.read(PrefsHelper.WIN_PERCENT, "0")?.toInt() ?: 0
                 val rnds = (0..100).random()
-                val minus = currentHeroProgrss.progress / 10
-                val youWillWin = rnds > 50 - minus
+                val youWillWin = rnds < percentToWin
                 gameViewModel.setWinning(youWillWin)
                 showCustomToast(
-                    "${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress}",
+                    "procent is $percentToWin  number is $rnds",
                     //"${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds you wil win $youWillWin minus = $minus",
                     Toast.LENGTH_SHORT
                 )

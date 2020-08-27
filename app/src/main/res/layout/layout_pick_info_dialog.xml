@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Pick Info Dialog"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/heroImage"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/progressHero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/heroImage" />
+
+
+    <ImageView
+        android:id="@+id/enemyPick1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/enemyPick2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressHero" />
+
+    <ImageView
+        android:id="@+id/enemyPick2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@id/enemyPick3"
+        app:layout_constraintStart_toEndOf="@+id/enemyPick1"
+        app:layout_constraintTop_toBottomOf="@+id/progressHero" />
+
+    <ImageView
+        android:id="@+id/enemyPick3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@id/enemyPick4"
+        app:layout_constraintStart_toEndOf="@+id/enemyPick2"
+        app:layout_constraintTop_toBottomOf="@+id/progressHero" />
+
+    <ImageView
+        android:id="@+id/enemyPick4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@id/enemyPick5"
+        app:layout_constraintStart_toEndOf="@+id/enemyPick3"
+        app:layout_constraintTop_toBottomOf="@+id/progressHero" />
+
+    <ImageView
+        android:id="@+id/enemyPick5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/enemyPick4"
+        app:layout_constraintTop_toBottomOf="@+id/progressHero" />
+
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="="
+        app:layout_constraintStart_toStartOf="@+id/enemyPick1"
+        app:layout_constraintEnd_toEndOf="@+id/enemyPick1"
+        app:layout_constraintTop_toBottomOf="@+id/enemyPick1"/>
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="="
+        app:layout_constraintStart_toStartOf="@+id/enemyPick2"
+        app:layout_constraintEnd_toEndOf="@+id/enemyPick2"
+        app:layout_constraintTop_toBottomOf="@+id/enemyPick2"/>
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="="
+        app:layout_constraintStart_toStartOf="@+id/enemyPick3"
+        app:layout_constraintEnd_toEndOf="@+id/enemyPick3"
+        app:layout_constraintTop_toBottomOf="@+id/enemyPick3"/>
+
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="="
+        app:layout_constraintStart_toStartOf="@+id/enemyPick4"
+        app:layout_constraintEnd_toEndOf="@+id/enemyPick4"
+        app:layout_constraintTop_toBottomOf="@+id/enemyPick4"/>
+
+    <TextView
+        android:id="@+id/text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="="
+        app:layout_constraintStart_toStartOf="@+id/enemyPick5"
+        app:layout_constraintEnd_toEndOf="@+id/enemyPick5"
+        app:layout_constraintTop_toBottomOf="@+id/enemyPick5"/>
+
+    <TextView
+        android:id="@+id/percentToWin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text5"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
