@@ -44,7 +44,8 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback,
     interface nextFromPick {
         fun pickEnded(
             radiant: ArrayList<Int>,
-            direPicks: ArrayList<Int>
+            direPicks: ArrayList<Int>,
+            percentToWin: Int
         )
     }
 
@@ -498,13 +499,13 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback,
     }
 
     override fun goToGameClick(percentPointsToWin: Int) {
-        PrefsHelper.write(PrefsHelper.WIN_PERCENT, percentPointsToWin.toString())
         val direPicks = arrayListOf(pick[0].id, pick[1].id, pick[3].id, pick[5].id, pick[8].id)
         val radiantPicks =
             arrayListOf(playerPick, pick[2].id, pick[4].id, pick[6].id, pick[7].id)
         (activity as nextFromPick).pickEnded(
             radiant = radiantPicks,
-            direPicks = direPicks
+            direPicks = direPicks,
+            percentToWin = percentPointsToWin
         )
     }
 }

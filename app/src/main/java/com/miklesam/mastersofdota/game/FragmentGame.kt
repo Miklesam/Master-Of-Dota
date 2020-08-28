@@ -51,8 +51,10 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
         if (arguments != null) {
             heroes = requireArguments().getIntegerArrayList(("radiant"))
             direHeroes = requireArguments().getIntegerArrayList(("dire"))
+            val percentToWin = requireArguments().getInt(("percentToWin"))
             gameViewModel.radiantHeroes = heroes!!
             gameViewModel.direHeroes = direHeroes!!
+            gameViewModel.percent = percentToWin
         }
         gameViewModel.setCallbackToGame(this)
     }
@@ -116,6 +118,15 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
             }
         })
 
+        val percentToWin = gameViewModel.percent
+        val rnds = (0..100).random()
+        val youWillWin = rnds < percentToWin
+        gameViewModel.setWinning(youWillWin)
+        //showCustomToast(
+        //    "procent is $percentToWin  number is $rnds",
+            //"${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds you wil win $youWillWin minus = $minus",
+        //    Toast.LENGTH_SHORT
+       // )
 
 
         gameViewModel.getPlayersMatchStatistic().observe(viewLifecycleOwner, Observer {
@@ -164,22 +175,6 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
         commonsHideButton.setOnClickListener {
             commonsHideButton.Gone()
         }
-
-        gameViewModel.getHeroProgress().observe(viewLifecycleOwner, Observer {
-            if (it.isNotEmpty()) {
-                val percentToWin = PrefsHelper.read(PrefsHelper.WIN_PERCENT, "0")?.toInt() ?: 0
-                val rnds = (0..100).random()
-                val youWillWin = rnds < percentToWin
-                gameViewModel.setWinning(youWillWin)
-                showCustomToast(
-                    "procent is $percentToWin  number is $rnds",
-                    //"${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds you wil win $youWillWin minus = $minus",
-                    Toast.LENGTH_SHORT
-                )
-            }
-        })
-
-
     }
 
     override fun onDestroyView() {

@@ -20,7 +20,6 @@ object PrefsHelper {
     const val YEARS = "years"
     const val YOUR_TEAM_ID = "your_team_id"
     const val CONTINUE_VISIBLE = "continiue_visible"
-    const val WIN_PERCENT = "win_percent"
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(

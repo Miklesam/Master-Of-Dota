@@ -20,6 +20,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     var radiantHeroes = ArrayList<Int>()
     var direHeroes = ArrayList<Int>()
+    var percent = 0
     val gameState = MutableLiveData<Int>()
     fun getTimeState(): LiveData<Int> = gameState
     var gameCount = 0
@@ -28,8 +29,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     var callback: AssignCallback? = null
     var gameEnd = false
     var willYouWin = false
-    private var heroRepository: HeroesUpdateRepository = HeroesUpdateRepository(application)
-    fun getHeroProgress() = heroRepository.getHeroes()
 
     init {
         gameStart.value = true
@@ -173,15 +172,15 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         dire: ArrayList<HeroStats>
     ): Int {
         val retVal =
-            LaneCalculator(radiantHeroes[0],willYouWin)
+            LaneCalculator(radiantHeroes[0], willYouWin)
                 .calculateLineKills(radiant, dire, radiantHeroes, direHeroes, gameCount)
         allPlayersStats.postValue(assignStats())
         return retVal
     }
 
 
-    fun setWinning(willWin:Boolean) {
-        willYouWin=willWin
+    fun setWinning(willWin: Boolean) {
+        willYouWin = willWin
     }
 
 

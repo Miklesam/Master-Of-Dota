@@ -252,12 +252,13 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         transaction.commit()
     }
 
-    override fun pickEnded(radiant: ArrayList<Int>, direPicks: ArrayList<Int>) {
+    override fun pickEnded(radiant: ArrayList<Int>, direPicks: ArrayList<Int>, percentToWin: Int) {
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = FragmentGame()
         val bundle = Bundle()
         bundle.putIntegerArrayList("radiant", radiant)
         bundle.putIntegerArrayList("dire", direPicks)
+        bundle.putInt("percentToWin", percentToWin)
         fragment.arguments = bundle
         transaction.replace(R.id.fragment_holder, fragment)
             .addToBackStack(null)
@@ -266,8 +267,16 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
 
     override fun backToLobbyCLicked() {
         val currentXP = PrefsHelper.read(PrefsHelper.XP, "0")?.toInt() ?: 0
-        PrefsHelper.write(PrefsHelper.XP, (currentXP + 2).toString())
         val currentMMR = PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")?.toInt() ?: 0
+        val plusXP = when (currentMMR) {
+            in (0..999) -> 4
+            in (1000..1999) -> 3
+            in (2000..2999) -> 2
+            else -> 1
+        }
+
+        PrefsHelper.write(PrefsHelper.XP, (currentXP + plusXP).toString())
+
         leaderboardsClient?.submitScore(getString(R.string.leadearboard_id), currentMMR.toLong())
         when (currentMMR) {
             in (991..1039) -> achievementClient?.unlock(getString(R.string.ach_1000_mmr))

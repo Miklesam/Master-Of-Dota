@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import com.miklesam.mastersofdota.R
 import com.miklesam.mastersofdota.datamodels.Heroes
 import com.miklesam.mastersofdota.utils.PrefsHelper
+import kotlin.math.sqrt
 
 class PickInfoDialog() : AppCompatDialogFragment() {
     constructor(
@@ -88,7 +89,7 @@ class PickInfoDialog() : AppCompatDialogFragment() {
         progressHero.text = "Progress Hero is $heroProgress"
 
 
-        val percentPointsToWin = tottalPicksPoint + (heroProgress / 4)
+        val percentPointsToWin = tottalPicksPoint + 2 * sqrt(heroProgress.toDouble()).toInt()
 
         percentToWin.text = "Your percent to win $percentPointsToWin"
 
