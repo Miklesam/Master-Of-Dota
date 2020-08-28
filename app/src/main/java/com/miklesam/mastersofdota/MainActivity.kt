@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -20,6 +21,7 @@ import com.miklesam.mastersofdota.playerupdate.FragmentPlayerUpdate
 import com.miklesam.mastersofdota.proteams.FragmentProTeams
 import com.miklesam.mastersofdota.settingsview.FragmentSettings
 import com.miklesam.mastersofdota.utils.PrefsHelper
+import com.miklesam.mastersofdota.utils.ScreenState
 import kotlinx.android.synthetic.main.your_custom_layout.*
 
 class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     private var googleSignInClient: GoogleSignInClient? = null
     private var achievementClient: AchievementsClient? = null
     private var leaderboardsClient: LeaderboardsClient? = null
+    private val mainViewModel by viewModels<MainActivityViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,6 +115,12 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         showAchievements()
     }
 
+    override fun onBackPressed() {
+        if (mainViewModel.getCurrentState() != ScreenState.PickScreen) {
+            super.onBackPressed()
+        }
+    }
+
     override fun leaderBoardClicked() {
         showTopPlayers()
     }
@@ -159,6 +168,7 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     }
 
     override fun gamePlayClicked() {
+        mainViewModel.setState(ScreenState.PickScreen)
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = FragmentPickStage()
         transaction.setCustomAnimations(
@@ -266,6 +276,7 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     }
 
     override fun backToLobbyCLicked() {
+        mainViewModel.setState(ScreenState.MainScreenState)
         val currentXP = PrefsHelper.read(PrefsHelper.XP, "0")?.toInt() ?: 0
         val currentMMR = PrefsHelper.read(PrefsHelper.MMR_COUNT, "0")?.toInt() ?: 0
         val plusXP = when (currentMMR) {
