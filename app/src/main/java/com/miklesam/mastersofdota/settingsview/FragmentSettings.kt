@@ -8,6 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.miklesam.mastersofdota.R
+import com.miklesam.mastersofdota.adapters.hairadapter.HairsAdapter
+import com.miklesam.mastersofdota.adapters.hairadapter.OnHairsListener
 import com.miklesam.mastersofdota.adapters.settingsadapter.OnSettingsListener
 import com.miklesam.mastersofdota.adapters.settingsadapter.SettingsAdapter
 import com.miklesam.mastersofdota.datamodels.StreetView
@@ -22,7 +24,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 class FragmentSettings : Fragment(R.layout.fragment_settings), OnSettingsListener,
-    TwoOptionDialog.toLobbyInterface {
+    TwoOptionDialog.toLobbyInterface, OnHairsListener {
 
     private val settingsViewModel: ViewSettingsViewModel by viewModels()
     val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
@@ -33,10 +35,17 @@ class FragmentSettings : Fragment(R.layout.fragment_settings), OnSettingsListene
         recyclerStreetView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerStreetView?.setHasFixedSize(true)
+
+        recyclerColorHair.layoutManager=
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerColorHair?.setHasFixedSize(true)
         val adapter =
             SettingsAdapter(this)
-        recyclerStreetView?.adapter = adapter
+        val hairAdapter =
+            HairsAdapter(this)
 
+        recyclerStreetView?.adapter = adapter
+        recyclerColorHair?.adapter = hairAdapter
         settingsViewModel.getViews().observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrEmpty()) {
                 streetList = it
@@ -71,6 +80,10 @@ class FragmentSettings : Fragment(R.layout.fragment_settings), OnSettingsListene
             showCustomToast("Not Enough Money", Toast.LENGTH_SHORT)
         }
 
+    }
+
+    override fun onHairClick(position: Int) {
+        TODO("Not yet implemented")
     }
 
 }

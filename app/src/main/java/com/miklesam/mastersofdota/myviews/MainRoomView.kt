@@ -87,12 +87,12 @@ class MainRoomView : View {
         mDrawable = if (hand) {
             ContextCompat.getDrawable(
                 context,
-                R.drawable.hair
+                R.drawable.hair_yellow
             )
         } else {
             ContextCompat.getDrawable(
                 context,
-                R.drawable.hair_up
+                R.drawable.hair_yellow_up
             )
         }
         hand = hand.not()
