@@ -8,8 +8,11 @@ import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.miklesam.mastersofdota.R
+import com.miklesam.mastersofdota.datamodels.StreetView
+import com.miklesam.mastersofdota.utils.PrefsHelper
 
 class WeatherView : View {
 
@@ -60,6 +63,13 @@ class WeatherView : View {
         mWall = ContextCompat.getDrawable(
             context,
             R.drawable.wall_new_green
+        )
+
+        val currentView = PrefsHelper.read(PrefsHelper.STREET_VIEW, "0")?.toInt() ?: 0
+
+        streetView = ContextCompat.getDrawable(
+            context,
+            StreetView.values()[currentView].streetImage
         )
     }
 
@@ -160,11 +170,6 @@ class WeatherView : View {
             mCurrentPlayTime = mTimeAnimator!!.getCurrentPlayTime()
             mTimeAnimator!!.pause()
         }
-    }
-
-
-    fun setFon(fon: Drawable?) {
-        streetView = fon
     }
 
     fun resume() {

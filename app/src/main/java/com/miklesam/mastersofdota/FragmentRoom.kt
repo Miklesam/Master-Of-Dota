@@ -71,34 +71,29 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
             }
 
         }
-
         player_update.setOnClickListener {
             if (!isSleeping) {
                 roomListener.playerUpdateClicked()
             }
 
         }
-
         settings.setOnClickListener {
             if (!isSleeping) {
                 roomListener.settingsClicked()
             }
 
         }
-
         twitter_write.setOnClickListener {
             if (!isSleeping) {
                 roomListener.twitterClicked()
             }
 
         }
-
         team_home.setOnClickListener {
             if (!isSleeping) {
                 roomListener.teamsClicked()
             }
         }
-
         sleep.setOnClickListener {
             if (!isSleeping) {
                 scope?.launch {
@@ -116,8 +111,6 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
             }
 
         }
-
-
         timerCT = object : CountDownTimer(3000, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
@@ -129,51 +122,30 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
             }
         }
 
-
-        val currentView = PrefsHelper.read(PrefsHelper.STREET_VIEW, "0")?.toInt()
-
-        val fon = StreetView.values().find { it.id == currentView }?.streetImage?.let {
-            ContextCompat.getDrawable(
-                requireContext(),
-                it
-            )
-        }
-        weatherAnim?.setFon(fon)
-
         updateCalendar()
 
         val currentTeam = PrefsHelper.read(
             PrefsHelper.YOUR_TEAM_ID, "3000"
         )?.toInt() ?: 3000
-
         if (currentTeam != 3000) {
             your_team_logo.setImageResource(ProTeamsEnum.values()[currentTeam].teamLogo)
         } else {
             your_team_logo.visibility = View.GONE
             your_team_text.visibility = View.GONE
         }
-
-
         val currentFans = PrefsHelper.read(
             PrefsHelper.FANS, "0"
         )?.toInt() ?: 0
-
         val fansString = "Fans: $currentFans"
-
         fansStats.text = fansString
-
         val currentXP = PrefsHelper.read(
             PrefsHelper.XP, "0"
         )?.toInt() ?: 0
-
         val xpString = "XP: $currentXP"
-
         xp_update.text = xpString
-
         val currentMMR = PrefsHelper.read(
             PrefsHelper.MMR_COUNT, "0"
         )?.toInt() ?: 0
-
         val mmrString = "MMR: $currentMMR"
         mmrStats.text = mmrString
         if (currentMMR < 800) {
@@ -193,7 +165,6 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         } else {
             medal.setImageResource(R.drawable.titan_trans)
         }
-
         val currentEnergy = PrefsHelper.read(
             PrefsHelper.ENERGY, "100"
         )?.toInt() ?: 0

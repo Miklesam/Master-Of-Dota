@@ -95,7 +95,7 @@ class PickInfoDialog() : AppCompatDialogFragment() {
 
         builder.setView(mycustomview)
         //builder.setTitle(getString(R.string.match_is_over))
-        builder.setPositiveButton(getString(R.string.quit)) { _, _ ->
+        builder.setPositiveButton("Next") { _, _ ->
             mListener?.goToGameClick(percentPointsToWin)
             Lock = false
             dialog?.dismiss()

@@ -219,6 +219,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="Monkey King"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/firstRadiantPlayerHeroImage"
@@ -229,6 +230,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
+            android:textSize="12sp"
             android:text="0/0/0"
             android:textColor="#f9fcff"
             app:layout_constraintEnd_toEndOf="parent"
@@ -260,6 +262,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="Zeus"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/secondRadiantPlayerHeroImage"
@@ -271,6 +274,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:text="0/0/0"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heroRad2" />
@@ -301,6 +305,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="Abadon"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/thirdRadiantPlayerHeroImage"
@@ -312,6 +317,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:text="0/0/0"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heroRad3" />
@@ -342,6 +348,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="Kunnka"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/forthRadiantPlayerHeroImage"
@@ -353,6 +360,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:text="0/0/0"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heroRad4" />
@@ -385,6 +393,7 @@
             android:layout_marginStart="2dp"
             android:text="Dazzle"
             android:textColor="#f9fcff"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/fifthRadiantPlayerHeroImage"
             app:layout_constraintTop_toBottomOf="@id/fifthRadiantPlayerName" />
@@ -395,6 +404,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:text="0/0/0"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heroRad5" />
@@ -436,6 +446,7 @@
             android:layout_marginEnd="2dp"
             android:text="Lifestealer"
             android:textColor="#f9fcff"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/firstDirePlayerHeroImage"
             app:layout_constraintTop_toBottomOf="@id/firstDirePlayerName" />
@@ -447,6 +458,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="0/0/0"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heroDire1" />
@@ -476,6 +488,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:text="Sand King"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/firstDirePlayerHeroImage"
@@ -487,6 +500,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="0/0/0"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heroDire2" />
@@ -519,6 +533,7 @@
             android:layout_marginEnd="2dp"
             android:text="Pudge"
             android:textColor="#f9fcff"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/secondDirePlayerHeroImage"
             app:layout_constraintTop_toBottomOf="@id/thirdDirePlayerName" />
@@ -529,6 +544,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="0/0/0"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heroDire3" />
@@ -559,6 +575,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:text="Slardar"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/thirdDirePlayerHeroImage"
@@ -570,6 +587,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="0/0/0"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heroDire4" />
@@ -601,6 +619,7 @@
             android:layout_marginEnd="2dp"
             android:text="Mars"
             android:textColor="#f9fcff"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/forthDirePlayerHeroImage"
             app:layout_constraintTop_toBottomOf="@id/fifthDirePlayerName" />
@@ -611,6 +630,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="0/0/0"
+            android:textSize="12sp"
             android:textColor="#f9fcff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heroDire5" />
