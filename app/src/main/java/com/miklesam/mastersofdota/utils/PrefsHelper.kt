@@ -11,6 +11,7 @@ object PrefsHelper {
     const val MMR_COUNT = "mmr_count"
     const val NICK_NAME = "nick_name"
     const val STREET_VIEW = "street_view"
+    const val HAIR_VIEW = "hair_view"
     const val ENERGY = "energy"
     const val FANS = "fans"
     const val MONEY = "money"

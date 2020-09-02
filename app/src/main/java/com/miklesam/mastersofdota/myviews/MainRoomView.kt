@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.miklesam.mastersofdota.R
+import com.miklesam.mastersofdota.datamodels.HairView
 
 class MainRoomView : View {
 
@@ -21,7 +22,6 @@ class MainRoomView : View {
     private var mDrawable: Drawable? = null
     private var monitorPicture: Drawable? = null
     private var hand = true
-
 
     //viewingview
 
@@ -69,7 +69,7 @@ class MainRoomView : View {
 
         monitorPicture?.setBounds(
             (39 * sizeX / 100).toInt(),
-            (10 * sizeY / 100).toInt(),
+            (9 * sizeY / 100).toInt(),
             (61 * sizeX / 100).toInt(),
             (52 * sizeY / 100).toInt()
         )
@@ -83,16 +83,16 @@ class MainRoomView : View {
         invalidate()
     }
 
-    fun moveHand() {
+    fun moveHand(screenNumber: Int) {
         mDrawable = if (hand) {
             ContextCompat.getDrawable(
                 context,
-                R.drawable.hair_yellow
+                HairView.values()[screenNumber].hairImage
             )
         } else {
             ContextCompat.getDrawable(
                 context,
-                R.drawable.hair_yellow_up
+                HairView.values()[screenNumber].hairImageUp
             )
         }
         hand = hand.not()

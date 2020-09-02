@@ -37,7 +37,8 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val roomListener = activity as roomListener
-
+        val screenNumber = PrefsHelper.read(PrefsHelper.HAIR_VIEW, "0")?.toInt() ?: 0
+        teamSigning.moveHand(screenNumber)
         weatherAnim = view.findViewById<WeatherView>(
             R.id.weatherAnim
         )
@@ -284,13 +285,16 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
             }
         }
 
+        val screenNumber = PrefsHelper.read(PrefsHelper.HAIR_VIEW, "0")?.toInt() ?: 0
+
+
         scope?.launch {
             while (true) {
                 withContext(Dispatchers.Main) {
                     if (!isSleeping) {
-                        teamSigning.moveHand()
+                        teamSigning.moveHand(screenNumber)
                         delay(100)
-                        teamSigning.moveHand()
+                        teamSigning.moveHand(screenNumber)
                         delay(100)
                     }
                 }

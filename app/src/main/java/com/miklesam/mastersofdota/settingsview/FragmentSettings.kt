@@ -12,10 +12,13 @@ import com.miklesam.mastersofdota.adapters.hairadapter.HairsAdapter
 import com.miklesam.mastersofdota.adapters.hairadapter.OnHairsListener
 import com.miklesam.mastersofdota.adapters.settingsadapter.OnSettingsListener
 import com.miklesam.mastersofdota.adapters.settingsadapter.SettingsAdapter
+import com.miklesam.mastersofdota.datamodels.HairView
 import com.miklesam.mastersofdota.datamodels.StreetView
+import com.miklesam.mastersofdota.datamodels.roommodels.HairViewBlocked
 import com.miklesam.mastersofdota.datamodels.roommodels.StreetViewBlocked
 import com.miklesam.mastersofdota.game.TwoOptionDialog
 import com.miklesam.mastersofdota.utils.PrefsHelper
+import com.miklesam.mastersofdota.utils.SettingsType
 import com.miklesam.mastersofdota.utils.showCustomToast
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.coroutines.CoroutineScope
@@ -29,6 +32,7 @@ class FragmentSettings : Fragment(R.layout.fragment_settings), OnSettingsListene
     private val settingsViewModel: ViewSettingsViewModel by viewModels()
     val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private lateinit var streetList: List<StreetViewBlocked>
+    private lateinit var hairList: List<HairViewBlocked>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,7 +40,7 @@ class FragmentSettings : Fragment(R.layout.fragment_settings), OnSettingsListene
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerStreetView?.setHasFixedSize(true)
 
-        recyclerColorHair.layoutManager=
+        recyclerColorHair.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerColorHair?.setHasFixedSize(true)
         val adapter =
@@ -46,27 +50,33 @@ class FragmentSettings : Fragment(R.layout.fragment_settings), OnSettingsListene
 
         recyclerStreetView?.adapter = adapter
         recyclerColorHair?.adapter = hairAdapter
-        settingsViewModel.getViews().observe(viewLifecycleOwner, Observer {
+        settingsViewModel.getStreetViews().observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrEmpty()) {
                 streetList = it
                 adapter.setDataFromDB(it)
             }
+        })
 
+        settingsViewModel.getHairViews().observe(viewLifecycleOwner, Observer {
+            if (!it.isNullOrEmpty()) {
+                hairList = it
+                hairAdapter.setDataFromDB(it)
+            }
         })
 
 
     }
 
     override fun onStreetClick(position: Int) {
-        val dialog = TwoOptionDialog(this, position)
+        val dialog = TwoOptionDialog(this, position, SettingsType.Street)
         activity?.supportFragmentManager?.let {
             dialog.show(it, null)
         }
     }
 
-    override fun goToLobbyClick(position: Int) {
+    override fun updateStreetClick(position: Int) {
         val currentMoney = PrefsHelper.read(PrefsHelper.MONEY, "0")?.toInt() ?: 0
-        if ((currentMoney - StreetView.values()[position].price) > 0) {
+        if ((currentMoney - StreetView.values()[position].price) >= 0) {
             scope.launch {
                 val street = streetList[position]
                 street.unblocked = true
@@ -79,11 +89,30 @@ class FragmentSettings : Fragment(R.layout.fragment_settings), OnSettingsListene
         } else {
             showCustomToast("Not Enough Money", Toast.LENGTH_SHORT)
         }
+    }
 
+    override fun updateHairClick(position: Int) {
+        val currentMoney = PrefsHelper.read(PrefsHelper.MONEY, "0")?.toInt() ?: 0
+        if ((currentMoney - HairView.values()[position].price) >= 0) {
+            scope.launch {
+                val hair = hairList[position]
+                hair.unblocked = true
+                settingsViewModel.updateHairView(hair)
+                PrefsHelper.write(
+                    PrefsHelper.MONEY,
+                    (currentMoney - HairView.values()[position].price).toString()
+                )
+            }
+        } else {
+            showCustomToast("Not Enough Money", Toast.LENGTH_SHORT)
+        }
     }
 
     override fun onHairClick(position: Int) {
-        TODO("Not yet implemented")
+        val dialog = TwoOptionDialog(this, position, SettingsType.Hair)
+        activity?.supportFragmentManager?.let {
+            dialog.show(it, null)
+        }
     }
 
 }
