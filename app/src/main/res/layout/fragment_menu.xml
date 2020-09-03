@@ -80,10 +80,10 @@
             app:layout_constraintTop_toBottomOf="@+id/services" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/counters"
+            android:id="@+id/info"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Counters"
+            android:text="Info"
             android:textColor="#FFF"
             android:textSize="20sp"
             android:theme="@style/ThemeOverlayButton"

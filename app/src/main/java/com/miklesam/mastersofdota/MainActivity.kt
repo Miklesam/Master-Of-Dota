@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.your_custom_layout.*
 class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoom.roomListener,
     FragmentPickStage.nextFromPick, FragmentGame.backToLobby,
     FragmentYourNickName.nickNameListener, FragmentTwitter.TweetClicked,
-    FragmentServices.ServicesListener {
+    FragmentServices.ServicesListener, FragmentInfo.InfoListener {
 
     private var googleSignInClient: GoogleSignInClient? = null
     private var achievementClient: AchievementsClient? = null
@@ -143,6 +143,20 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
     override fun marketClicked() {
         val intent = Intent(this, PurchaceActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun infoClicked() {
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment = FragmentInfo()
+        transaction.setCustomAnimations(
+            R.animator.scaley_enter,
+            R.animator.scaley_exit,
+            R.animator.scaley_enter,
+            R.animator.scaley_exit
+        )
+        transaction.replace(R.id.fragment_holder, fragment)
+            .addToBackStack(null)
+        transaction.commit()
     }
 
     override fun countersClicked() {
