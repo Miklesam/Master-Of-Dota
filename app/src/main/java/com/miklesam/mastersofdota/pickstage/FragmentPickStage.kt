@@ -146,9 +146,12 @@ class FragmentPickStage : Fragment(R.layout.fragment_pick_stage), PickCallback,
         pickViewModel.getPicksArray().observe(viewLifecycleOwner, Observer {
             if (it != null && it.size > 0) {
                 for (i in 0 until it.size) {
-                    val what = it[i]
-                    Heros_icon[what.id]?.setImageResource(what.largeBan)
-                    Pick_stage[i + 1]?.setImageResource(what.image_pick)
+                    if(i<10){
+                        val what = it[i]
+                        Heros_icon[what.id]?.setImageResource(what.largeBan)
+                        Pick_stage[i + 1]?.setImageResource(what.image_pick)//fatalit
+                    }
+
                 }
             }
             pick = it
