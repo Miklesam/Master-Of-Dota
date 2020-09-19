@@ -38,7 +38,7 @@ class FragmentRoom : Fragment(R.layout.fragment_room) {
         super.onViewCreated(view, savedInstanceState)
         val roomListener = activity as roomListener
         val screenNumber = PrefsHelper.read(PrefsHelper.HAIR_VIEW, "0")?.toInt() ?: 0
-        teamSigning.moveHand(screenNumber)
+        //teamSigning.moveHand(screenNumber)
         weatherAnim = view.findViewById<WeatherView>(
             R.id.weatherAnim
         )

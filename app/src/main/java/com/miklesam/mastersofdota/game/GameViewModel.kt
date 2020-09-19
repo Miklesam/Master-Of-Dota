@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.miklesam.mastersofdota.datamodels.HeroStats
-import com.miklesam.mastersofdota.heroupdate.HeroesUpdateRepository
 import com.miklesam.mastersofdota.utils.LaneCalculator
 import com.miklesam.mastersofdota.utils.Side
 
@@ -28,11 +27,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun getStarted(): LiveData<Boolean> = gameStart
     var callback: AssignCallback? = null
     var gameEnd = false
-    var willYouWin = false
+    var extraPoint = 0
 
     init {
         gameStart.value = true
-        generateMatch()
+        //generateMatch()
     }
 
     val RadiantTeam = arrayListOf<HeroStats>(
@@ -172,15 +171,15 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         dire: ArrayList<HeroStats>
     ): Int {
         val retVal =
-            LaneCalculator(radiantHeroes[0], willYouWin)
+            LaneCalculator(radiantHeroes[0], extraPoint)
                 .calculateLineKills(radiant, dire, radiantHeroes, direHeroes, gameCount)
         allPlayersStats.postValue(assignStats())
         return retVal
     }
 
 
-    fun setWinning(willWin: Boolean) {
-        willYouWin = willWin
+    fun setExtraPoints(extraPoints: Int) {
+        extraPoint = extraPoints
     }
 
 
@@ -244,16 +243,16 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         callback = call
     }
 
-    private fun generateMatch() {
+    fun generateMatch(position: Array<Int>) {
         scope.launch {
             delay(250)
-            while (!gameEnd) {
+            //while (!gameEnd) {
                 val arayPositions = arrayOf(
-                    (0..2).random(),
-                    (0..2).random(),
-                    (0..2).random(),
-                    (0..2).random(),
-                    (0..2).random(),
+                    position[0],
+                    position[1],
+                    position[2],
+                    position[3],
+                    position[4],
                     (3..5).random(),
                     (3..5).random(),
                     (3..5).random(),
@@ -265,7 +264,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 delay(2000)
                 calculateLineAssign(arayPositions)
                 delay(2000)
-            }
+                callback?.onStageEnd()
+            //}
         }
     }
 

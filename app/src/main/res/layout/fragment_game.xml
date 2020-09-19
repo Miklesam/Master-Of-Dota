@@ -178,10 +178,26 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
+            android:id="@+id/line_bottom"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#f9fcff"
             app:layout_constraintTop_toBottomOf="@+id/tagImage2" />
+
+        <Button
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:id="@+id/commonsHideButton"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textColor="@color/white"
+            android:background="@drawable/message_dialog_bttn_bg"
+            android:text="Assign"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/line_bottom"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -636,24 +652,6 @@
             app:layout_constraintTop_toBottomOf="@id/heroDire5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <Button
-        android:id="@+id/commonsHideButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        android:paddingLeft="46dp"
-        android:paddingRight="46dp"
-        android:textColor="#fff"
-        android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

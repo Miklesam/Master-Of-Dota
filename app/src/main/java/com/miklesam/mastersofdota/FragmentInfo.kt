@@ -13,11 +13,13 @@ class FragmentInfo : Fragment(R.layout.fragment_info) {
 
     interface InfoListener {
         fun countersClicked()
+        fun statsClicked()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val menuListener = activity as InfoListener
         counters.setOnClickListener { menuListener.countersClicked() }
+        stats.setOnClickListener { menuListener.statsClicked() }
     }
 }

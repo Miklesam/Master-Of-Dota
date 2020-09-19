@@ -33,7 +33,7 @@ class PickInfoDialog() : AppCompatDialogFragment() {
     var heroProgress: Int = 0
     var enemyList = ArrayList<Int>()
 
-    var tottalPicksPoint = 50
+    var tottalPicksPoint = 0
 
     interface toGame {
         fun goToGameClick(percentPointsToWin: Int)
@@ -91,7 +91,7 @@ class PickInfoDialog() : AppCompatDialogFragment() {
 
         val percentPointsToWin = tottalPicksPoint + 2 * sqrt(heroProgress.toDouble()).toInt()
 
-        percentToWin.text = "Your percent to win $percentPointsToWin"
+        percentToWin.text = "Extra points $percentPointsToWin"
 
         builder.setView(mycustomview)
         //builder.setTitle(getString(R.string.match_is_over))

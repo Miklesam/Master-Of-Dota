@@ -5,21 +5,21 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.miklesam.mastersofdota.LaningDialog
 import com.miklesam.mastersofdota.utils.Gone
 import com.miklesam.mastersofdota.datamodels.Heroes
 import com.miklesam.mastersofdota.utils.PrefsHelper
 import com.miklesam.mastersofdota.R
-import com.miklesam.mastersofdota.utils.showCustomToast
+import com.miklesam.mastersofdota.utils.Visible
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
 import kotlin.collections.ArrayList
 
 class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
-    EndMatchDialog.toLobbyInterface {
+    EndMatchDialog.toLobbyInterface, LaningDialog.NoticeDialogListener {
     private lateinit var mListener: backToLobby
     private val radiantImages =
         arrayOfNulls<ImageView>(5)
@@ -114,19 +114,18 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
                 scope.launch {
                     delay(200)
                     gameGame?.setBasePosition()
+                    delay(1200)
+                    createDeskDialog()
                 }
             }
         })
-
-        val percentToWin = gameViewModel.percent
-        val rnds = (0..100).random()
-        val youWillWin = rnds < percentToWin
-        gameViewModel.setWinning(youWillWin)
+        val extraPoints = gameViewModel.percent
+        gameViewModel.setExtraPoints(extraPoints)
         //showCustomToast(
         //    "procent is $percentToWin  number is $rnds",
-            //"${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds you wil win $youWillWin minus = $minus",
+        //"${currentHeroProgrss.name} progress is ${currentHeroProgrss.progress} percent to win $rnds you wil win $youWillWin minus = $minus",
         //    Toast.LENGTH_SHORT
-       // )
+        // )
 
 
         gameViewModel.getPlayersMatchStatistic().observe(viewLifecycleOwner, Observer {
@@ -174,7 +173,14 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
 
         commonsHideButton.setOnClickListener {
             commonsHideButton.Gone()
+            createDeskDialog()
         }
+    }
+
+    private fun createDeskDialog() {
+        val dialog =
+            LaningDialog(this, heroes)
+        fragmentManager?.let { dialog.show(it, "CreateDeskDialog") }
     }
 
     override fun onDestroyView() {
@@ -205,6 +211,12 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
         }
     }
 
+    override fun onStageEnd() {
+        if (!gameEnd) {
+            createDeskDialog()
+        }
+    }
+
     override fun goToLobbyClick(points: Int) {
         var currentMMR = PrefsHelper.read(
             PrefsHelper.MMR_COUNT, "0"
@@ -217,5 +229,13 @@ class FragmentGame : Fragment(R.layout.fragment_game), AssignCallback,
         PrefsHelper.write(PrefsHelper.MMR_COUNT, currentMMR.toString())
 
         mListener.backToLobbyCLicked()
+    }
+
+    override fun onDialogPositiveClick(position: Array<Int>) {
+        gameViewModel.generateMatch(position)
+    }
+
+    override fun onHide() {
+        commonsHideButton.Visible()
     }
 }

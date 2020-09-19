@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -173,6 +172,20 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
         transaction.commit()
     }
 
+    override fun statsClicked() {
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragment = FragmentStats()
+        transaction.setCustomAnimations(
+            R.animator.scaley_enter,
+            R.animator.scaley_exit,
+            R.animator.scaley_enter,
+            R.animator.scaley_exit
+        )
+        transaction.replace(R.id.fragment_holder, fragment)
+            .addToBackStack(null)
+        transaction.commit()
+    }
+
     private fun showRoomFragment() {
         val transaction = supportFragmentManager.beginTransaction()
         val fragment = FragmentRoom()
@@ -315,7 +328,9 @@ class MainActivity : AppCompatActivity(), FragmentMenu.MenuListener, FragmentRoo
             else -> 1
         }
 
-        PrefsHelper.write(PrefsHelper.XP, (currentXP + plusXP).toString())
+        if (currentXP + plusXP <= 100) {
+            PrefsHelper.write(PrefsHelper.XP, (currentXP + plusXP).toString())
+        }
 
         leaderboardsClient?.submitScore(getString(R.string.leadearboard_id), currentMMR.toLong())
         when (currentMMR) {

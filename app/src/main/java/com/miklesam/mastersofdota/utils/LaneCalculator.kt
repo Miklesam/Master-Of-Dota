@@ -4,7 +4,7 @@ import com.miklesam.mastersofdota.datamodels.HeroStats
 import com.miklesam.mastersofdota.datamodels.Heroes
 
 
-class LaneCalculator(val myHero: Int, val willYouWin: Boolean) {
+class LaneCalculator(val myHero: Int, val extaPoints: Int) {
     fun calculateLineKills(
         radiant: ArrayList<HeroStats>,
         dire: ArrayList<HeroStats>,
@@ -18,41 +18,27 @@ class LaneCalculator(val myHero: Int, val willYouWin: Boolean) {
             for (rad in radiant) {
                 sumPointsRad += when {
                     gameCount < 6 -> {
-
                         if (myHero == radiantHeroes[rad.seq - 1]) {
-                            if (willYouWin) {
-                                200
-                            } else {
-                                -50
-                            }
+                            Heroes.values()
+                                .find { it.id == radiantHeroes[rad.seq - 1] }?.laining!! + extaPoints
                         } else {
                             Heroes.values()
                                 .find { it.id == radiantHeroes[rad.seq - 1] }?.laining!!
                         }
-
                     }
                     gameCount < 12 -> {
-
                         if (myHero == radiantHeroes[rad.seq - 1]) {
-                            if (willYouWin) {
-                                200
-                            } else {
-                                -50
-                            }
+                            Heroes.values()
+                                .find { it.id == radiantHeroes[rad.seq - 1] }?.fighting!! + extaPoints
                         } else {
                             Heroes.values()
                                 .find { it.id == radiantHeroes[rad.seq - 1] }?.fighting!!
                         }
-
                     }
                     else -> {
-
                         if (myHero == radiantHeroes[rad.seq - 1]) {
-                            if (willYouWin) {
-                                200
-                            } else {
-                                -50
-                            }
+                            Heroes.values()
+                                .find { it.id == radiantHeroes[rad.seq - 1] }?.lateGame!! + extaPoints
                         } else {
                             Heroes.values()
                                 .find { it.id == radiantHeroes[rad.seq - 1] }?.lateGame!!
@@ -164,7 +150,7 @@ class LaneCalculator(val myHero: Int, val willYouWin: Boolean) {
     private fun calculateSecondPoint(heroesOnLine: ArrayList<HeroStats>): Int {
         var secondPoint = 15 + (heroesOnLine.size - 1) * 20
         if (heroesOnLine.size == 5) {
-            secondPoint += 50
+            secondPoint += 70
         }
         return secondPoint
     }

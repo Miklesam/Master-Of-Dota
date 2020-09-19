@@ -25,4 +25,17 @@
     <string name="ach_4000_mmr">CgkIgOzau8MZEAIQBQ</string>
     <string name="ach_5000_mmr">CgkIgOzau8MZEAIQBg</string>
 
+
+    <string-array name="lineList">
+        <item>Top</item>
+        <item>Mid</item>
+        <item>Bot</item>
+    </string-array>
+
+    <string name="hero">Hero</string>
+    <string name="late_game">Late Game</string>
+    <string name="fighting">Fighting</string>
+    <string name="lainning">Early Game</string>
+    <string name="hide">Hide</string>
+
 </resources>
